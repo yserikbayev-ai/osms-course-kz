@@ -1,0 +1,1247 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Курс обучения медперсонала по ОСМС и правилам финансирования ПМСП. Три уровня сложности, 105 вопросов с привязкой к пунктам приказов Минздрава РК.">
+<meta property="og:title" content="Курс ОСМС — обучение медперсонала по НПА РК">
+<meta property="og:description" content="Три грейда с допуском, экзамены, корректирующие действия и отчёт руководителя. Материал — из действующих приказов МЗ РК.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%96%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<style>html{color-scheme:light dark}</style>
+<title>Курс ОСМС — обучение медперсонала по НПА РК</title>
+<style>
+:root{
+  --ground:#F5F7F7; --surface:#FFFFFF; --surface-2:#EDF1F1; --line:#D7E0E0; --line-soft:#E6ECEC;
+  --ink:#16232B; --ink-2:#4A5C64; --ink-3:#74868D;
+  --accent:#0E6E6B; --accent-ink:#0A4F4D; --accent-wash:#E4EFEE;
+  --brass:#B07A2B; --brass-wash:#F6EEE0;
+  --good:#2E7D53; --good-wash:#E6F1EA; --warn:#B4711A; --warn-wash:#F8EEE1; --crit:#B03A3A; --crit-wash:#F7E8E8;
+  --shadow:0 1px 2px rgba(22,35,43,.06),0 8px 24px -12px rgba(22,35,43,.18);
+  --sans:ui-sans-serif,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --ground:#0F171C; --surface:#16212A; --surface-2:#1D2A33; --line:#2A3A44; --line-soft:#223039;
+    --ink:#E7EDEE; --ink-2:#A9B9BF; --ink-3:#7D8F97;
+    --accent:#3FA9A2; --accent-ink:#8FD6D0; --accent-wash:#153033;
+    --brass:#D2A055; --brass-wash:#2C2418;
+    --good:#5FBF89; --good-wash:#152A20; --warn:#DDA45C; --warn-wash:#2C2317; --crit:#E07A7A; --crit-wash:#2E1C1C;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0F171C; --surface:#16212A; --surface-2:#1D2A33; --line:#2A3A44; --line-soft:#223039;
+  --ink:#E7EDEE; --ink-2:#A9B9BF; --ink-3:#7D8F97;
+  --accent:#3FA9A2; --accent-ink:#8FD6D0; --accent-wash:#153033;
+  --brass:#D2A055; --brass-wash:#2C2418;
+  --good:#5FBF89; --good-wash:#152A20; --warn:#DDA45C; --warn-wash:#2C2317; --crit:#E07A7A; --crit-wash:#2E1C1C;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.7);
+}
+:root[data-theme="light"]{
+  --ground:#F5F7F7; --surface:#FFFFFF; --surface-2:#EDF1F1; --line:#D7E0E0; --line-soft:#E6ECEC;
+  --ink:#16232B; --ink-2:#4A5C64; --ink-3:#74868D;
+  --accent:#0E6E6B; --accent-ink:#0A4F4D; --accent-wash:#E4EFEE;
+  --brass:#B07A2B; --brass-wash:#F6EEE0;
+  --good:#2E7D53; --good-wash:#E6F1EA; --warn:#B4711A; --warn-wash:#F8EEE1; --crit:#B03A3A; --crit-wash:#F7E8E8;
+  --shadow:0 1px 2px rgba(22,35,43,.06),0 8px 24px -12px rgba(22,35,43,.18);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{margin:0;text-wrap:balance;line-height:1.22;font-weight:640;letter-spacing:-.012em}
+p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+a{color:var(--accent);text-underline-offset:2px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.topbar{border-bottom:1px solid var(--line);background:var(--surface);position:sticky;top:0;z-index:20}
+.topbar .wrap{display:flex;align-items:center;gap:16px;min-height:60px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;margin-right:auto;min-width:0}
+.mark{width:26px;height:26px;border-radius:6px;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--mono);font-size:12px;font-weight:700;flex:none}
+:root[data-theme="dark"] .mark,:root:not([data-theme="light"]) .mark{color:#08211F}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .mark{color:#fff}}
+.brand b{display:block;font-size:15px;font-weight:650;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand span{display:block;font-size:12px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:560px){.topbar .wrap{min-height:0;padding-top:10px;padding-bottom:10px}.tabs{width:100%}.tab{flex:1;text-align:center}}
+.tabs{display:flex;gap:2px;background:var(--surface-2);padding:3px;border-radius:9px}
+.tab{padding:6px 13px;border-radius:7px;font-size:13.5px;color:var(--ink-2);font-weight:520;white-space:nowrap}
+.tab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+
+main{padding:26px 0 72px}
+.cols{display:grid;grid-template-columns:296px minmax(0,1fr);gap:26px;align-items:start}
+@media (max-width:900px){.cols{grid-template-columns:1fr}}
+
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.panel-pad{padding:20px}
+.eyebrow{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+
+/* Лестница грейдов */
+.ladder{display:flex;flex-direction:column;gap:0;padding:6px}
+.step{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;padding:13px 12px;border-radius:8px;text-align:left;width:100%;align-items:start;position:relative}
+.step+.step{margin-top:2px}
+.step::before{content:"";position:absolute;left:28px;top:-2px;height:15px;width:2px;background:var(--line)}
+.step:first-child::before{display:none}
+.step[data-state="done"]::before{background:var(--good)}
+.step:hover:not([disabled]){background:var(--surface-2)}
+.step[aria-current="true"]{background:var(--accent-wash)}
+.step[disabled]{opacity:.55;cursor:not-allowed}
+.dot{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:13px;font-weight:700;border:1.5px solid var(--line);color:var(--ink-3);background:var(--surface)}
+.step[data-state="open"] .dot{border-color:var(--accent);color:var(--accent);background:var(--accent-wash)}
+.step[data-state="done"] .dot{border-color:var(--good);background:var(--good);color:#fff}
+.step h4{font-size:14.5px}
+.step small{display:block;font-size:12.5px;color:var(--ink-3);margin-top:2px}
+.step .st{margin-top:6px}
+
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;border:1px solid transparent;white-space:nowrap}
+.chip.locked{background:var(--surface-2);color:var(--ink-3);border-color:var(--line)}
+.chip.open{background:var(--accent-wash);color:var(--accent-ink);border-color:var(--accent)}
+.chip.done{background:var(--good-wash);color:var(--good);border-color:var(--good)}
+.chip.warn{background:var(--warn-wash);color:var(--warn);border-color:var(--warn)}
+.chip.crit{background:var(--crit-wash);color:var(--crit);border-color:var(--crit)}
+:root[data-theme="dark"] .chip.done,:root[data-theme="dark"] .chip.open{border-color:transparent}
+
+.meter{height:5px;border-radius:3px;background:var(--surface-2);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent);border-radius:3px;transition:width .5s ease}
+.meter.good i{background:var(--good)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 17px;border-radius:8px;font-size:14.5px;font-weight:600;border:1px solid var(--line);background:var(--surface);transition:.15s}
+.btn:hover{border-color:var(--ink-3)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+:root[data-theme="dark"] .btn.primary{color:#08211F}
+.btn.primary:hover{filter:brightness(1.07)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.sm{padding:6px 12px;font-size:13px}
+.btn.ghost{border-color:transparent;color:var(--ink-2)}
+.btn.ghost:hover{background:var(--surface-2);border-color:transparent}
+
+.hd{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px}
+.hd .grow{flex:1;min-width:240px}
+.hd h2{font-size:23px}
+.lead{color:var(--ink-2);font-size:14.5px;margin-top:5px;max-width:62ch}
+
+/* Карточка нормы */
+.norm{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--surface)}
+.norm+.norm{margin-top:14px}
+.norm-h{display:flex;gap:10px;align-items:baseline;padding:11px 16px;background:var(--surface-2);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.pt{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--accent-ink);background:var(--accent-wash);padding:2px 7px;border-radius:5px;white-space:nowrap}
+:root[data-theme="dark"] .pt{color:var(--accent-ink);background:var(--accent-wash)}
+.norm-h .src{font-size:12.5px;color:var(--ink-3);min-width:0;overflow:hidden;text-overflow:ellipsis}
+.norm-b{padding:16px}
+.quote{font-family:var(--serif);font-size:15.5px;line-height:1.62;color:var(--ink);border-left:3px solid var(--line);padding-left:14px}
+.plain{margin-top:13px;font-size:14.5px;color:var(--ink-2);display:flex;gap:9px}
+.plain b{color:var(--accent-ink);font-weight:650;flex:none}
+:root[data-theme="dark"] .plain b{color:var(--accent)}
+.srcline{margin-top:13px;padding-top:11px;border-top:1px solid var(--line-soft);font-size:12.5px;color:var(--ink-3);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+
+/* Экзамен */
+.exam-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:13px 18px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);position:sticky;top:66px;z-index:10;box-shadow:var(--shadow)}
+.timer{font-family:var(--mono);font-size:17px;font-weight:700;font-variant-numeric:tabular-nums}
+.timer.low{color:var(--crit)}
+.qnum{font-family:var(--mono);font-size:13px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.qbody{margin-top:16px}
+.qtext{font-size:18px;font-weight:600;line-height:1.42;margin-bottom:16px;text-wrap:pretty}
+.opts{display:flex;flex-direction:column;gap:9px}
+.opt{display:flex;gap:12px;align-items:flex-start;padding:13px 15px;border:1px solid var(--line);border-radius:9px;background:var(--surface);text-align:left;font-size:15px;line-height:1.45;transition:.12s;width:100%}
+.opt:hover{border-color:var(--accent);background:var(--accent-wash)}
+.opt[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-wash);box-shadow:inset 0 0 0 1px var(--accent)}
+.opt .k{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ink-3);border:1px solid var(--line);border-radius:5px;width:22px;height:22px;display:grid;place-items:center;flex:none;margin-top:1px}
+.opt[aria-pressed="true"] .k{background:var(--accent);color:#fff;border-color:var(--accent)}
+.opt.right{border-color:var(--good);background:var(--good-wash)}
+.opt.right .k{background:var(--good);color:#fff;border-color:var(--good)}
+.opt.wrong{border-color:var(--crit);background:var(--crit-wash)}
+.opt.wrong .k{background:var(--crit);color:#fff;border-color:var(--crit)}
+.opt[disabled]{cursor:default}
+.opt[disabled]:hover{border-color:var(--line);background:var(--surface)}
+.opt.right[disabled]:hover{border-color:var(--good);background:var(--good-wash)}
+.opt.wrong[disabled]:hover{border-color:var(--crit);background:var(--crit-wash)}
+
+.explain{margin-top:14px;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:14px 16px;background:var(--surface-2)}
+.explain .t{font-size:14.5px;line-height:1.55}
+.exam-foot{display:flex;gap:12px;align-items:center;margin-top:20px;flex-wrap:wrap}
+
+/* Результат */
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.stat{border:1px solid var(--line);border-radius:var(--r);padding:15px 16px;background:var(--surface)}
+.stat .v{font-size:29px;font-weight:680;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1.1}
+.stat .l{font-size:12.5px;color:var(--ink-3);margin-top:3px}
+.stat.pass{border-color:var(--good)}.stat.pass .v{color:var(--good)}
+.stat.fail{border-color:var(--crit)}.stat.fail .v{color:var(--crit)}
+.delta{font-size:14px;font-weight:650;font-variant-numeric:tabular-nums}
+.delta.up{color:var(--good)}.delta.down{color:var(--crit)}
+
+.ca{border:1px solid var(--warn);background:var(--warn-wash);border-radius:var(--r);padding:18px}
+.ca h3{font-size:16px;color:var(--warn)}
+.calist{list-style:none;padding:0;margin:14px 0 0;display:flex;flex-direction:column;gap:9px}
+.calist li{display:flex;gap:11px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:11px 13px}
+.calist input{margin-top:3px;width:17px;height:17px;accent-color:var(--accent);flex:none}
+.calist .n{font-size:14.5px;font-weight:600}
+.calist .s{font-size:12.5px;color:var(--ink-3);margin-top:2px}
+
+/* Сертификат */
+.cert{border:1.5px solid var(--brass);border-radius:var(--r);background:var(--brass-wash);padding:34px 30px;text-align:center;font-family:var(--serif)}
+.cert .ttl{font-size:26px;font-weight:600;letter-spacing:.01em}
+.cert .nm{font-size:22px;margin:16px 0 4px;font-weight:600}
+.cert .ln{width:64px;height:2px;background:var(--brass);margin:18px auto}
+.cert .meta{font-family:var(--mono);font-size:12.5px;color:var(--ink-2);letter-spacing:.02em}
+.cert .code{font-family:var(--mono);font-size:15px;font-weight:700;color:var(--brass);letter-spacing:.06em;margin-top:6px}
+
+/* Таблица дашборда */
+.tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line-soft)}
+th{font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3);font-weight:650;background:var(--surface-2)}
+tr:last-child td{border-bottom:0}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+.note{font-size:13px;color:var(--ink-3);line-height:1.55}
+.stack{display:flex;flex-direction:column;gap:16px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.hidden{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+footer{border-top:1px solid var(--line);margin-top:40px;padding:22px 0 40px;color:var(--ink-3);font-size:12.5px}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
+</style>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand">
+      <div class="mark">НПА</div>
+      <div style="min-width:0">
+        <b>Курс «ОСМС и правила финансирования ПМСП»</b>
+        <span>Обучение медперсонала по нормативным актам МЗ РК</span>
+      </div>
+    </div>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" data-view="course">Обучение</button>
+      <button class="tab" role="tab" aria-selected="false" data-view="chief">Главврач</button>
+      <button class="tab" role="tab" aria-selected="false" data-view="about">Источники</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <!-- ОБУЧЕНИЕ -->
+    <section id="view-course">
+      <div class="cols">
+        <aside class="stack">
+          <div class="panel">
+            <div class="panel-pad" style="padding-bottom:10px">
+              <div class="eyebrow">Программа курса</div>
+              <p class="note" style="margin-top:6px">Грейд открывается после сдачи предыдущего</p>
+            </div>
+            <nav class="ladder" id="ladder"></nav>
+          </div>
+          <div class="panel panel-pad">
+            <div class="eyebrow">Ваш прогресс</div>
+            <div class="row" style="margin-top:10px;justify-content:space-between">
+              <span class="note">Курс пройден на</span>
+              <b id="prog-pct" class="delta">0%</b>
+            </div>
+            <div class="meter" style="margin-top:8px"><i id="prog-bar" style="width:0%"></i></div>
+            <div id="cert-slot" style="margin-top:14px"></div>
+          </div>
+          <div class="panel panel-pad">
+            <div class="eyebrow">Банк вопросов</div>
+            <p class="note" style="margin-top:8px" id="bank-note"></p>
+            <button class="btn sm ghost" style="margin-top:10px;padding-left:0" id="btn-reset">Сбросить мой прогресс</button>
+          </div>
+        </aside>
+
+        <div id="stage" class="stack"></div>
+      </div>
+    </section>
+
+    <!-- ГЛАВВРАЧ -->
+    <section id="view-chief" class="hidden">
+      <div class="hd">
+        <div class="grow">
+          <div class="eyebrow">Кабинет руководителя</div>
+          <h2 style="margin-top:6px">Состояние команды</h2>
+          <p class="lead">Главное здесь — не факт сдачи, а прогресс между первой и повторной попыткой: он показывает, сработали ли корректирующие действия и где остаётся системный пробел.</p>
+        </div>
+      </div>
+      <div class="grid-2" id="chief-stats"></div>
+      <div class="tblwrap" style="margin-top:18px"><table id="chief-tbl"></table></div>
+      <p class="note" style="margin-top:12px">Строка «Вы» отражает ваш реальный прогресс в этом курсе. Остальные строки — демонстрационные данные, чтобы показать, как выглядит отчёт по клинике.</p>
+    </section>
+
+    <!-- ИСТОЧНИКИ -->
+    <section id="view-about" class="hidden">
+      <div class="hd">
+        <div class="grow">
+          <div class="eyebrow">Откуда взят материал</div>
+          <h2 style="margin-top:6px">Нормативная база курса</h2>
+          <p class="lead">Каждый урок и каждый вопрос привязан к конкретному пункту действующего нормативного правового акта. Тексты получены из государственной информационно-правовой системы «Әділет».</p>
+        </div>
+      </div>
+      <div id="acts-list" class="stack"></div>
+      <div class="panel panel-pad" style="margin-top:18px">
+        <div class="eyebrow">Как это устроено</div>
+        <p class="note" style="margin-top:10px">Курс собран из выгрузки 2479 нормативных правовых актов Министерства здравоохранения РК (состояние ИПС «Әділет» на 1 августа 2026 года). Для темы ОСМС отобран манифест из шести ядровых действующих актов, их текст нарезан на нормы, и по каждой значимой норме подготовлены учебная карточка и вопросы трёх уровней сложности.</p>
+        <p class="note" style="margin-top:10px">Тексты соответствуют состоянию базы на дату выгрузки. Для юридически значимых решений сверяйтесь с первоисточником по ссылке рядом с каждым актом.</p>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Источник норм: ИПС «Әділет» — adilet.zan.kz · выгрузка 01.08.2026</span>
+    <span>Прогресс хранится только в вашем браузере</span>
+  </div>
+</footer>
+
+<script>
+// Манифест темы «ОСМС и правила финансирования ПМСП» — источник: ИПС «Әділет», выгрузка 2026-08-01
+const ACTS = {
+  A1: { id:'V2000021977', num:'ҚР ДСМ-333/2020', date:'29.12.2020', reg:'21977',
+        title:'Правила ведения учёта потребителей медицинских услуг и предоставления права на получение медицинской помощи в системе ОСМС',
+        url:'https://adilet.zan.kz/rus/docs/V2000021977' },
+  A2: { id:'V2000021642', num:'ҚР ДСМ-194/2020', date:'13.11.2020', reg:'21642',
+        title:'Правила прикрепления физических лиц к организациям здравоохранения, оказывающим ПМСП',
+        url:'https://adilet.zan.kz/rus/docs/V2000021642' },
+  A3: { id:'V2100024094', num:'ҚР ДСМ-90', date:'24.08.2021', reg:'24094',
+        title:'Правила оказания первичной медико-санитарной помощи',
+        url:'https://adilet.zan.kz/rus/docs/V2100024094' },
+  A4: { id:'V2300032160', num:'49', date:'30.03.2023', reg:'32160',
+        title:'Стандарт организации оказания первичной медико-санитарной помощи в Республике Казахстан',
+        url:'https://adilet.zan.kz/rus/docs/V2300032160' },
+  A5: { id:'V2000021904', num:'ҚР ДСМ-321/2020', date:'24.12.2020', reg:'21904',
+        title:'Правила проведения мониторинга исполнения условий договора закупа медицинских услуг у субъектов здравоохранения',
+        url:'https://adilet.zan.kz/rus/docs/V2000021904' },
+  A6: { id:'V2100024069', num:'ҚР ДСМ-89', date:'20.08.2021', reg:'24069',
+        title:'Правила обеспечения лекарственными средствами и медицинскими изделиями в рамках ГОБМП и в системе ОСМС',
+        url:'https://adilet.zan.kz/rus/docs/V2100024069' }
+};
+
+// ГРЕЙД 1 — БАЗОВЫЙ. Знание нормы: что положено, кому, кем оказывается.
+const G1_LESSONS = [
+ { id:'L1.1', grade:1, title:'Право на медицинскую помощь в системе ОСМС',
+   intro:'Кто считается потребителем в системе ОСМС, с какого момента возникает право и когда оно сохраняется, даже если платежи прекратились.',
+   cards:[
+    { a:'A1', p:3, norm:'Право на медицинскую помощь в системе ОСМС имеют лица, за которых осуществлялась уплата отчислений и (или) взносов в Фонд, а также освобождённые от уплаты взносов в соответствии с пунктом 7 статьи 28 Закона.',
+      plain:'Право даёт не гражданство и не прикрепление, а факт уплаты за человека либо законное освобождение от уплаты. Прикреплённый, но незастрахованный пациент получает только ГОБМП.' },
+    { a:'A1', p:9, norm:'При поступлении сведений об исключении лица из категорий, взносы за которых уплачивает государство, право на получение медицинской помощи в системе ОСМС сохраняется на период не более трёх месяцев с момента прекращения уплаты взносов.',
+      plain:'Пациент, потерявший льготную категорию, ещё до трёх месяцев остаётся застрахованным. Не отказывайте сразу — сначала проверьте статус в системе.' },
+    { a:'A1', p:10, norm:'Лица, указанные в пункте 2 статьи 14 Закона (за исключением подпунктов 1 и 9), учитываются как потребители с первого числа месяца при наличии сведений об уплате отчислений и (или) взносов в течение двенадцати месяцев, предшествующих дате оплаты, за каждый месяц.',
+      plain:'Для самостоятельных плательщиков важен непрерывный ряд платежей за 12 месяцев. Разрыв в платежах — и статус потребителя не подтвердится.' },
+    { a:'A1', p:13, norm:'В случае возникновения технических сбоев работы ИС Фонда, ИС государственных органов право на получение медицинской помощи в системе ОСМС физического лица сохраняется до исправления ИС.',
+      plain:'Если система не отвечает или показывает статус некорректно, это не основание отказать пациенту. Право сохраняется на время сбоя.' },
+    { a:'A1', p:14, norm:'Информация о потребителе предоставляется из ИС Фонда по запросу в медицинские информационные системы и иные информационные системы для дальнейшего определения источника финансирования оказания медицинской помощи.',
+      plain:'Статус пациента в МИС — это ответ ИС Фонда. Именно он определяет, за чей счёт пойдёт услуга: ГОБМП, ОСМС или платно.' },
+    { a:'A1', p:6, norm:'Данные по категории потребителей, за исключением данных, предусмотренных главой 5 Правил, обновляются ежедневно в автоматизированном режиме.',
+      plain:'Статус пациента может измениться со вчера на сегодня. Проверять его нужно на дату обращения, а не по памяти о прошлом визите.' }
+   ]},
+ { id:'L1.2', grade:1, title:'Прикрепление к организации ПМСП',
+   intro:'Прикрепление — основание для оказания ПМСП. Разбираем ключ идентификации, сроки и особые категории пациентов.',
+   cards:[
+    { a:'A2', p:5, norm:'Прикрепление физических лиц осуществляется для реализации права на получение медицинской помощи в рамках ГОБМП и в системе ОСМС по индивидуальному идентификационному номеру (ИИН) к одной организации ПМСП.',
+      plain:'Ключ идентификации — ИИН, и организация может быть только одна. Двойного прикрепления не бывает: новое автоматически снимает старое.' },
+    { a:'A2', p:14, norm:'При прикреплении физического лица к организации ПМСП открепление от предыдущей организации ПМСП осуществляется автоматически.',
+      plain:'Не нужно требовать от пациента справку об откреплении с прежнего места — система снимает его сама.' },
+    { a:'A2', p:9, norm:'Прикрепление детей до пяти лет включительно к организациям ПМСП осуществляется по месту фактического проживания и не позднее 3-х дней после выписки с организации родовспоможения.',
+      plain:'Новорождённый должен быть прикреплён в течение трёх дней после выписки — это срок, за который отвечает организация ПМСП.' },
+    { a:'A2', p:12, norm:'Прикрепление беременных к организациям ПМСП осуществляется по месту фактического проживания.',
+      plain:'Для беременных решает фактическое проживание, а не прописка. Регистрация по другому адресу не препятствие.' },
+    { a:'A2', p:13, norm:'Физическое лицо, не воспользовавшееся правом свободного выбора организации ПМСП, остаётся прикреплённым к организации ПМСП, в которой обслуживался ранее.',
+      plain:'Молчание пациента означает сохранение прежнего прикрепления — само по себе оно не меняется.' },
+    { a:'A2', p:18, norm:'Свободный выбор специалиста ПМСП осуществляется в пределах организации ПМСП по месту прикрепления с учётом количества прикреплённого населения на участке.',
+      plain:'Пациент вправе выбрать врача, но только внутри своей организации и с учётом нагрузки на участок — отказ по переполненности участка правомерен.' }
+   ]},
+ { id:'L1.3', grade:1, title:'Кто и что оказывает в ПМСП',
+   intro:'Состав специалистов ПМСП, разделение врачебной и доврачебной помощи, обязательная первичная документация.',
+   cards:[
+    { a:'A3', p:6, norm:'ПМСП оказывается врачами общей практики (семейными врачами), участковыми терапевтами, педиатрами, фельдшерами, акушерами, медицинскими сёстрами расширенной практики (общей практики), участковыми медицинскими сёстрами, социальными работниками, психологами в области здравоохранения.',
+      plain:'Перечень закрытый. Социальный работник и психолог — полноправная часть команды ПМСП, а не дополнительная услуга.' },
+    { a:'A3', p:12, norm:'ПМСП включает доврачебную медицинскую помощь, которая оказывается средними медицинскими работниками (участковая медицинская сестра, фельдшер, акушер) при заболеваниях или в случаях, не требующих участия врача, по перечню медицинских услуг согласно приложению 1 к Правилам.',
+      plain:'Доврачебная помощь — не «приём вместо врача», а закрытый перечень случаев. Выход за перечень превращает услугу в неподтверждённую.' },
+    { a:'A3', p:14, norm:'При первичном обращении в организацию ПМСП в регистратуре оформляется в электронном формате в медицинских информационных системах медицинская карта амбулаторного пациента по форме № 052/у.',
+      plain:'Карта заводится в регистратуре и сразу в электронном виде. Бумажное оформление «потом» — риск непризнания случая.' },
+    { a:'A3', p:16, norm:'В случае обращения пациента по поводу острого заболевания (состояния) или обострения хронического заболевания специалисты организации ПМСП определяют методы диагностики и лечения в соответствии с клиническими протоколами.',
+      plain:'Отклонение от клинического протокола должно быть обосновано — иначе случай уязвим при экспертизе Фонда.' },
+    { a:'A3', p:17, norm:'Специалисты организации ПМСП направляют пациента в дневной стационар или круглосуточный стационар в плановой форме через Портал Бюро госпитализации.',
+      plain:'Плановая госпитализация идёт только через Портал Бюро госпитализации. Направление «в обход» портала не будет оплачено.' },
+    { a:'A4', p:4, norm:'Оказание услуг ПМСП осуществляется в рамках ГОБМП, в системе ОСМС, добровольного и (или) вменённого медицинского страхования, а также платно.',
+      plain:'Один и тот же приём может финансироваться из разных источников. Определить источник нужно до оказания услуги, а не после.' }
+   ]}
+];
+
+const G1_QUESTIONS = [
+ { id:'q101', g:1, l:'L1.1', a:'A1', p:3, q:'Что является основанием права пациента на медицинскую помощь в системе ОСМС?',
+   o:['Уплата за него отчислений и (или) взносов в Фонд либо законное освобождение от уплаты взносов','Наличие гражданства Республики Казахстан','Прикрепление к организации ПМСП','Наличие удостоверения личности и ИИН'], c:0,
+   e:'Право в системе ОСМС даёт факт уплаты отчислений и (или) взносов либо освобождение от уплаты по пункту 7 статьи 28 Закона. Гражданство и прикрепление сами по себе права на ОСМС не создают.' },
+ { id:'q102', g:1, l:'L1.1', a:'A1', p:9, q:'Пациент исключён из категории лиц, взносы за которых уплачивает государство. Сколько сохраняется его право на медпомощь в системе ОСМС?',
+   o:['Не более трёх месяцев с момента прекращения уплаты взносов','Право прекращается в тот же день','Один календарный месяц','До конца календарного года'], c:0,
+   e:'Норма прямо устанавливает период сохранения права — не более трёх месяцев с момента прекращения уплаты взносов.' },
+ { id:'q103', g:1, l:'L1.1', a:'A1', p:13, q:'В момент обращения пациента произошёл технический сбой информационной системы Фонда. Что происходит с его правом на медпомощь в ОСМС?',
+   o:['Сохраняется до исправления информационной системы','Приостанавливается до восстановления системы','Определяется по последнему известному статусу','Пациент переводится на платное обслуживание'], c:0,
+   e:'При технических сбоях ИС Фонда или ИС государственных органов право на получение медицинской помощи в системе ОСМС сохраняется до исправления информационной системы.' },
+ { id:'q104', g:1, l:'L1.1', a:'A1', p:14, q:'Откуда медицинская информационная система получает сведения о статусе пациента для определения источника финансирования?',
+   o:['Из информационной системы Фонда по запросу','Из базы данных организации ПМСП','Из портала «Электронного правительства»','Из документов, предъявленных пациентом'], c:0,
+   e:'Информация о потребителе предоставляется из ИС Фонда по запросу в медицинские информационные системы для дальнейшего определения источника финансирования.' },
+ { id:'q105', g:1, l:'L1.1', a:'A1', p:6, q:'С какой периодичностью обновляются данные по категориям потребителей ОСМС?',
+   o:['Ежедневно в автоматизированном режиме','Еженедельно','Ежемесячно','При каждом обращении пациента'], c:0,
+   e:'Данные по категории потребителей, за исключением предусмотренных главой 5 Правил, обновляются ежедневно в автоматизированном режиме.' },
+ { id:'q106', g:1, l:'L1.1', a:'A1', p:10, q:'За какой период должны быть сведения об уплате, чтобы самостоятельный плательщик учитывался как потребитель ОСМС?',
+   o:['За каждый месяц в течение двенадцати месяцев, предшествующих дате оплаты','За последние три месяца','За текущий календарный год','За шесть месяцев подряд'], c:0,
+   e:'Такие лица учитываются как потребители с первого числа месяца при наличии сведений об уплате за каждый месяц в течение двенадцати месяцев, предшествующих дате оплаты.' },
+ { id:'q107', g:1, l:'L1.1', a:'A1', p:4, q:'Кто ведёт учёт потребителей в системе ОСМС?',
+   o:['Фонд — в своей информационной системе','Организация ПМСП по месту прикрепления','Управление здравоохранения области','Государственная корпорация «Правительство для граждан»'], c:0,
+   e:'Ведение учёта потребителей в рамках системы ОСМС осуществляется Фондом в ИС Фонда на основании данных, поступающих из Государственной корпорации и иных источников.' },
+ { id:'q108', g:1, l:'L1.2', a:'A2', p:5, q:'По какому признаку и к скольким организациям ПМСП прикрепляется пациент?',
+   o:['По ИИН — к одной организации ПМСП','По адресу регистрации — к одной или нескольким','По ФИО и дате рождения — к одной организации','По полису — к организации по выбору страховщика'], c:0,
+   e:'Прикрепление осуществляется по индивидуальному идентификационному номеру (ИИН) к одной организации ПМСП.' },
+ { id:'q109', g:1, l:'L1.2', a:'A2', p:14, q:'Что происходит с прежним прикреплением, когда пациент прикрепляется к новой организации ПМСП?',
+   o:['Открепление от предыдущей организации происходит автоматически','Пациент обязан сам открепиться до подачи заявления','Открепление проводит управление здравоохранения','Прикрепления действуют параллельно до конца года'], c:0,
+   e:'При прикреплении физического лица к организации ПМСП открепление от предыдущей организации осуществляется автоматически.' },
+ { id:'q110', g:1, l:'L1.2', a:'A2', p:9, q:'В какой срок после выписки из организации родовспоможения должен быть прикреплён ребёнок?',
+   o:['Не позднее 3-х дней после выписки','В течение 10 календарных дней','В течение одного месяца','До первого патронажного посещения'], c:0,
+   e:'Прикрепление детей до пяти лет включительно осуществляется по месту фактического проживания и не позднее 3-х дней после выписки из организации родовспоможения.' },
+ { id:'q111', g:1, l:'L1.2', a:'A2', p:12, q:'По какому принципу прикрепляются беременные?',
+   o:['По месту фактического проживания','Строго по месту регистрации','По месту работы','По выбору женской консультации'], c:0,
+   e:'Прикрепление беременных к организациям ПМСП осуществляется по месту фактического проживания.' },
+ { id:'q112', g:1, l:'L1.2', a:'A2', p:13, q:'Пациент не подавал заявление о выборе организации ПМСП. Где он числится прикреплённым?',
+   o:['Остаётся прикреплённым к организации, где обслуживался ранее','Открепляется и остаётся без прикрепления','Прикрепляется по адресу регистрации автоматически','Распределяется управлением здравоохранения'], c:0,
+   e:'Лицо, не воспользовавшееся правом свободного выбора организации ПМСП, остаётся прикреплённым к организации, в которой обслуживался ранее.' },
+ { id:'q113', g:1, l:'L1.2', a:'A2', p:18, q:'В каких пределах пациент вправе свободно выбрать специалиста ПМСП?',
+   o:['В пределах своей организации ПМСП, с учётом численности населения на участке','В пределах города без ограничений','В любой организации, имеющей договор с Фондом','Выбор специалиста не предусмотрен'], c:0,
+   e:'Свободный выбор специалиста ПМСП осуществляется в пределах организации ПМСП по месту прикрепления с учётом количества прикреплённого населения на участке.' },
+ { id:'q114', g:1, l:'L1.2', a:'A2', p:3, q:'Чем по своей роли является прикрепление к организации ПМСП?',
+   o:['Основанием для оказания ПМСП','Формой статистического учёта','Условием получения полиса ОСМС','Способом распределения бюджета между клиниками'], c:0,
+   e:'Прикрепление физических лиц к организациям ПМСП является основанием для оказания ПМСП и осуществляется на установленных Правилами принципах.' },
+ { id:'q115', g:1, l:'L1.2', a:'A2', p:11, q:'Как прикрепляются студенты и обучающиеся, достигшие 18 лет?',
+   o:['Самостоятельно по выбору, по месту административно-территориальной единицы в шаговой доступности','Только по адресу постоянной регистрации родителей','Централизованно приказом учебного заведения','По месту нахождения общежития без права выбора'], c:0,
+   e:'Студенты, а также обучающиеся в медресе, достигшие 18 лет, прикрепляются к организациям ПМСП самостоятельно по выбору по месту административно-территориальной единицы в шаговой доступности.' },
+ { id:'q116', g:1, l:'L1.2', a:'A2', p:20, q:'В какой форме реализовано прикрепление к организации ПМСП по месту проживания для оказания помощи в рамках ГОБМП?',
+   o:['Как государственная услуга «Прикрепление к медицинской организации, оказывающей ПМСП»','Как внутренняя процедура клиники','Как договор между пациентом и клиникой','Как уведомление в адрес Фонда'], c:0,
+   e:'Для прикрепления по месту постоянного или временного проживания реализована государственная услуга «Прикрепление к медицинской организации, оказывающей первичную медико-санитарную помощь».' },
+ { id:'q117', g:1, l:'L1.3', a:'A3', p:6, q:'Кто из перечисленных НЕ входит в состав специалистов, оказывающих ПМСП?',
+   o:['Врач-рентгенолог','Психолог в области здравоохранения','Социальный работник','Медицинская сестра расширенной практики'], c:0,
+   e:'Норма перечисляет: врачи общей практики, участковые терапевты, педиатры, фельдшеры, акушеры, медсёстры расширенной практики и участковые, социальные работники, психологи. Врач-рентгенолог в этот перечень не входит.' },
+ { id:'q118', g:1, l:'L1.3', a:'A3', p:12, q:'Чем ограничена доврачебная медицинская помощь, оказываемая средними медработниками?',
+   o:['Перечнем медицинских услуг согласно приложению 1 к Правилам, при случаях, не требующих участия врача','Только рабочим временем участкового врача','Возрастом пациента до 18 лет','Согласием заведующего отделением на каждый случай'], c:0,
+   e:'Доврачебная помощь оказывается средними медицинскими работниками при заболеваниях или в случаях, не требующих участия врача, по перечню услуг согласно приложению 1 к Правилам.' },
+ { id:'q119', g:1, l:'L1.3', a:'A3', p:14, q:'Какой документ и в каком виде оформляется при первичном обращении пациента в организацию ПМСП?',
+   o:['Медицинская карта амбулаторного пациента формы № 052/у — в электронном формате в МИС','Амбулаторный журнал на бумажном носителе','Договор об оказании медицинских услуг','Талон на приём в двух экземплярах'], c:0,
+   e:'При первичном обращении в регистратуре оформляется в электронном формате в медицинских информационных системах медицинская карта амбулаторного пациента по форме № 052/у.' },
+ { id:'q120', g:1, l:'L1.3', a:'A3', p:16, q:'Чем руководствуется специалист ПМСП при выборе методов диагностики и лечения острого заболевания?',
+   o:['Клиническими протоколами','Внутренним приказом клиники','Рекомендациями производителя лекарственного средства','Пожеланием пациента'], c:0,
+   e:'При обращении по поводу острого заболевания или обострения хронического специалисты определяют методы диагностики и лечения в соответствии с клиническими протоколами.' },
+ { id:'q121', g:1, l:'L1.3', a:'A3', p:17, q:'Через какой механизм направляется пациент на плановую госпитализацию?',
+   o:['Через Портал Бюро госпитализации','Напрямую по телефону приёмного отделения','Через управление здравоохранения','Через филиал Фонда'], c:0,
+   e:'Специалисты организации ПМСП направляют пациента в дневной или круглосуточный стационар в плановой форме через Портал Бюро госпитализации.' },
+ { id:'q122', g:1, l:'L1.3', a:'A4', p:4, q:'Из каких источников могут финансироваться услуги ПМСП?',
+   o:['ГОБМП, ОСМС, добровольное и вменённое медстрахование, а также платно','Только ГОБМП и ОСМС','Только за счёт средств Фонда','Только за счёт местного бюджета'], c:0,
+   e:'Оказание услуг ПМСП осуществляется в рамках ГОБМП, в системе ОСМС, добровольного и (или) вменённого медицинского страхования, а также платно.' },
+ { id:'q123', g:1, l:'L1.3', a:'A4', p:3, q:'Какое требование предъявляется к организации, оказывающей услуги ПМСП?',
+   o:['Наличие лицензии на вид деятельности в сфере здравоохранения','Наличие не менее трёх участковых врачей','Наличие круглосуточного стационара','Государственная форма собственности'], c:0,
+   e:'Оказание услуг ПМСП осуществляется медицинскими организациями, имеющими лицензию на вид деятельности в сфере здравоохранения.' },
+ { id:'q124', g:1, l:'L1.3', a:'A3', p:20, q:'Каким пациентам проводится патронаж согласно Правилам оказания ПМСП?',
+   o:['Детям до 5 лет, в том числе новорождённым','Только пациентам старше 65 лет','Всем прикреплённым один раз в год','Только пациентам с инвалидностью'], c:0,
+   e:'Патронаж проводится детям до 5 лет, в том числе новорождённым (норма содержит и иные категории, но дети до 5 лет названы прямо).' },
+ { id:'q125', g:1, l:'L1.3', a:'A3', p:8, q:'Как организуется обслуживание прикреплённого населения внутри организации ПМСП?',
+   o:['Формируется участок с закреплением специалистов участка','Пациенты распределяются в порядке живой очереди','Обслуживание ведётся без территориального деления','Участки формирует филиал Фонда'], c:0,
+   e:'В организации ПМСП формируется участок с закреплением специалистов участка для обслуживания прикреплённого населения.' },
+ { id:'q126', g:1, l:'L1.1', a:'A1', p:17, q:'Кто и как часто актуализирует базу данных лиц, взносы за которых уплачивает государство?',
+   o:['Государственная корпорация — ежемесячно','Фонд — ежедневно','Организация ПМСП — при каждом обращении','Управление здравоохранения — ежеквартально'], c:0,
+   e:'Актуализация базы данных категории лиц, взносы за которых уплачиваются государством из республиканского бюджета, осуществляется Государственной корпорацией ежемесячно.' },
+ { id:'q127', g:1, l:'L1.2', a:'A2', p:8, q:'Кто утверждает приказ о распределении территории обслуживания населения субъектами ПМСП?',
+   o:['Управления здравоохранения областей, городов республиканского значения и столицы','Министерство здравоохранения','Фонд социального медицинского страхования','Сами организации ПМСП по соглашению'], c:0,
+   e:'Управления здравоохранения утверждают приказ о распределении территории обслуживания населения субъектами ПМСП с указанием численности прикреплённого населения.' },
+ { id:'q128', g:1, l:'L1.3', a:'A3', p:13, q:'Каким образом организация ПМСП может обеспечить прикреплённому населению специализированную помощь?',
+   o:['В том числе путём заключения договора соисполнения с соисполнителями из базы данных субъектов здравоохранения','Только собственными штатными специалистами','Только через направление в областную больницу','Специализированная помощь не входит в зону ответственности ПМСП'], c:0,
+   e:'Организация ПМСП обеспечивает прикреплённому населению оказание специализированной медицинской помощи, в том числе путём заключения договора соисполнения с соисполнителями, включёнными в базу данных субъектов здравоохранения.' },
+ { id:'q129', g:1, l:'L1.3', a:'A3', p:5, q:'По каким формам организация ПМСП ведёт первичную медицинскую документацию?',
+   o:['По формам учётной документации, утверждённым уполномоченным органом (приказ № ҚР ДСМ-175/2020)','По формам, разработанным самой организацией','По формам, установленным договором с Фондом','По международным стандартам ведения записей'], c:0,
+   e:'Организация ПМСП ведёт первичную медицинскую документацию и представляет отчёты по формам и в порядке, установленным уполномоченным органом (приказ № ҚР ДСМ-175/2020).' },
+ { id:'q130', g:1, l:'L1.1', a:'A1', p:8, q:'В каком режиме ведётся учёт потребителей в ИС Фонда?',
+   o:['В автоматическом режиме на основании данных Государственной корпорации','Вручную работниками филиалов Фонда','По заявлениям граждан','По спискам, подаваемым работодателями'], c:0,
+   e:'Ведение учёта потребителей в ИС Фонда осуществляется в автоматическом режиме на основании данных, поступающих из Государственной корпорации, за исключением категорий, указанных в главе 5 Правил.' },
+ { id:'q131', g:1, l:'L1.2', a:'A2', p:4, q:'Для чего осуществляется прикрепление граждан, кандасов, беженцев и постоянно проживающих иностранцев к организациям ПМСП?',
+   o:['Для реализации права на медпомощь в рамках ГОБМП и в системе ОСМС','Только для статистического учёта населения','Только для получения платных услуг','Для оформления полиса добровольного страхования'], c:0,
+   e:'Прикрепление указанных лиц осуществляется для реализации права на получение медицинской помощи в рамках ГОБМП и в системе ОСМС.' },
+ { id:'q132', g:1, l:'L1.3', a:'A4', p:6, q:'Какой принцип прямо назван среди принципов работы ПМСП в Стандарте?',
+   o:['Семейный принцип обслуживания','Принцип платности первичного приёма','Принцип территориальной закрытости','Принцип обязательной госпитализации'], c:0,
+   e:'Принципы работы ПМСП включают семейный принцип обслуживания.' },
+ { id:'q133', g:1, l:'L1.1', a:'A1', p:3, q:'Пациент прикреплён к клинике, но взносы за него не уплачивались и от уплаты он не освобождён. На что он имеет право?',
+   o:['На медицинскую помощь в рамках ГОБМП, но не в системе ОСМС','На полный объём помощи в системе ОСМС','На помощь только на платной основе','На помощь в объёме ОСМС в течение трёх месяцев'], c:0,
+   e:'Право в системе ОСМС возникает при уплате отчислений и (или) взносов либо освобождении от них. Прикрепление само по себе такого права не даёт — остаётся ГОБМП.' },
+ { id:'q134', g:1, l:'L1.2', a:'A2', p:17, q:'В каких территориальных пределах действует право свободного выбора организации ПМСП в рамках ГОБМП?',
+   o:['В пределах одной административно-территориальной единицы, кроме приграничных территорий','В пределах всей страны без ограничений','Только в пределах своего района города','Свободный выбор не предусмотрен'], c:0,
+   e:'Прикрепление осуществляется по месту постоянного или временного проживания с учётом права свободного выбора в пределах одной административно-территориальной единицы; исключение — лица, проживающие на приграничных территориях.' },
+ { id:'q135', g:1, l:'L1.3', a:'A3', p:19, q:'Что предусмотрено Правилами оказания ПМСП в части работы вне стен организации?',
+   o:['Оказание отдельных услуг с посещением на дому','Только выезд бригады скорой помощи','Обслуживание на дому не предусмотрено','Домашние визиты только на платной основе'], c:0,
+   e:'Организация ПМСП оказывает установленный перечень услуг с посещением на дому.' },
+ { id:'q136', g:1, l:'L1.2', a:'A2', p:7, q:'Какое условие должно выполняться для организации ПМСП, оказывающей помощь в рамках ГОБМП и ОСМС прикреплённому населению?',
+   o:['Наличие договора закупа медицинских услуг с фондом и (или) интегрированных медицинских информационных систем','Наличие филиала в каждом районе города','Государственная форма собственности','Наличие собственной аптеки'], c:0,
+   e:'Оказание ПМСП в рамках ГОБМП и ОСМС осуществляет организация, имеющая договор закупа медицинских услуг с фондом и (или) имеющая медицинские информационные системы, интегрированные с информационными системами.' }
+];
+
+// ГРЕЙД 2 — ПРОДВИНУТЫЙ. Применение нормы в практической ситуации.
+const G2_LESSONS = [
+ { id:'L2.1', grade:2, title:'Приём пациента: документация и маршрутизация',
+   intro:'Как норма превращается в конкретные действия на приёме: чем оформить, куда направить, что фиксировать.',
+   cards:[
+    { a:'A3', p:14, norm:'При первичном обращении в организацию ПМСП в регистратуре оформляется в электронном формате в МИС медицинская карта амбулаторного пациента по форме № 052/у.',
+      plain:'Точка отказа №1 на практике: приём состоялся, а карта не заведена или заведена задним числом. Для Фонда это неподтверждённый случай.' },
+    { a:'A3', p:17, norm:'Специалисты организации ПМСП направляют пациента в дневной стационар или круглосуточный стационар в плановой форме через Портал Бюро госпитализации.',
+      plain:'Договорённость с коллегой из стационара «по телефону» не заменяет портал. Без записи в портале плановая госпитализация не подтверждается.' },
+    { a:'A3', p:16, norm:'При обращении по поводу острого заболевания или обострения хронического специалисты определяют методы диагностики и лечения в соответствии с клиническими протоколами.',
+      plain:'Назначение вне протокола требует обоснования в записи. Экспертиза Фонда сверяет случай именно с протоколом.' },
+    { a:'A3', p:12, norm:'Доврачебная медицинская помощь оказывается средними медицинскими работниками при заболеваниях или в случаях, не требующих участия врача, по перечню согласно приложению 1 к Правилам.',
+      plain:'Если медсестра приняла случай за пределами перечня, услуга может быть не признана. Граница перечня — это граница оплаты.' },
+    { a:'A3', p:15, norm:'Лица обращаются в организации ПМСП по поводам обращения согласно приложению 4 к Правилам.',
+      plain:'Повод обращения — не свободный текст. Он выбирается из установленного перечня и влияет на дальнейшую маршрутизацию случая.' },
+    { a:'A3', p:5, norm:'Организация ПМСП ведёт первичную медицинскую документацию и представляет отчёты по формам, установленным уполномоченным органом, в том числе посредством медицинских информационных систем.',
+      plain:'Документация ведётся по утверждённым формам. Собственные шаблоны клиники их не заменяют.' }
+   ]},
+ { id:'L2.2', grade:2, title:'Лекарственное обеспечение в рамках ГОБМП и ОСМС',
+   intro:'Запас, рецепт, маркировка и особый порядок для отдалённых населённых пунктов.',
+   cards:[
+    { a:'A6', p:4, norm:'В медицинских организациях создаётся запас лекарственных средств и медицинских изделий: не менее чем на один месяц и не более шести месяцев.',
+      plain:'Норма задаёт коридор с двух сторон. Запас сверх шести месяцев — такое же нарушение, как и его нехватка.' },
+    { a:'A6', p:7, norm:'Обеспечение отдельных категорий граждан с определёнными заболеваниями бесплатными и (или) льготными лекарственными средствами в амбулаторных условиях осуществляется бесплатно по рецепту врача, выписанному в соответствии с Правилами выписывания, учёта и хранения рецептов.',
+      plain:'Основание выдачи — рецепт, оформленный по правилам. Отпуск «по записи в карте» без рецепта не защищён при проверке.' },
+    { a:'A6', p:8, norm:'Лекарственные средства, предназначенные для амбулаторного лекарственного обеспечения в рамках ГОБМП и (или) в системе ОСМС, помечаются при отпуске штампом медицинской организации с указанием наименования, адреса и отметкой «Бесплатно».',
+      plain:'Маркировка обязательна и содержит три элемента: наименование организации, её адрес и слово «Бесплатно». Это защита от перепродажи льготных препаратов.' },
+    { a:'A6', p:10, norm:'В отдалённых от районного центра населённых пунктах при отсутствии аптек, аптечных пунктов и передвижных аптечных пунктов обеспечение лекарственными средствами производится через медицинские организации, оказывающие ПМСП.',
+      plain:'В сёлах без аптеки функцию отпуска берёт на себя сама организация ПМСП — это законный порядок, а не вынужденное нарушение.' },
+    { a:'A6', p:5, norm:'При изменении динамики заболеваемости, переводе или переезде пациента, изменении схемы лечения, смерти, ликвидации организации осуществляется перераспределение лекарственных средств между медицинскими организациями.',
+      plain:'Неиспользованные препараты не списываются автоматически — предусмотрен механизм перераспределения между организациями.' },
+    { a:'A6', p:11, norm:'Обеспечение лекарственными средствами, содержащими наркотические средства, психотропные вещества и их прекурсоры, осуществляется юридическими лицами, имеющими лицензию в сфере оборота наркотических средств.',
+      plain:'Для этой группы препаратов обычной медицинской лицензии недостаточно — нужна отдельная лицензия на оборот.' }
+   ]},
+ { id:'L2.3', grade:2, title:'Прикрепление: нестандартные ситуации',
+   intro:'Что делать, когда пациент не вписывается в типовой сценарий: смена клиники, отказ прежней организации от договора, ДМС.',
+   cards:[
+    { a:'A2', p:15, norm:'В случае отказа прежней организации ПМСП от заключения договора закупа медицинских услуг с фондом на следующий год прикрепление осуществляется с учётом территориальной доступности по фактическому месту проживания на основании приказа о распределении территории.',
+      plain:'Пациенты «потерянной» клиники не остаются без прикрепления: их распределяют по территориальному принципу, а не по их заявлению.' },
+    { a:'A2', p:19, norm:'Прикрепление физических лиц в рамках ДМС и (или) ВМС осуществляется по месту постоянного или временного проживания к организации здравоохранения, предусмотренной договором ДМС и (или) ВМС.',
+      plain:'При ДМС организацию определяет договор страхования, а не свободный выбор пациента.' },
+    { a:'A2', p:21, norm:'Организация ПМСП предоставляет физическим лицам государственную услугу при самостоятельном обращении или через веб-портал «Электронного правительства».',
+      plain:'Два законных канала: лично в клинику или через портал. Требовать личной явки, когда пациент подал через портал, неправомерно.' },
+    { a:'A2', p:6, norm:'Прикрепление к организациям ПМСП иностранцев и лиц без гражданства, временно пребывающих в Республике Казахстан, а также лиц, ищущих убежище, осуществляется для оказания установленного объёма помощи.',
+      plain:'Временно пребывающие иностранцы прикрепляются, но объём помощи для них ограничен — это не полный доступ к ОСМС.' },
+    { a:'A2', p:16, norm:'Прикрепление физических лиц, указанных в подпунктах 6), 7), 8) пункта 31 Правил, обеспечивается субъектом в области цифрового здравоохранения в течение одного рабочего дня со дня получения от фонда протокола об итогах размещения объёмов услуг.',
+      plain:'Срок — один рабочий день с момента протокола. Отвечает за него субъект в области цифрового здравоохранения, не клиника.' },
+    { a:'A2', p:10, norm:'Прикрепление детей, проживающих в домах ребёнка, интернатах, специализированных организациях, а также лиц из медико-социальных организаций осуществляется на основании решения управлений здравоохранения в соответствии с приказами о распределении территории.',
+      plain:'Для институциональных категорий прикрепление административное — по решению управления, без заявления пациента.' }
+   ]}
+];
+
+const G2_QUESTIONS = [
+ { id:'q201', g:2, l:'L2.1', a:'A3', p:14, q:'Пациент впервые пришёл в клинику, приём проведён, но электронная карта формы № 052/у не оформлена. Как квалифицировать ситуацию?',
+   o:['Нарушен порядок оформления первичного обращения — случай уязвим как неподтверждённый','Нарушения нет, карта оформляется в течение месяца','Нарушения нет, если пациент получил услугу платно','Достаточно записи в журнале регистратуры'], c:0,
+   e:'При первичном обращении в регистратуре оформляется в электронном формате в МИС медицинская карта амбулаторного пациента формы № 052/у. Отсутствие карты лишает случай документального основания.' },
+ { id:'q202', g:2, l:'L2.1', a:'A3', p:17, q:'Терапевт договорился с коллегой из стационара о плановой госпитализации пациента напрямую, минуя портал. Что не так?',
+   o:['Плановое направление должно проходить через Портал Бюро госпитализации','Ничего, если пациент прикреплён к этой клинике','Ничего, если есть согласие заведующего','Нужно только уведомить филиал Фонда'], c:0,
+   e:'Направление в дневной или круглосуточный стационар в плановой форме осуществляется через Портал Бюро госпитализации.' },
+ { id:'q203', g:2, l:'L2.2', a:'A6', p:4, q:'В клинике сформирован запас лекарственных средств на восемь месяцев. Соответствует ли это Правилам?',
+   o:['Нет, запас должен быть не менее одного и не более шести месяцев','Да, чем больше запас, тем лучше','Да, если препараты не истекают по сроку годности','Норма о запасе применяется только к стационарам'], c:0,
+   e:'Норма задаёт коридор: запас создаётся не менее чем на один месяц и не более шести месяцев. Восемь месяцев выходит за верхнюю границу.' },
+ { id:'q204', g:2, l:'L2.2', a:'A6', p:8, q:'Какие сведения должен содержать штамп на льготном лекарственном средстве при отпуске?',
+   o:['Наименование медицинской организации, её адрес и отметку «Бесплатно»','Только отметку «Бесплатно»','ФИО пациента и дату отпуска','Номер договора с Фондом'], c:0,
+   e:'Лекарственные средства помечаются при отпуске штампом медицинской организации с указанием наименования организации, её адреса и отметкой «Бесплатно».' },
+ { id:'q205', g:2, l:'L2.2', a:'A6', p:7, q:'На каком основании отпускаются бесплатные лекарственные средства отдельным категориям граждан в амбулаторных условиях?',
+   o:['По рецепту врача, оформленному по Правилам выписывания, учёта и хранения рецептов','По записи в медицинской карте','По устному назначению участкового врача','По списку, утверждённому руководителем клиники'], c:0,
+   e:'Обеспечение осуществляется бесплатно по рецепту врача, выписанному в соответствии с Правилами выписывания, учёта и хранения рецептов.' },
+ { id:'q206', g:2, l:'L2.2', a:'A6', p:10, q:'В отдалённом селе нет аптеки и аптечного пункта. Как обеспечиваются льготные лекарства?',
+   o:['Через медицинскую организацию, оказывающую ПМСП','Пациенты направляются в районный центр','Обеспечение приостанавливается до открытия аптеки','Только через передвижной медицинский комплекс'], c:0,
+   e:'В отдалённых от районного центра населённых пунктах при отсутствии аптек, аптечных пунктов и передвижных аптечных пунктов обеспечение производится через организации ПМСП.' },
+ { id:'q207', g:2, l:'L2.3', a:'A2', p:15, q:'Прежняя организация ПМСП отказалась заключать договор закупа с фондом на следующий год. Что происходит с её пациентами?',
+   o:['Прикрепление осуществляется по территориальной доступности на основании приказа о распределении территории','Пациенты остаются без прикрепления до подачи заявлений','Все переводятся в ближайшую государственную поликлинику','Прикрепление сохраняется до конца года без изменений'], c:0,
+   e:'В случае отказа прежней организации от договора прикрепление осуществляется с учётом территориальной доступности по фактическому месту проживания на основании приказа о распределении территории.' },
+ { id:'q208', g:2, l:'L2.3', a:'A2', p:19, q:'Пациент обслуживается по договору ДМС. Кто определяет организацию ПМСП для прикрепления?',
+   o:['Договор ДМС — прикрепление к организации, предусмотренной договором','Пациент по свободному выбору без ограничений','Управление здравоохранения по территории','Фонд по итогам размещения объёмов'], c:0,
+   e:'Прикрепление в рамках ДМС и (или) ВМС осуществляется к организации здравоохранения, предусмотренной договором ДМС и (или) ВМС.' },
+ { id:'q209', g:2, l:'L2.3', a:'A2', p:21, q:'Пациент подал заявление на прикрепление через портал «Электронного правительства», регистратура требует личной явки. Правомерно ли требование?',
+   o:['Нет — государственная услуга предоставляется как при самостоятельном обращении, так и через портал','Да, портал используется только для записи на приём','Да, если пациент прикрепляется впервые','Правомерно только для несовершеннолетних'], c:0,
+   e:'Организация ПМСП предоставляет государственную услугу при самостоятельном обращении или через веб-портал «Электронного правительства». Оба канала равнозначны.' },
+ { id:'q210', g:2, l:'L2.1', a:'A3', p:12, q:'Медицинская сестра приняла пациента по случаю, выходящему за перечень доврачебной помощи. Каково последствие?',
+   o:['Услуга выходит за границы, установленные перечнем, и уязвима при экспертизе','Последствий нет, если пациент не жаловался','Услуга признаётся врачебной автоматически','Достаточно последующего визирования врачом'], c:0,
+   e:'Доврачебная помощь оказывается средними медработниками только в случаях, не требующих участия врача, по перечню согласно приложению 1 к Правилам.' },
+ { id:'q211', g:2, l:'L2.1', a:'A3', p:16, q:'Врач назначил лечение, отличающееся от клинического протокола, и не отразил обоснование. Чем это грозит?',
+   o:['Случай уязвим при экспертизе: методы должны соответствовать клиническим протоколам','Ничем, выбор метода — исключительная компетенция врача','Только замечанием заведующего отделением','Протоколы носят рекомендательный характер'], c:0,
+   e:'При остром заболевании или обострении хронического методы диагностики и лечения определяются в соответствии с клиническими протоколами.' },
+ { id:'q212', g:2, l:'L2.3', a:'A2', p:16, q:'В какой срок обеспечивается прикрепление лиц по итогам протокола размещения объёмов услуг?',
+   o:['В течение одного рабочего дня со дня получения протокола','В течение пяти рабочих дней','В течение календарного месяца','Срок нормой не установлен'], c:0,
+   e:'Прикрепление обеспечивается субъектом в области цифрового здравоохранения в течение одного рабочего дня со дня получения от фонда протокола об итогах размещения объёмов услуг.' },
+ { id:'q213', g:2, l:'L2.3', a:'A2', p:10, q:'Как прикрепляются дети, проживающие в доме ребёнка?',
+   o:['На основании решения управления здравоохранения в соответствии с приказами о распределении территории','По заявлению администрации учреждения в любую клинику','По свободному выбору опекуна','Прикрепление для них не предусмотрено'], c:0,
+   e:'Прикрепление детей, проживающих в домах ребёнка, интернатах и специализированных организациях, осуществляется на основании решения управлений здравоохранения в соответствии с приказами о распределении территории.' },
+ { id:'q214', g:2, l:'L2.2', a:'A6', p:5, q:'Пациент, для которого закупались препараты, переехал в другой регион. Что предусмотрено Правилами?',
+   o:['Перераспределение лекарственных средств между медицинскими организациями','Немедленное списание препаратов','Возврат препаратов поставщику','Хранение до истечения срока годности'], c:0,
+   e:'При переводе или переезде пациента, изменении схемы лечения и иных названных случаях осуществляется перераспределение лекарственных средств и медицинских изделий между медицинскими организациями.' },
+ { id:'q215', g:2, l:'L2.2', a:'A6', p:11, q:'Какое требование предъявляется к организации, обеспечивающей препараты, содержащие наркотические средства?',
+   o:['Наличие лицензии в сфере оборота наркотических средств, психотропных веществ и прекурсоров','Достаточно общей медицинской лицензии','Согласование каждого случая с управлением здравоохранения','Наличие круглосуточного поста охраны'], c:0,
+   e:'Обеспечение такими лекарственными средствами осуществляется юридическими лицами, имеющими лицензию в сфере оборота наркотических средств, психотропных веществ и прекурсоров.' },
+ { id:'q216', g:2, l:'L2.1', a:'A3', p:15, q:'Как определяется повод обращения пациента в организацию ПМСП?',
+   o:['Выбирается из перечня поводов обращения согласно приложению 4 к Правилам','Формулируется врачом произвольно','Указывается пациентом в заявлении','Определяется автоматически по диагнозу'], c:0,
+   e:'Лица обращаются в организации ПМСП по поводам обращения согласно приложению 4 к Правилам.' },
+ { id:'q217', g:2, l:'L2.3', a:'A2', p:6, q:'Иностранец, временно пребывающий в Казахстане, обратился за прикреплением. Что верно?',
+   o:['Прикрепление возможно, но для оказания ограниченного объёма помощи','Прикрепление невозможно ни при каких условиях','Прикрепляется на общих основаниях с полным доступом к ОСМС','Прикрепление возможно только при наличии полиса ДМС'], c:0,
+   e:'Прикрепление иностранцев и лиц без гражданства, временно пребывающих в РК, а также лиц, ищущих убежище, осуществляется для оказания установленного (ограниченного) объёма помощи.' },
+ { id:'q218', g:2, l:'L2.1', a:'A3', p:5, q:'Клиника ведёт первичную документацию по собственным разработанным шаблонам. Правомерно ли это?',
+   o:['Нет — документация ведётся по формам, утверждённым уполномоченным органом','Да, если шаблоны утверждены руководителем','Да, если они содержат все необходимые сведения','Правомерно для платных услуг'], c:0,
+   e:'Организация ПМСП ведёт первичную медицинскую документацию по формам и в порядке, установленным уполномоченным органом (приказ № ҚР ДСМ-175/2020).' },
+ { id:'q219', g:2, l:'L2.1', a:'A3', p:4, q:'Чем должна руководствоваться организация ПМСП при оказании медицинской помощи?',
+   o:['Стандартами организации оказания медицинской помощи, утверждёнными уполномоченным органом','Внутренними клиническими рекомендациями организации','Договором с пациентом','Указаниями страховой компании'], c:0,
+   e:'Организация ПМСП обеспечивает оказание медицинской помощи в соответствии со стандартами организации оказания медицинской помощи, утверждёнными уполномоченным органом.' },
+ { id:'q220', g:2, l:'L2.3', a:'A2', p:5, q:'В базе обнаружено, что пациент числится прикреплённым к двум организациям ПМСП одновременно. Как это оценить?',
+   o:['Это противоречит норме: прикрепление осуществляется по ИИН к одной организации','Допустимо, если организации в разных областях','Допустимо при наличии ДМС','Допустимо в течение переходного периода'], c:0,
+   e:'Прикрепление осуществляется по ИИН к одной организации ПМСП; при новом прикреплении открепление от предыдущей происходит автоматически.' },
+ { id:'q221', g:2, l:'L2.1', a:'A3', p:18, q:'Каким актом регулируются вызовы скорой медицинской помощи четвёртой категории срочности в организациях ПМСП?',
+   o:['Правилами оказания скорой медицинской помощи, утверждёнными приказом № ҚР ДСМ-225/2020','Правилами оказания ПМСП без отсылок','Внутренним регламентом клиники','Договором закупа с фондом'], c:0,
+   e:'Вызовы скорой медицинской помощи четвёртой категории срочности в организациях ПМСП осуществляются в соответствии с Правилами оказания скорой медицинской помощи (приказ № ҚР ДСМ-225/2020).' },
+ { id:'q222', g:2, l:'L2.2', a:'A6', p:6, q:'Чем определяется состав препаратов для бесплатного и льготного амбулаторного обеспечения?',
+   o:['Перечнем лекарственных средств и медицинских изделий для бесплатного и (или) льготного амбулаторного обеспечения','Формуляром, утверждённым клиникой','Заявкой участкового врача','Наличием препарата на складе поставщика'], c:0,
+   e:'Обеспечение при оказании ПМСП и специализированной помощи в амбулаторных условиях осуществляется в соответствии с перечнем лекарственных средств и медицинских изделий для бесплатного и (или) льготного амбулаторного обеспечения.' },
+ { id:'q223', g:2, l:'L2.3', a:'A2', p:17, q:'Пациент проживает на приграничной территории и выбрал клинику в соседней административно-территориальной единице. Правомерно?',
+   o:['Да — для проживающих на приграничных территориях предусмотрено исключение','Нет, выбор строго в пределах своей единицы','Да, но только с согласия управления здравоохранения','Да, но только в рамках ДМС'], c:0,
+   e:'Свободный выбор осуществляется в пределах одной административно-территориальной единицы, за исключением лиц, проживающих на приграничных территориях, которые вправе прикрепиться к организации близлежащей единицы.' },
+ { id:'q224', g:2, l:'L2.1', a:'A3', p:3, q:'Как определяется круг лиц, которым организация ПМСП оказывает медицинскую помощь?',
+   o:['Правилами установлены категории населения, которым организация оказывает помощь','Только прикреплённое население без исключений','Любые обратившиеся без ограничений','Определяется договором с фондом ежегодно'], c:0,
+   e:'Норма Правил прямо определяет, каким категориям населения организация ПМСП оказывает медицинскую помощь.' },
+ { id:'q225', g:2, l:'L2.2', a:'A6', p:3, q:'Что включает в себя порядок обеспечения лекарственными средствами по Правилам?',
+   o:['Установленную последовательность этапов обеспечения, закреплённую нормой','Только закуп препаратов','Только отпуск препаратов пациенту','Порядок определяется организацией самостоятельно'], c:0,
+   e:'Норма Правил прямо перечисляет составляющие порядка обеспечения лекарственными средствами и медицинскими изделиями.' },
+ { id:'q226', g:2, l:'L2.3', a:'A2', p:3, q:'На каких принципах осуществляется прикрепление к организациям ПМСП?',
+   o:['На принципах, прямо закреплённых Правилами прикрепления','На принципах, определяемых клиникой','На принципах, установленных договором с пациентом','Принципы нормой не установлены'], c:0,
+   e:'Прикрепление является основанием для оказания ПМСП и осуществляется на принципах, прямо закреплённых в Правилах.' },
+ { id:'q227', g:2, l:'L2.1', a:'A3', p:13, q:'Клиника не имеет в штате нужного узкого специалиста. Как обеспечить специализированную помощь прикреплённому населению?',
+   o:['Заключить договор соисполнения с соисполнителем из базы данных субъектов здравоохранения','Отказать пациенту и направить в другую клинику по его выбору','Оказать помощь силами имеющихся специалистов','Обязанность возникает только у стационаров'], c:0,
+   e:'Организация ПМСП обеспечивает специализированную помощь, в том числе путём заключения договора соисполнения с соисполнителями, включёнными в базу данных субъектов здравоохранения.' },
+ { id:'q228', g:2, l:'L2.2', a:'A6', p:4, q:'Запас лекарственных средств в клинике составляет две недели. Соответствует ли это Правилам?',
+   o:['Нет, запас должен быть не менее чем на один месяц','Да, если поставки регулярны','Да, нижняя граница не установлена','Соответствует только для сельских клиник'], c:0,
+   e:'Запас создаётся не менее чем на один месяц и не более шести месяцев — две недели ниже установленной нижней границы.' },
+ { id:'q229', g:2, l:'L2.3', a:'A2', p:9, q:'Ребёнок выписан из роддома 1 числа. Прикрепление оформлено 7 числа. Нарушен ли срок?',
+   o:['Да, прикрепление должно быть не позднее 3-х дней после выписки','Нет, срок составляет 10 дней','Нет, срок не установлен','Нарушение только если ребёнок заболел'], c:0,
+   e:'Прикрепление детей до пяти лет включительно осуществляется по месту фактического проживания и не позднее 3-х дней после выписки из организации родовспоможения.' },
+ { id:'q230', g:2, l:'L2.1', a:'A3', p:9, q:'В каких формах предоставляется ПМСП согласно Правилам?',
+   o:['В формах, установленных статьёй 117 Кодекса «О здоровье народа и системе здравоохранения»','Только в плановой форме','Только в неотложной форме','Форма определяется клиникой'], c:0,
+   e:'ПМСП предоставляется в формах, предусмотренных статьёй 117 Кодекса, к которой отсылает норма Правил.' },
+ { id:'q231', g:2, l:'L2.2', a:'A6', p:1, q:'На какие виды медицинской помощи распространяются Правила лекарственного обеспечения?',
+   o:['На помощь в рамках ГОБМП, дополнительного объёма для лиц в УИС и в системе ОСМС','Только на помощь в рамках ОСМС','Только на стационарную помощь','Только на платные услуги'], c:0,
+   e:'Правила разработаны для обеспечения лекарственными средствами в рамках ГОБМП, дополнительного объёма медицинской помощи лицам, содержащимся в СИЗО и учреждениях УИС, и в системе ОСМС.' },
+ { id:'q232', g:2, l:'L2.3', a:'A2', p:20, q:'Какой документ определяет содержание государственной услуги по прикреплению?',
+   o:['Приложение к Правилам прикрепления','Договор с фондом','Внутренний регламент клиники','Постановление акимата'], c:0,
+   e:'Государственная услуга «Прикрепление к медицинской организации, оказывающей ПМСП» реализована согласно приложению к Правилам прикрепления.' },
+ { id:'q233', g:2, l:'L2.1', a:'A3', p:19, q:'Какие услуги организация ПМСП оказывает с посещением на дому?',
+   o:['Установленный Правилами перечень услуг, включая патронаж','Любые услуги по просьбе пациента','Только экстренную помощь','Домашнее обслуживание не предусмотрено'], c:0,
+   e:'Организация ПМСП оказывает установленный перечень услуг с посещением на дому; отдельно нормой закреплён патронаж.' },
+ { id:'q234', g:2, l:'L2.2', a:'A6', p:2, q:'Где закреплены понятия, используемые в Правилах лекарственного обеспечения?',
+   o:['В самих Правилах — отдельной нормой с определениями','В Кодексе «О здоровье народа и системе здравоохранения» без дублирования','В договоре закупа с фондом','В приложении к приказу об утверждении тарифов'], c:0,
+   e:'Правила содержат отдельную норму с перечнем используемых понятий.' },
+ { id:'q235', g:2, l:'L2.3', a:'A2', p:13, q:'Пациент переехал в другой район города, но заявление о смене клиники не подавал. Где он прикреплён?',
+   o:['Остаётся прикреплённым к прежней организации ПМСП','Автоматически переводится по новому адресу','Открепляется до подачи заявления','Распределяется управлением здравоохранения'], c:0,
+   e:'Лицо, не воспользовавшееся правом свободного выбора организации ПМСП, остаётся прикреплённым к организации, в которой обслуживалось ранее.' },
+ { id:'q236', g:2, l:'L2.1', a:'A3', p:10, q:'В каких условиях оказывается ПМСП?',
+   o:['В условиях, предусмотренных подпунктами 1), 3), 4), 5), 6) пункта 1 статьи 118 Кодекса','Только в амбулаторных условиях','Только в условиях дневного стационара','Условия определяются организацией'], c:0,
+   e:'Норма Правил прямо отсылает к подпунктам 1), 3), 4), 5), 6) пункта 1 статьи 118 Кодекса.' }
+];
+
+// ГРЕЙД 3 — ЭКСПЕРТНЫЙ. Мониторинг Фонда, дефекты, снятие оплаты, пересечение норм.
+const G3_LESSONS = [
+ { id:'L3.1', grade:3, title:'Мониторинг Фонда и виды дефектов',
+   intro:'Как Фонд находит дефекты, чем они отличаются друг от друга и какие из них реально уменьшают оплату.',
+   cards:[
+    { a:'A5', p:10, norm:'По результатам мониторинга в ИСФ выявляются и присваиваются коды дефектов и нарушений в соответствии с Единым классификатором дефектов и нарушений согласно приложению 1 к Правилам.',
+      plain:'Дефект — это не мнение эксперта, а код из Единого классификатора. Разбирать претензию нужно начиная с кода.' },
+    { a:'A5', p:12, norm:'Общие дефекты и нарушения выявляются посредством автоматизированных алгоритмов... Применение общих дефектов и нарушений не влияет на уменьшение суммы, подлежащей оплате.',
+      plain:'Ключевое различие: общий дефект деньги не снимает. Паниковать из-за него не нужно — он сигнал о качестве ввода данных.' },
+    { a:'A5', p:13, norm:'Потенциальные дефекты и нарушения выявляются посредством ИСФ на основе автоматизированных алгоритмов, которые не относятся к общим и дополнительным.',
+      plain:'Потенциальный дефект — это претензия, которую ещё можно оспорить. Именно здесь у клиники есть окно для возражения.' },
+    { a:'A5', p:14, norm:'Дополнительные дефекты и нарушения выявляются по итогам рассмотрения потенциальных дефектов и нарушений, проведения внепланового мониторинга, а также результатов анализа деятельности медицинских организаций.',
+      plain:'Дополнительный дефект — следующая стадия после потенциального либо результат внеплановой проверки.' },
+    { a:'A5', p:23, norm:'О выявленных дефектах и (или) нарушениях в рамках текущего мониторинга поставщик уведомляется посредством ИСФ в день выявления.',
+      plain:'Уведомление приходит в день выявления. Отсчёт сроков на реакцию начинается сразу — ждать бумажного письма нельзя.' },
+    { a:'A5', p:11, norm:'Дефекты и нарушения по типу их выявления подразделяются на установленные Правилами виды.',
+      plain:'Классификация по типу выявления — это основа: от типа зависит и порядок оспаривания, и влияние на оплату.' }
+   ]},
+ { id:'L3.2', grade:3, title:'Возражения и последствия',
+   intro:'Сроки на возражение, момент, после которого исправить уже ничего нельзя, и порог передачи материалов в правоохранительные органы.',
+   cards:[
+    { a:'A5', p:26, norm:'В случае несогласия с потенциальным дефектом или нарушением поставщик в течение пяти рабочих дней после дня их выявления предоставляет в ИСФ возражение с приведением аргументированного обоснования.',
+      plain:'Пять рабочих дней — жёсткий срок. Пропустили — потенциальный дефект превращается в снятие без разбора по существу.' },
+    { a:'A5', p:24, norm:'После присвоения дефекта или нарушения и отражения соответствующей информации в ИСФ любые корректировки в МИС по данному случаю или услуге не принимаются к рассмотрению и не учитываются Фондом.',
+      plain:'Самая дорогая ошибка в практике: «дозаполнить» карту после присвоения дефекта. Такие правки Фонд не учитывает вообще — исправлять надо до, а не после.' },
+    { a:'A5', p:20, norm:'При выявлении неподтверждённых случаев оказания медицинских услуг на сумму, в совокупности превышающую 800-кратный размер месячного расчётного показателя, либо при выявлении признаков уголовных правонарушений информация направляется в правоохранительные органы в течение десяти рабочих дней.',
+      plain:'Порог 800 МРП — граница, за которой вопрос перестаёт быть финансовым спором и становится уголовным риском.' },
+    { a:'A5', p:17, norm:'Информация по выявленным нарушениям, требующим мер административно-правового воздействия на поставщика, направляется филиалами Фонда в государственный орган в сфере оказания медицинских услуг в течение 10 рабочих дней со дня выявления.',
+      plain:'Помимо снятия денег есть отдельный административный трек — он запускается в течение десяти рабочих дней.' },
+    { a:'A5', p:16, norm:'Информация по выявленным нарушениям при проведении мониторинга направляется филиалами Фонда местным органам государственного управления здравоохранением на ежеквартальной основе.',
+      plain:'Нарушения видит не только Фонд: ежеквартально сводка уходит в управление здравоохранения.' },
+    { a:'A5', p:25, norm:'При наличии предложений по общим дефектам и (или) нарушениям поставщик направляет разъяснения, которые могут быть использованы Фондом для актуализации автоматизированных алгоритмов.',
+      plain:'По общим дефектам возражение не подаётся, но можно направить разъяснение — так алгоритмы Фонда корректируются.' }
+   ]},
+ { id:'L3.3', grade:3, title:'Пересечение норм: право, прикрепление, оплата',
+   intro:'Ситуации, где одновременно работают несколько правил и ошибка возникает на стыке.',
+   cards:[
+    { a:'A1', p:9, norm:'Право на получение медицинской помощи в системе ОСМС сохраняется на период не более трёх месяцев с момента прекращения уплаты взносов за лиц, исключённых из категорий, за которых платит государство.',
+      plain:'Стык с оплатой: услуга, оказанная внутри трёхмесячного окна, финансируется по ОСМС. Отказ пациенту в этот период — потеря и денег, и репутации.' },
+    { a:'A1', p:13, norm:'В случае возникновения технических сбоев работы ИС Фонда, ИС государственных органов право на получение медицинской помощи в системе ОСМС сохраняется до исправления ИС.',
+      plain:'Сбой системы не переводит пациента в платные. Но случай нужно корректно оформить, иначе при разборе он попадёт в неподтверждённые.' },
+    { a:'A2', p:14, norm:'При прикреплении физического лица к организации ПМСП открепление от предыдущей организации осуществляется автоматически.',
+      plain:'Стык с оплатой: если пациент перекрепился в середине месяца, услуги прежней клиники после даты открепления оплачены не будут.' },
+    { a:'A3', p:17, norm:'Специалисты организации ПМСП направляют пациента в стационар в плановой форме через Портал Бюро госпитализации.',
+      plain:'Нарушение маршрутизации бьёт по стационару: случай без записи в портале рискует быть признан неподтверждённым уже у него.' },
+    { a:'A5', p:22, norm:'По результатам текущего мониторинга присваиваются дефекты и (или) нарушения в соответствии с Единым классификатором.',
+      plain:'Текущий мониторинг идёт непрерывно, а не раз в год. Ошибка оформления сегодня даст дефект в этом же периоде.' },
+    { a:'A6', p:8, norm:'Лекарственные средства для амбулаторного обеспечения помечаются при отпуске штампом с наименованием организации, адресом и отметкой «Бесплатно».',
+      plain:'Стык лекарственного и финансового контуров: отсутствие маркировки — формальный признак, за который снимается оплата.' }
+   ]}
+];
+
+const G3_QUESTIONS = [
+ { id:'q301', g:3, l:'L3.1', a:'A5', p:12, q:'Фонд присвоил случаю общий дефект. Как это отражается на сумме, подлежащей оплате?',
+   o:['Не влияет на уменьшение суммы, подлежащей оплате','Уменьшает сумму на стоимость случая','Уменьшает сумму вдвое','Приостанавливает оплату по всему договору'], c:0,
+   e:'Общие дефекты и нарушения выявляются автоматизированными алгоритмами, и их применение не влияет на уменьшение суммы, подлежащей оплате.' },
+ { id:'q302', g:3, l:'L3.2', a:'A5', p:26, q:'Клиника не согласна с потенциальным дефектом. В какой срок нужно подать возражение?',
+   o:['В течение пяти рабочих дней после дня выявления','В течение десяти рабочих дней','В течение одного месяца','Срок не установлен'], c:0,
+   e:'В случае несогласия с потенциальным дефектом или нарушением поставщик в течение пяти рабочих дней после дня их выявления предоставляет в ИСФ возражение с аргументированным обоснованием.' },
+ { id:'q303', g:3, l:'L3.2', a:'A5', p:24, q:'После присвоения дефекта врач дозаполнил запись в МИС по этому случаю. Как поступит Фонд?',
+   o:['Не примет корректировки к рассмотрению и не учтёт их','Учтёт правки и пересмотрит решение','Учтёт при условии пояснительной записки','Учтёт, если правки внесены в тот же день'], c:0,
+   e:'После присвоения дефекта или нарушения и отражения информации в ИСФ любые корректировки в МИС по данному случаю не принимаются к рассмотрению и не учитываются Фондом.' },
+ { id:'q304', g:3, l:'L3.2', a:'A5', p:20, q:'Какой порог суммы неподтверждённых случаев влечёт направление информации в правоохранительные органы?',
+   o:['Свыше 800-кратного размера месячного расчётного показателя','Свыше 100 МРП','Свыше 500 МРП','Свыше 1000 МРП'], c:0,
+   e:'При выявлении неподтверждённых случаев на сумму, в совокупности превышающую 800-кратный размер МРП, либо при признаках уголовных правонарушений информация направляется в правоохранительные органы.' },
+ { id:'q305', g:3, l:'L3.2', a:'A5', p:20, q:'В какой срок Фонд направляет информацию в правоохранительные органы при превышении порога?',
+   o:['В течение десяти рабочих дней с даты подписания последнего заключения','В течение пяти рабочих дней','В течение месяца','Немедленно в день выявления'], c:0,
+   e:'Информация направляется в правоохранительные органы в течение десяти рабочих дней с даты подписания последнего заключения Фондом.' },
+ { id:'q306', g:3, l:'L3.1', a:'A5', p:10, q:'На основании чего присваиваются коды дефектов и нарушений?',
+   o:['Единого классификатора дефектов и нарушений согласно приложению 1 к Правилам','Внутренней методики филиала Фонда','Заключения независимого эксперта','Условий конкретного договора закупа'], c:0,
+   e:'По результатам мониторинга в ИСФ выявляются и присваиваются коды дефектов и нарушений в соответствии с Единым классификатором согласно приложению 1 к Правилам.' },
+ { id:'q307', g:3, l:'L3.1', a:'A5', p:23, q:'Когда поставщик узнаёт о дефекте, выявленном в рамках текущего мониторинга?',
+   o:['В день выявления — посредством ИСФ','В течение трёх рабочих дней','По итогам месяца','После подписания акта сверки'], c:0,
+   e:'О выявленных дефектах и нарушениях в рамках текущего мониторинга поставщик уведомляется посредством ИСФ в день выявления.' },
+ { id:'q308', g:3, l:'L3.1', a:'A5', p:14, q:'Откуда возникают дополнительные дефекты и нарушения?',
+   o:['По итогам рассмотрения потенциальных дефектов, внепланового мониторинга и анализа деятельности организаций','Только из автоматических алгоритмов','Только по жалобам пациентов','Только по итогам плановой проверки раз в год'], c:0,
+   e:'Дополнительные дефекты выявляются по итогам рассмотрения потенциальных дефектов и нарушений, проведения внепланового мониторинга, а также результатов анализа деятельности медицинских организаций.' },
+ { id:'q309', g:3, l:'L3.1', a:'A5', p:13, q:'Чем характеризуются потенциальные дефекты и нарушения?',
+   o:['Выявляются алгоритмами ИСФ и не относятся к общим и дополнительным','Всегда влекут немедленное снятие оплаты','Выявляются только при выездной проверке','Присваиваются по решению суда'], c:0,
+   e:'Потенциальные дефекты и нарушения выявляются посредством ИСФ на основе автоматизированных алгоритмов, которые не относятся к общим и дополнительным.' },
+ { id:'q310', g:3, l:'L3.2', a:'A5', p:17, q:'В какой срок направляется информация о нарушениях, требующих мер административно-правового воздействия?',
+   o:['В течение 10 рабочих дней со дня выявления — в госорган в сфере оказания медицинских услуг','В течение 30 календарных дней','Ежеквартально','По завершении финансового года'], c:0,
+   e:'Информация по нарушениям, требующим мер административно-правового воздействия, направляется филиалами Фонда в государственный орган в сфере оказания медицинских услуг в течение 10 рабочих дней со дня выявления.' },
+ { id:'q311', g:3, l:'L3.2', a:'A5', p:16, q:'С какой периодичностью информация о выявленных нарушениях направляется местным органам управления здравоохранением?',
+   o:['Ежеквартально','Ежемесячно','Еженедельно','Однократно по итогам года'], c:0,
+   e:'Информация по выявленным нарушениям направляется филиалами Фонда местным органам государственного управления здравоохранением на ежеквартальной основе.' },
+ { id:'q312', g:3, l:'L3.2', a:'A5', p:25, q:'Клиника считает, что общий дефект присвоен из-за некорректного алгоритма. Что предусматривает норма?',
+   o:['Направить разъяснения, которые могут быть использованы для актуализации алгоритмов','Подать возражение в течение пяти рабочих дней','Обратиться в суд','Приостановить оказание услуг по данному профилю'], c:0,
+   e:'При наличии предложений по общим дефектам поставщик направляет разъяснения, которые могут быть использованы Фондом для актуализации автоматизированных алгоритмов и иной аналитической работы.' },
+ { id:'q313', g:3, l:'L3.3', a:'A1', p:9, q:'Пациент утратил льготную категорию два месяца назад и обратился за помощью. Какой источник финансирования?',
+   o:['Система ОСМС — право сохраняется не более трёх месяцев с момента прекращения уплаты','Только ГОБМП','Платные услуги','Требуется решение филиала Фонда по каждому случаю'], c:0,
+   e:'При исключении лица из категорий, взносы за которых уплачивает государство, право в системе ОСМС сохраняется на период не более трёх месяцев с момента прекращения уплаты взносов. Два месяца укладываются в этот период.' },
+ { id:'q314', g:3, l:'L3.3', a:'A2', p:14, q:'Пациент перекрепился в другую клинику 10 числа. Что с услугами прежней клиники, оказанными 20 числа?',
+   o:['Они оказаны после автоматического открепления и не относятся к прежней организации','Оплачиваются прежней клинике до конца месяца','Оплачиваются обеим клиникам','Оплачиваются по решению управления здравоохранения'], c:0,
+   e:'При прикреплении к новой организации открепление от предыдущей осуществляется автоматически — после этой даты пациент к прежней организации не прикреплён.' },
+ { id:'q315', g:3, l:'L3.3', a:'A1', p:13, q:'Во время сбоя ИС Фонда клиника перевела пациента на платное обслуживание. Верно ли это?',
+   o:['Нет — право на медпомощь в ОСМС сохраняется до исправления информационной системы','Да, при отсутствии подтверждения статуса','Да, с последующим возвратом средств','Верно только для плановой помощи'], c:0,
+   e:'В случае технических сбоев ИС Фонда или ИС государственных органов право на получение медицинской помощи в системе ОСМС сохраняется до исправления информационной системы.' },
+ { id:'q316', g:3, l:'L3.3', a:'A5', p:22, q:'Как часто проводится текущий мониторинг, по результатам которого присваиваются дефекты?',
+   o:['Постоянно — дефекты присваиваются по результатам текущего мониторинга','Раз в год при закрытии договора','Раз в квартал','Только по обращению пациента'], c:0,
+   e:'По результатам текущего мониторинга присваиваются дефекты и нарушения в соответствии с Единым классификатором — мониторинг носит текущий, непрерывный характер.' },
+ { id:'q317', g:3, l:'L3.3', a:'A6', p:8, q:'При проверке выявлено отсутствие штампа с отметкой «Бесплатно» на отпущенных льготных препаратах. Как это квалифицируется?',
+   o:['Как нарушение установленного порядка маркировки при отпуске','Как техническая погрешность без последствий','Как нарушение только при жалобе пациента','Маркировка носит рекомендательный характер'], c:0,
+   e:'Норма прямо требует помечать лекарственные средства при отпуске штампом медицинской организации с указанием наименования, адреса и отметкой «Бесплатно».' },
+ { id:'q318', g:3, l:'L3.1', a:'A5', p:15, q:'Какой статус имеют внутренние документы Фонда с автоматизированными алгоритмами выявления дефектов?',
+   o:['Служебная информация ограниченного распространения','Общедоступная информация','Государственные секреты','Коммерческая тайна поставщика'], c:0,
+   e:'Внутренние документы Фонда, в которых зафиксированы автоматизированные алгоритмы и критерии приоритетности, относятся к служебной информации ограниченного распространения.' },
+ { id:'q319', g:3, l:'L3.2', a:'A5', p:26, q:'Какое требование предъявляется к содержанию возражения по потенциальному дефекту?',
+   o:['Приведение аргументированного обоснования','Достаточно указания на несогласие','Обязательное заключение независимого эксперта','Согласование с управлением здравоохранения'], c:0,
+   e:'Возражение предоставляется в ИСФ с приведением аргументированного обоснования.' },
+ { id:'q320', g:3, l:'L3.3', a:'A3', p:17, q:'Пациент госпитализирован планово без записи в Портале Бюро госпитализации. Где возникает основной риск?',
+   o:['У стационара — случай рискует быть признан неподтверждённым','У пациента — он оплатит лечение сам','Риска нет, если пациент прикреплён','У страховой компании'], c:0,
+   e:'Плановое направление осуществляется через Портал Бюро госпитализации; отсутствие записи лишает случай установленного основания при разборе.' },
+ { id:'q321', g:3, l:'L3.1', a:'A5', p:12, q:'Клиника получила серию общих дефектов по вводу данных. Какой вывод корректен?',
+   o:['Деньги не снимаются, но качество ввода данных требует исправления','Оплата будет уменьшена пропорционально числу дефектов','Договор подлежит расторжению','Дефекты можно игнорировать полностью'], c:0,
+   e:'Применение общих дефектов не влияет на уменьшение суммы к оплате, однако они выявляют некорректный ввод данных, который нужно устранять.' },
+ { id:'q322', g:3, l:'L3.2', a:'A5', p:24, q:'В какой момент возможность исправить данные по случаю окончательно закрывается?',
+   o:['После присвоения дефекта и отражения информации в ИСФ','После окончания календарного месяца','После подписания акта выполненных работ','После истечения срока договора закупа'], c:0,
+   e:'После присвоения дефекта или нарушения и отражения соответствующей информации в ИСФ любые корректировки в МИС по данному случаю не принимаются и не учитываются.' },
+ { id:'q323', g:3, l:'L3.3', a:'A1', p:3, q:'Пациент прикреплён, обратился с хроническим заболеванием, взносы за него не уплачивались и он не освобождён от уплаты. Что оплачивается по ОСМС?',
+   o:['Ничего — права на ОСМС нет, помощь возможна в рамках ГОБМП','Полный объём как у застрахованного','Половина стоимости случая','Всё, поскольку он прикреплён'], c:0,
+   e:'Право в системе ОСМС имеют лица, за которых уплачивались отчисления и (или) взносы, либо освобождённые от уплаты. Прикрепление такого права не создаёт.' },
+ { id:'q324', g:3, l:'L3.1', a:'A5', p:11, q:'По какому признаку Правила разделяют дефекты и нарушения на виды?',
+   o:['По типу их выявления','По размеру финансовых последствий','По профилю медицинской помощи','По стажу работы врача'], c:0,
+   e:'Дефекты и нарушения по типу их выявления подразделяются на установленные Правилами виды (общие, потенциальные, дополнительные).' },
+ { id:'q325', g:3, l:'L3.2', a:'A5', p:20, q:'Что, помимо превышения суммового порога, является основанием для направления материалов в правоохранительные органы?',
+   o:['Выявление признаков уголовных правонарушений','Любое повторное нарушение','Отказ клиники подписать заключение','Жалоба пациента'], c:0,
+   e:'Информация направляется в правоохранительные органы при превышении порога в 800 МРП либо в случаях выявления признаков уголовных правонарушений.' },
+ { id:'q326', g:3, l:'L3.3', a:'A1', p:14, q:'Врач видит в МИС статус пациента, отличный от того, что утверждает сам пациент. На что опираться при определении источника финансирования?',
+   o:['На сведения из ИС Фонда, полученные медицинской информационной системой','На слова пациента и его документы','На данные прошлого обращения','На решение регистратуры'], c:0,
+   e:'Информация о потребителе предоставляется из ИС Фонда по запросу в медицинские информационные системы именно для определения источника финансирования.' },
+ { id:'q327', g:3, l:'L3.3', a:'A2', p:5, q:'Пациент требует прикрепить его ко второй клинике, сохранив первую. Что отвечать?',
+   o:['Прикрепление возможно только к одной организации ПМСП по ИИН','Возможно при наличии двух ИИН','Возможно по договору ДМС параллельно','Возможно с разрешения управления здравоохранения'], c:0,
+   e:'Прикрепление осуществляется по ИИН к одной организации ПМСП; при новом прикреплении прежнее снимается автоматически.' },
+ { id:'q328', g:3, l:'L3.1', a:'A5', p:10, q:'С чего следует начинать разбор претензии Фонда по конкретному случаю?',
+   o:['С кода дефекта по Единому классификатору','С обращения в суд','С запроса в управление здравоохранения','С опроса пациента'], c:0,
+   e:'По результатам мониторинга присваиваются коды дефектов и нарушений по Единому классификатору — код определяет и суть претензии, и порядок работы с ней.' },
+ { id:'q329', g:3, l:'L3.2', a:'A5', p:23, q:'С какого момента отсчитывается срок на подачу возражения по потенциальному дефекту?',
+   o:['После дня выявления дефекта, о котором поставщик уведомляется в ИСФ в день выявления','С даты получения бумажного уведомления','С первого числа следующего месяца','С даты подписания акта сверки'], c:0,
+   e:'Уведомление направляется посредством ИСФ в день выявления, а возражение подаётся в течение пяти рабочих дней после дня выявления.' },
+ { id:'q330', g:3, l:'L3.3', a:'A6', p:4, q:'При проверке в клинике обнаружен запас препаратов на девять месяцев. Как это оценивается?',
+   o:['Как выход за верхнюю границу нормы — не более шести месяцев','Как надлежащая практика планирования','Как нарушение только при истечении срока годности','Норма ограничивает лишь нижнюю границу'], c:0,
+   e:'Запас лекарственных средств и медицинских изделий создаётся не менее чем на один месяц и не более шести месяцев.' },
+ { id:'q331', g:3, l:'L3.1', a:'A5', p:14, q:'Потенциальный дефект рассмотрен и подтверждён. Во что он может перейти?',
+   o:['В дополнительный дефект или нарушение','В общий дефект','В административное взыскание автоматически','Он аннулируется'], c:0,
+   e:'Дополнительные дефекты и нарушения выявляются по итогам рассмотрения потенциальных дефектов и нарушений.' },
+ { id:'q332', g:3, l:'L3.3', a:'A3', p:14, q:'Экспертиза Фонда запросила подтверждение первичного обращения пациента. Какой документ является основным?',
+   o:['Медицинская карта амбулаторного пациента формы № 052/у в электронном формате','Талон записи на приём','Выписка из журнала регистратуры','Договор с пациентом'], c:0,
+   e:'При первичном обращении оформляется в электронном формате в МИС медицинская карта амбулаторного пациента по форме № 052/у — она и подтверждает обращение.' },
+ { id:'q333', g:3, l:'L3.2', a:'A5', p:24, q:'Какая практика создаёт наибольший риск при работе с дефектами?',
+   o:['Исправление документации после присвоения дефекта','Подача возражения на пятый рабочий день','Направление разъяснений по общим дефектам','Ежедневная проверка уведомлений в ИСФ'], c:0,
+   e:'После присвоения дефекта корректировки в МИС не принимаются и не учитываются Фондом, поэтому исправление «задним числом» бесполезно и создаёт дополнительные риски.' }
+];
+
+/* ================= Конфигурация грейдов ================= */
+const GRADES = [
+  { n:1, key:'Базовый',     count:20, min:30, desc:'Знание нормы: что положено, кому и кем оказывается' },
+  { n:2, key:'Продвинутый', count:25, min:40, desc:'Применение нормы в практической ситуации' },
+  { n:3, key:'Экспертный',  count:30, min:50, desc:'Дефекты, снятие оплаты, пересечение норм' }
+];
+const PASS = 0.8, MAX_TRIES = 3, COMPLAINTS_TO_FREEZE = 3;
+const LESSONS = [...G1_LESSONS, ...G2_LESSONS, ...G3_LESSONS];
+const QUESTIONS = [...G1_QUESTIONS, ...G2_QUESTIONS, ...G3_QUESTIONS];
+
+/* ================= Состояние ================= */
+const KEY = 'osms-course-v1';
+const blank = () => ({ grades:{}, complaints:{}, read:{}, ca:{}, name:'' });
+let S = load();
+function load(){ try{ return Object.assign(blank(), JSON.parse(localStorage.getItem(KEY)||'{}')); }catch(e){ return blank(); } }
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+function gs(n){ return S.grades[n] || (S.grades[n] = { attempts:[], passed:false, caDone:false, caList:[] }); }
+function unlocked(n){ return n===1 ? true : !!(S.grades[n-1] && S.grades[n-1].passed); }
+function stateOf(n){ return gs(n).passed ? 'done' : (unlocked(n) ? 'open' : 'locked'); }
+function frozen(id){ return (S.complaints[id]||0) >= COMPLAINTS_TO_FREEZE; }
+function bank(g){ return QUESTIONS.filter(q => q.g===g && !frozen(q.id)); }
+function courseProgress(){ return Math.round(GRADES.filter(g=>gs(g.n).passed).length / GRADES.length * 100); }
+
+/* ================= Утилиты ================= */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function shuffle(a){ const r=a.slice(); for(let i=r.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [r[i],r[j]]=[r[j],r[i]]; } return r; }
+function srcOf(q){ const a=ACTS[q.a]; return { act:a, point:q.p }; }
+function actLine(a){ return `${esc(a.title)} — № ${esc(a.num)} от ${esc(a.date)}`; }
+function fmt(sec){ const m=Math.floor(sec/60), s=sec%60; return String(m).padStart(2,'0')+':'+String(s).padStart(2,'0'); }
+function lessonById(id){ return LESSONS.find(l=>l.id===id); }
+
+/* ================= Навигация ================= */
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(x => x.setAttribute('aria-selected', String(x===t)));
+  ['course','chief','about'].forEach(v => $('#view-'+v).classList.toggle('hidden', v!==t.dataset.view));
+  if(EX){ clearInterval(EX.timer); EX = null; renderGrade(); }  // уход со страницы прерывает экзамен
+  if(t.dataset.view==='chief') renderChief();
+  if(t.dataset.view==='about') renderActs();
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
+
+/* ================= Боковая панель ================= */
+let current = 1;
+function renderLadder(){
+  $('#ladder').innerHTML = GRADES.map(g => {
+    const st = stateOf(g.n), d = gs(g.n);
+    const last = d.attempts[d.attempts.length-1];
+    const chip = st==='done' ? '<span class="chip done">Сдан</span>'
+      : st==='open' ? '<span class="chip open">Доступен</span>'
+      : '<span class="chip locked">Закрыт</span>';
+    const extra = d.attempts.length ? `<span class="chip ${last.pass?'done':'warn'}">${last.pct}%</span>` : '';
+    return `<button class="step" data-state="${st}" aria-current="${g.n===current}" data-g="${g.n}" ${st==='locked'?'disabled':''}>
+      <span class="dot">${st==='done'?'✓':g.n}</span>
+      <span>
+        <h4>${esc(g.key)}</h4>
+        <small>${esc(g.desc)}</small>
+        <span class="st row" style="gap:6px">${chip}${extra}</span>
+      </span></button>`;
+  }).join('');
+  $('#ladder').querySelectorAll('.step').forEach(b => b.addEventListener('click', () => {
+    if(b.hasAttribute('disabled')) return;
+    current = +b.dataset.g; renderLadder(); renderGrade();
+  }));
+  const p = courseProgress();
+  $('#prog-pct').textContent = p+'%';
+  $('#prog-bar').style.width = p+'%';
+  $('#prog-bar').parentElement.classList.toggle('good', p===100);
+  const total = QUESTIONS.length, fz = QUESTIONS.filter(q=>frozen(q.id)).length;
+  $('#bank-note').innerHTML = `${total} вопросов, привязанных к пунктам актов.` + (fz?` <b>${fz}</b> заморожено по жалобам.`:'');
+  $('#cert-slot').innerHTML = p===100 ? `<button class="btn primary" style="width:100%" id="btn-cert">Открыть сертификат</button>` : '';
+  const bc = $('#btn-cert'); if(bc) bc.addEventListener('click', renderCert);
+}
+
+/* ================= Экран грейда ================= */
+function renderGrade(){
+  const g = GRADES[current-1], d = gs(current);
+  const b = bank(current.valueOf());
+  const tries = d.attempts.length;
+  const last = d.attempts[tries-1];
+  const needCA = !d.passed && tries>0 && !d.caDone;
+  const blocked = !d.passed && tries>=MAX_TRIES;
+
+  let head = `<div class="hd">
+    <div class="grow">
+      <div class="eyebrow">Грейд ${g.n} из 3 · ${esc(g.key)}</div>
+      <h2 style="margin-top:6px">${esc(g.desc)}</h2>
+      <p class="lead">Экзамен: ${g.count} вопросов за ${g.min} минут, проходной порог ${Math.round(PASS*100)}%. Попыток — ${MAX_TRIES}. Вопросы и варианты ответов перемешиваются при каждой попытке.</p>
+    </div></div>`;
+
+  let status = '';
+  if(d.passed){
+    status = `<div class="panel panel-pad" style="border-color:var(--good)">
+      <div class="row" style="justify-content:space-between">
+        <div><div class="eyebrow" style="color:var(--good)">Грейд сдан</div>
+        <p style="margin-top:6px;font-size:15px">Результат последней попытки — <b>${last.pct}%</b> (${last.right} из ${last.total}). ${current<3?'Следующий грейд открыт.':'Курс пройден полностью.'}</p></div>
+        <button class="btn sm" id="btn-again">Пройти ещё раз</button>
+      </div></div>`;
+  } else if(blocked){
+    status = `<div class="panel panel-pad" style="border-color:var(--crit)">
+      <div class="eyebrow" style="color:var(--crit)">Грейд заблокирован</div>
+      <p style="margin-top:6px;font-size:15px">Использованы все ${MAX_TRIES} попытки. Дальнейший доступ открывает руководитель — это управленческое решение, а не автоматическая блокировка навсегда.</p>
+      <button class="btn sm" style="margin-top:12px" id="btn-unblock">Разблокировать (действие руководителя)</button></div>`;
+  } else if(needCA){
+    status = renderCA(d, last);
+  }
+
+  const lessons = LESSONS.filter(l => l.grade===current);
+  const list = lessons.map(l => {
+    const done = !!S.read[l.id];
+    return `<div class="panel">
+      <div class="panel-pad" style="display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap">
+        <div style="flex:1;min-width:220px">
+          <div class="row" style="gap:8px">
+            <h3 style="font-size:16.5px">${esc(l.title)}</h3>
+            ${done?'<span class="chip done">Изучен</span>':''}
+          </div>
+          <p class="note" style="margin-top:6px">${esc(l.intro)}</p>
+          <p class="note" style="margin-top:6px;color:var(--ink-3)">${l.cards.length} норм · ${QUESTIONS.filter(q=>q.l===l.id).length} вопросов в банке</p>
+        </div>
+        <button class="btn sm" data-lesson="${l.id}">${done?'Повторить':'Изучить'}</button>
+      </div></div>`;
+  }).join('');
+
+  const canExam = !blocked && !needCA;
+  const examBtn = `<div class="panel panel-pad" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+      <div style="flex:1;min-width:220px">
+        <h3 style="font-size:16.5px">Экзамен грейда</h3>
+        <p class="note" style="margin-top:5px">${b.length} вопросов в банке, в билет попадёт ${Math.min(g.count,b.length)}. Попытка ${Math.min(tries+1,MAX_TRIES)} из ${MAX_TRIES}.</p>
+      </div>
+      <button class="btn primary" id="btn-exam" ${canExam?'':'disabled'}>Начать экзамен</button>
+    </div>`;
+
+  const history = tries ? `<div class="panel panel-pad">
+      <div class="eyebrow">История попыток</div>
+      <div class="grid-2" style="margin-top:12px">${d.attempts.map((a,i)=>`
+        <div class="stat ${a.pass?'pass':'fail'}">
+          <div class="v">${a.pct}%</div>
+          <div class="l">Попытка ${i+1} · ${a.right} из ${a.total}${i>0?` · <span class="delta ${a.pct-d.attempts[i-1].pct>=0?'up':'down'}">${a.pct-d.attempts[i-1].pct>=0?'+':''}${a.pct-d.attempts[i-1].pct} п.п.</span>`:''}</div>
+        </div>`).join('')}</div></div>` : '';
+
+  $('#stage').innerHTML = head + status + `<div class="stack">${list}</div>` + examBtn + history;
+
+  $('#stage').querySelectorAll('[data-lesson]').forEach(btn =>
+    btn.addEventListener('click', () => openLesson(btn.dataset.lesson)));
+  const be=$('#btn-exam'); if(be) be.addEventListener('click', () => startExam(current));
+  const ba=$('#btn-again'); if(ba) ba.addEventListener('click', () => startExam(current));
+  const bu=$('#btn-unblock'); if(bu) bu.addEventListener('click', () => { gs(current).attempts=[]; gs(current).caDone=false; save(); renderLadder(); renderGrade(); });
+  bindCA();
+}
+
+/* ================= Корректирующие действия ================= */
+function renderCA(d, last){
+  const items = d.caList.map(id => lessonById(id)).filter(Boolean);
+  return `<div class="ca">
+    <div class="eyebrow" style="color:var(--warn)">Шаг 2 из 3 · Корректирующие действия</div>
+    <h3 style="margin-top:6px">Попытка не засчитана: ${last.pct}% при пороге ${Math.round(PASS*100)}%</h3>
+    <p class="note" style="margin-top:8px;color:var(--ink-2)">Повторный экзамен откроется после того, как вы отметите выполненными корректирующие действия. Это не весь курс заново — только те уроки, по чьим нормам были допущены ошибки.</p>
+    <ul class="calist">${items.map(l=>`
+      <li><input type="checkbox" data-ca="${l.id}" ${S.ca[l.id]?'checked':''} id="ca-${l.id}">
+        <label for="ca-${l.id}" style="flex:1;cursor:pointer">
+          <div class="n">${esc(l.title)}</div>
+          <div class="s">Ошибок в этой теме: ${last.wrongByLesson[l.id]||0}</div>
+        </label>
+        <button class="btn sm" data-lesson="${l.id}">Повторить</button>
+      </li>`).join('')}</ul>
+    <div class="row" style="margin-top:14px">
+      <button class="btn primary" id="btn-ca-done" ${items.every(l=>S.ca[l.id])?'':'disabled'}>Корректирующие действия выполнены</button>
+      <span class="note">Отмечено ${items.filter(l=>S.ca[l.id]).length} из ${items.length}</span>
+    </div></div>`;
+}
+function bindCA(){
+  $('#stage').querySelectorAll('[data-ca]').forEach(cb => cb.addEventListener('change', () => {
+    S.ca[cb.dataset.ca] = cb.checked; save(); renderGrade();
+  }));
+  const b = $('#btn-ca-done');
+  if(b) b.addEventListener('click', () => {
+    const d = gs(current); d.caDone = true;
+    d.caList.forEach(id => { S.ca[id] = false; });
+    save(); renderGrade();
+  });
+}
+
+/* ================= Урок ================= */
+function openLesson(id){
+  const l = lessonById(id);
+  const cards = l.cards.map((c,i) => {
+    const a = ACTS[c.a];
+    return `<div class="norm">
+      <div class="norm-h"><span class="pt">п. ${c.p}</span><span class="src">${esc(a.title)}</span></div>
+      <div class="norm-b">
+        <div class="quote">${esc(c.norm)}</div>
+        <div class="plain"><b>На практике</b><span>${esc(c.plain)}</span></div>
+        <div class="srcline"><span>№ ${esc(a.num)} от ${esc(a.date)} · рег. № ${esc(a.reg)}</span>
+          <a href="${a.url}" target="_blank" rel="noopener">Открыть акт в «Әділет» →</a></div>
+      </div></div>`;
+  }).join('');
+  $('#stage').innerHTML = `<div class="hd">
+      <div class="grow">
+        <div class="eyebrow">Урок · грейд ${l.grade}</div>
+        <h2 style="margin-top:6px">${esc(l.title)}</h2>
+        <p class="lead">${esc(l.intro)}</p>
+      </div>
+      <button class="btn" id="btn-back">← К грейду</button>
+    </div>${cards}
+    <div class="panel panel-pad row" style="justify-content:space-between">
+      <span class="note">Отметьте урок изученным, когда разберётесь с нормами</span>
+      <button class="btn primary" id="btn-read">${S.read[l.id]?'Отмечен как изученный':'Отметить изученным'}</button>
+    </div>`;
+  $('#btn-back').addEventListener('click', () => { renderGrade(); window.scrollTo({top:0,behavior:'smooth'}); });
+  $('#btn-read').addEventListener('click', () => { S.read[l.id]=true; save(); renderGrade(); window.scrollTo({top:0,behavior:'smooth'}); });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ================= Экзамен ================= */
+let EX = null;
+function startExam(gn){
+  const g = GRADES[gn-1];
+  const pool = shuffle(bank(gn)).slice(0, g.count);
+  EX = { g:gn, qs:pool.map(q => ({ q, order:shuffle([0,1,2,3]) })), i:0, answers:[], left:g.min*60, timer:null };
+  EX.timer = setInterval(() => {
+    EX.left--; const t = $('#timer');
+    if(t){ t.textContent = fmt(EX.left); t.classList.toggle('low', EX.left<=120); }
+    if(EX.left<=0){ clearInterval(EX.timer); finishExam(true); }
+  }, 1000);
+  drawQ();
+}
+function drawQ(){
+  const it = EX.qs[EX.i], q = it.q, a = ACTS[q.a];
+  const chosen = EX.answers[EX.i];
+  const answered = chosen !== undefined;
+  const opts = it.order.map((oi,k) => {
+    const isRight = oi===q.c, isChosen = chosen===oi;
+    let cls = 'opt';
+    if(answered && isRight) cls += ' right';
+    else if(answered && isChosen) cls += ' wrong';
+    return `<button class="${cls}" data-o="${oi}" ${answered?'disabled':''} aria-pressed="${isChosen?'true':'false'}">
+      <span class="k">${'АБВГ'[k]}</span><span>${esc(q.o[oi])}</span></button>`;
+  }).join('');
+  const explain = answered ? `<div class="explain">
+      <div class="row" style="gap:8px;margin-bottom:8px">
+        <span class="chip ${chosen===q.c?'done':'crit'}">${chosen===q.c?'Верно':'Неверно'}</span>
+        <span class="pt">п. ${q.p}</span>
+      </div>
+      <p class="t">${esc(q.e)}</p>
+      <div class="srcline"><span>${actLine(a)}</span>
+        <a href="${a.url}" target="_blank" rel="noopener">Первоисточник →</a>
+        <button class="btn sm ghost" id="btn-complain" style="margin-left:auto">Оспорить вопрос</button></div>
+      <div id="complain-msg" class="note" style="margin-top:8px"></div>
+    </div>` : '';
+  const last = EX.i === EX.qs.length-1;
+  $('#stage').innerHTML = `
+    <div class="exam-top">
+      <span class="eyebrow">Экзамен · грейд ${EX.g}</span>
+      <span class="qnum">Вопрос ${EX.i+1} из ${EX.qs.length}</span>
+      <div class="meter" style="flex:1;min-width:120px"><i style="width:${(EX.i)/EX.qs.length*100}%"></i></div>
+      <span class="timer${EX.left<=120?' low':''}" id="timer">${fmt(EX.left)}</span>
+    </div>
+    <div class="panel panel-pad qbody">
+      <p class="qtext">${esc(q.q)}</p>
+      <div class="opts">${opts}</div>
+      ${explain}
+      <div class="exam-foot">
+        <button class="btn primary" id="btn-next" ${answered?'':'disabled'}>${last?'Завершить экзамен':'Следующий вопрос'}</button>
+        <span class="note">${answered?'':'Выберите один вариант'}</span>
+      </div>
+    </div>`;
+  $('#stage').querySelectorAll('.opt').forEach(b => b.addEventListener('click', () => {
+    if(EX.answers[EX.i] !== undefined) return;
+    EX.answers[EX.i] = +b.dataset.o; drawQ();
+  }));
+  $('#btn-next').addEventListener('click', () => {
+    if(last) finishExam(false); else { EX.i++; drawQ(); window.scrollTo({top:0,behavior:'smooth'}); }
+  });
+  const bc = $('#btn-complain');
+  if(bc) bc.addEventListener('click', () => {
+    S.complaints[q.id] = (S.complaints[q.id]||0)+1; save();
+    const n = S.complaints[q.id];
+    $('#complain-msg').innerHTML = n>=COMPLAINTS_TO_FREEZE
+      ? `Жалоба принята (${n}). Вопрос заморожен и больше не будет выдаваться до разбора администратором.`
+      : `Жалоба принята (${n} из ${COMPLAINTS_TO_FREEZE}). При ${COMPLAINTS_TO_FREEZE} жалобах вопрос автоматически замораживается.`;
+    bc.disabled = true; renderLadder();
+  });
+}
+function finishExam(byTime){
+  clearInterval(EX.timer);
+  const d = gs(EX.g);
+  let right = 0; const wrongByLesson = {}, wrongQs = [];
+  EX.qs.forEach((it,i) => {
+    if(EX.answers[i] === it.q.c) right++;
+    else { wrongByLesson[it.q.l] = (wrongByLesson[it.q.l]||0)+1; wrongQs.push(it.q); }
+  });
+  const total = EX.qs.length, pct = Math.round(right/total*100), pass = right/total >= PASS;
+  d.attempts.push({ pct, right, total, pass, wrongByLesson, byTime });
+  if(pass){ d.passed = true; d.caDone = false; }
+  else { d.caList = Object.keys(wrongByLesson); d.caDone = false; d.caList.forEach(id => S.ca[id]=false); }
+  save();
+  const prev = d.attempts.length>1 ? d.attempts[d.attempts.length-2] : null;
+  const delta = prev ? pct - prev.pct : null;
+  const g = GRADES[EX.g-1];
+
+  const breakdown = wrongQs.length ? `<div class="panel panel-pad">
+      <div class="eyebrow">Разбор ошибок</div>
+      <div style="margin-top:14px">${wrongQs.map(q => {
+        const a = ACTS[q.a];
+        return `<div class="norm"><div class="norm-h"><span class="pt">п. ${q.p}</span><span class="src">${esc(a.title)}</span></div>
+          <div class="norm-b"><p style="font-weight:600;font-size:15px">${esc(q.q)}</p>
+          <div class="plain" style="margin-top:10px"><b>Верно</b><span>${esc(q.o[q.c])}</span></div>
+          <p class="note" style="margin-top:10px;color:var(--ink-2)">${esc(q.e)}</p>
+          <div class="srcline"><span>№ ${esc(a.num)} от ${esc(a.date)}</span><a href="${a.url}" target="_blank" rel="noopener">Первоисточник →</a></div>
+          </div></div>`;
+      }).join('')}</div></div>` : '';
+
+  $('#stage').innerHTML = `<div class="hd"><div class="grow">
+      <div class="eyebrow">Результат · грейд ${EX.g} «${esc(g.key)}»</div>
+      <h2 style="margin-top:6px">${pass?'Грейд сдан':'Порог не достигнут'}</h2>
+      <p class="lead">${byTime?'Время экзамена истекло, засчитаны данные ответы. ':''}${pass
+        ? (EX.g<3?'Следующий грейд открыт.':'Все три грейда пройдены — доступен сертификат.')
+        : `Для сдачи нужно не менее ${Math.round(PASS*100)}%. Назначены корректирующие действия по темам, где были ошибки.`}</p>
+    </div></div>
+    <div class="grid-2">
+      <div class="stat ${pass?'pass':'fail'}"><div class="v">${pct}%</div><div class="l">Результат попытки ${d.attempts.length}</div></div>
+      <div class="stat"><div class="v">${right}<span style="font-size:18px;color:var(--ink-3)"> / ${total}</span></div><div class="l">Верных ответов</div></div>
+      <div class="stat"><div class="v">${Math.round(PASS*100)}%</div><div class="l">Проходной порог</div></div>
+      <div class="stat"><div class="v ${delta===null?'':(delta>=0?'':'')}" style="${delta===null?'':'color:var(--'+(delta>=0?'good':'crit')+')'}">${delta===null?'—':(delta>=0?'+':'')+delta}</div><div class="l">${delta===null?'Первая попытка — база для сравнения':'Прогресс к прошлой попытке, п.п.'}</div></div>
+    </div>
+    <div class="row"><button class="btn primary" id="btn-to-grade">Вернуться к грейду</button></div>
+    ${breakdown}`;
+  $('#btn-to-grade').addEventListener('click', () => { renderLadder(); renderGrade(); window.scrollTo({top:0,behavior:'smooth'}); });
+  renderLadder();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ================= Сертификат ================= */
+function certCode(){
+  const base = (S.name||'ANON') + '|' + GRADES.map(g=>gs(g.n).attempts.length).join('');
+  let h = 0; for(let i=0;i<base.length;i++){ h = (h*31 + base.charCodeAt(i)) >>> 0; }
+  return 'OSMS-' + h.toString(36).toUpperCase().padStart(6,'0').slice(0,6) + '-26';
+}
+function renderCert(){
+  const best = GRADES.map(g => { const a = gs(g.n).attempts.filter(x=>x.pass); return a.length ? Math.max(...a.map(x=>x.pct)) : 0; });
+  const avg = Math.round(best.reduce((a,b)=>a+b,0)/3);
+  $('#stage').innerHTML = `<div class="hd"><div class="grow">
+      <div class="eyebrow">Итог курса</div><h2 style="margin-top:6px">Сертификат</h2>
+      <p class="lead">Сертификат подтверждает прохождение всех трёх грейдов и действует 12 месяцев. При изменении норм, вошедших в курс, он не аннулируется, но получает статус «требует актуализации».</p>
+    </div><button class="btn" id="btn-back2">← К курсу</button></div>
+    <div class="panel panel-pad">
+      <div class="row" style="margin-bottom:14px">
+        <label class="note" for="nm">Фамилия и инициалы для сертификата</label>
+        <input id="nm" value="${esc(S.name)}" placeholder="Например: Серикбаев Е. О."
+          style="flex:1;min-width:200px;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:inherit;font-size:14px">
+      </div>
+      <div class="cert">
+        <div class="ttl">Сертификат о прохождении обучения</div>
+        <div class="ln"></div>
+        <div class="meta">настоящим подтверждается, что</div>
+        <div class="nm">${esc(S.name || '— укажите фамилию выше —')}</div>
+        <div class="meta">прошёл(ла) курс «ОСМС и правила финансирования ПМСП»<br>по нормативным правовым актам Министерства здравоохранения Республики Казахстан</div>
+        <div class="ln"></div>
+        <div class="meta">Базовый ${best[0]}% · Продвинутый ${best[1]}% · Экспертный ${best[2]}% · средний ${avg}%</div>
+        <div class="meta" style="margin-top:8px">Действителен до 02.08.2027</div>
+        <div class="code">${certCode()}</div>
+      </div>
+      <p class="note" style="margin-top:14px">Код проверки формируется по результатам и предъявляется при проверке подлинности. В рабочей версии по нему открывается публичная страница подтверждения.</p>
+    </div>`;
+  $('#btn-back2').addEventListener('click', () => { renderGrade(); });
+  $('#nm').addEventListener('input', e => { S.name = e.target.value; save(); });
+  $('#nm').addEventListener('change', renderCert);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ================= Кабинет руководителя ================= */
+const DEMO = [
+  { n:'Ахметова Г. С.', role:'ВОП', a1:[72,88], a2:[76,84], a3:[68,null] },
+  { n:'Досжанов Б. К.', role:'Терапевт', a1:[85,null], a2:[72,81], a3:[null,null] },
+  { n:'Сариева А. М.', role:'Гастроэнтеролог', a1:[90,null], a2:[88,null], a3:[83,null] },
+  { n:'Ким В. А.', role:'Терапевт', a1:[64,71], a2:[null,null], a3:[null,null] },
+  { n:'Нурлыбек Ж. Т.', role:'Медсестра ОП', a1:[78,86], a2:[70,79], a3:[null,null] }
+];
+function cell(p){
+  if(p[0]===null) return '<span class="chip locked">не начат</span>';
+  const first = p[0], second = p[1];
+  if(second===null) return `<span class="chip ${first>=80?'done':'warn'}">${first}%</span>`;
+  const d = second-first;
+  return `<span class="chip ${second>=80?'done':'crit'}">${second}%</span> <span class="delta ${d>=0?'up':'down'}">${d>=0?'+':''}${d}</span>`;
+}
+function renderChief(){
+  const me = GRADES.map(g => { const at = gs(g.n).attempts; return [at[0]?at[0].pct:null, at[1]?at[1].pct:null]; });
+  const rows = [{ n:'Вы', role:'Текущий пользователь', a1:me[0], a2:me[1], a3:me[2], me:true }, ...DEMO];
+  const done = rows.filter(r => (r.a3[1]??r.a3[0]) >= 80).length;
+  const inCA = rows.filter(r => { const vals=[r.a1,r.a2,r.a3]; return vals.some(v => v[0]!==null && v[0]<80 && v[1]===null); }).length;
+  const deltas = rows.flatMap(r => [r.a1,r.a2,r.a3]).filter(v => v[0]!==null && v[1]!==null).map(v => v[1]-v[0]);
+  const avgD = deltas.length ? Math.round(deltas.reduce((a,b)=>a+b,0)/deltas.length) : null;
+
+  $('#chief-stats').innerHTML = `
+    <div class="stat"><div class="v">${rows.length}</div><div class="l">Сотрудников в курсе</div></div>
+    <div class="stat"><div class="v" style="color:var(--good)">${done}</div><div class="l">Прошли все три грейда</div></div>
+    <div class="stat"><div class="v" style="color:var(--warn)">${inCA}</div><div class="l">На корректирующих действиях</div></div>
+    <div class="stat"><div class="v" style="color:var(--${avgD===null||avgD>=0?'good':'crit'})">${avgD===null?'—':(avgD>=0?'+':'')+avgD}</div><div class="l">Средний прирост после корректировки, п.п.</div></div>`;
+
+  $('#chief-tbl').innerHTML = `<thead><tr>
+      <th>Сотрудник</th><th>Должность</th><th>Базовый</th><th>Продвинутый</th><th>Экспертный</th><th>Статус</th></tr></thead>
+    <tbody>${rows.map(r => {
+      const fin = (r.a3[1]??r.a3[0]);
+      const st = fin>=80 ? '<span class="chip done">Сертифицирован</span>'
+        : [r.a1,r.a2,r.a3].some(v=>v[0]!==null&&v[0]<80&&v[1]===null) ? '<span class="chip warn">Корректирующие действия</span>'
+        : '<span class="chip open">В процессе</span>';
+      return `<tr${r.me?' style="background:var(--accent-wash)"':''}>
+        <td><b>${esc(r.n)}</b></td><td class="note">${esc(r.role)}</td>
+        <td class="num">${cell(r.a1)}</td><td class="num">${cell(r.a2)}</td><td class="num">${cell(r.a3)}</td><td>${st}</td></tr>`;
+    }).join('')}</tbody>`;
+}
+
+/* ================= Источники ================= */
+function renderActs(){
+  $('#acts-list').innerHTML = Object.values(ACTS).map(a => {
+    const qn = QUESTIONS.filter(q => ACTS[q.a].id===a.id).length;
+    return `<div class="panel panel-pad">
+      <div class="row" style="justify-content:space-between;align-items:flex-start">
+        <div style="flex:1;min-width:240px">
+          <h3 style="font-size:16px">${esc(a.title)}</h3>
+          <p class="note" style="margin-top:6px">Приказ № ${esc(a.num)} от ${esc(a.date)} · зарегистрирован в Минюсте под № ${esc(a.reg)}</p>
+        </div>
+        <div style="text-align:right"><div class="delta">${qn}</div><div class="note">вопросов</div></div>
+      </div>
+      <div class="srcline"><a href="${a.url}" target="_blank" rel="noopener">Открыть полный текст в «Әділет» →</a></div>
+    </div>`;
+  }).join('');
+}
+
+/* ================= Старт ================= */
+$('#btn-reset').addEventListener('click', () => {
+  if(confirm('Сбросить весь прогресс курса? Это действие нельзя отменить.')){
+    S = blank(); save(); current = 1; renderLadder(); renderGrade();
+  }
+});
+renderLadder();
+renderGrade();
+
+</script>
+
+</body>
+</html>
