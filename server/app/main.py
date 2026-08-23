@@ -30,6 +30,7 @@ async def _deadline_loop():
 async def _startup():
     _apply_schema("schema.sql")
     _apply_schema("schema2.sql")
+    _apply_schema("schema3.sql")
     asyncio.create_task(_deadline_loop())
 
 def me(request, required=True):
@@ -114,7 +115,8 @@ def api_me(request: Request):
     return {"auth": True, "user": {
         "id": u["id"], "full_name": u["full_name"], "email": u["email"], "phone": u["phone"],
         "org": u["org_name"], "role": u["role_title"], "role_code": u["role_code"],
-        "department": u["department"], "is_org_admin": u["is_org_admin"]}}
+        "department": u["department"], "is_org_admin": u["is_org_admin"],
+        "is_region_admin": bool(u.get("is_region_admin"))}}
 
 @app.post("/api/profile")
 def profile(request: Request, data: dict = Body(...)):

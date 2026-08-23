@@ -193,6 +193,93 @@ def org_assign(request: Request, data: dict = Body(...)):
                  f"Назначил руководитель. Срок — до {due:%d.%m.%Y}.", data["course"])
     return {"ok": True, "due": due.isoformat()}
 
+# ---------- сводка управления здравоохранения по региону ----------
+def _region_admin(request):
+    u = me(request)
+    if not u.get("is_region_admin") or not u.get("region_code"):
+        raise HTTPException(403, "Раздел доступен управлению здравоохранения")
+    return u
+
+def _region_data(u):
+    """Сводка по всем организациям региона: где обучение идёт, где стоит.
+
+    Считается по тем же правилам, что и кабинет организации, — иначе цифры
+    у клиники и у управления разойдутся, и доверия к отчёту не будет.
+    Расчёт идёт по каждому сотруднику: на масштабе области это заметно
+    дороже, чем один запрос, зато исключает вторую, расходящуюся логику."""
+    region = db.q("SELECT title FROM regions WHERE code=%s", (u["region_code"],), one=True)
+    orgs = db.q("""SELECT o.id, o.name, o.bin FROM organizations o
+                   WHERE o.region_code=%s ORDER BY o.name""", (u["region_code"],))
+    out, by_course = [], {}
+    tot = {"employees": 0, "started": 0, "not_started": 0, "mandatory": 0,
+           "completed": 0, "overdue": 0, "certificates": 0}
+    deltas_all = []
+    for o in orgs:
+        users = db.q("""SELECT id FROM users WHERE org_id=%s AND is_active""", (o["id"],))
+        om = od = oo = ostarted = ocerts = 0
+        odeltas = []
+        for p in users:
+            courses = logic.user_courses(p["id"])
+            mand = [c for c in courses if c["kind"] in ("mandatory", "periodic")]
+            done = [c for c in mand if c["status"] == "completed"]
+            om += len(mand); od += len(done)
+            oo += len([c for c in mand if c["status"] in ("overdue", "repeat_required")])
+            ostarted += 1 if any(c["attempts"] for c in courses) else 0
+            ocerts += len([c for c in courses if c["certificate"]])
+            odeltas += [c["delta"] for c in courses if c["delta"] is not None]
+            for c in mand:
+                b = by_course.setdefault(c["code"], {"title": c["title"], "assigned": 0, "completed": 0})
+                b["assigned"] += 1
+                b["completed"] += 1 if c["status"] == "completed" else 0
+        deltas_all += odeltas
+        tot["employees"] += len(users); tot["started"] += ostarted
+        tot["not_started"] += len(users) - ostarted
+        tot["mandatory"] += om; tot["completed"] += od; tot["overdue"] += oo
+        tot["certificates"] += ocerts
+        sub = logic.sub_status(o["id"])
+        out.append({
+            "id": o["id"], "name": o["name"], "bin": o["bin"],
+            "employees": len(users), "started": ostarted, "not_started": len(users) - ostarted,
+            "mandatory": om, "completed": od, "overdue": oo,
+            "pct": round(od / om * 100) if om else 0,
+            "avg_delta": round(sum(odeltas) / len(odeltas)) if odeltas else None,
+            "certificates": ocerts,
+            "subscription": sub["title"], "sub_active": sub["active"]
+        })
+    tot["pct"] = round(tot["completed"] / tot["mandatory"] * 100) if tot["mandatory"] else 0
+    # худшие вперёд: управлению нужен список отстающих, а не алфавит
+    out.sort(key=lambda x: (x["pct"], -x["overdue"]))
+    courses = [{"code": k, **v, "pct": round(v["completed"] / v["assigned"] * 100) if v["assigned"] else 0}
+               for k, v in by_course.items()]
+    courses.sort(key=lambda c: c["pct"])
+    return {
+        "region": region["title"] if region else u["region_code"],
+        "totals": tot | {"orgs": len(orgs),
+                         "avg_delta": round(sum(deltas_all) / len(deltas_all)) if deltas_all else None},
+        "organizations": out,
+        "by_course": courses
+    }
+
+@r.get("/api/region/dashboard")
+def region_dashboard(request: Request):
+    return _region_data(_region_admin(request))
+
+@r.get("/api/region/report.csv")
+def region_report_csv(request: Request):
+    data = _region_data(_region_admin(request))
+    buf = io.StringIO()
+    w = csv.writer(buf, delimiter=";")
+    w.writerow(["Организация", "БИН", "Сотрудников", "Начали обучение", "Не начали",
+                "Обязательных курсов", "Пройдено", "Процент", "Просрочено",
+                "Средний прирост, п.п.", "Сертификатов", "Подписка"])
+    for o in data["organizations"]:
+        w.writerow([o["name"], o["bin"] or "", o["employees"], o["started"], o["not_started"],
+                    o["mandatory"], o["completed"], f'{o["pct"]}%', o["overdue"],
+                    f'{o["avg_delta"]:+d}' if o["avg_delta"] is not None else "",
+                    o["certificates"], o["subscription"] + ("" if o["sub_active"] else " (не активна)")])
+    return Response("﻿" + buf.getvalue(), media_type="text/csv; charset=utf-8",
+                    headers={"Content-Disposition": 'attachment; filename="region.csv"'})
+
 # ---------- подписка и тарифы (разделы 10 и 11 ТЗ) ----------
 @r.get("/api/tariffs")
 def tariffs(request: Request):

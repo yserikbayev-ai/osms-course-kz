@@ -104,6 +104,7 @@ async function boot(){
   $('#btn-out').onclick=async()=>{await api('/api/logout',{});location.reload();};
   $('#btn-bell').onclick=()=>go({name:'notifs'});
   if(!ME.user.is_org_admin) $$('[data-view="chief"]').forEach(t=>t.style.display='none');
+  if(!ME.user.is_region_admin) $$('[data-view="region"]').forEach(t=>t.style.display='none');
   VIEW={name:'dash'}; render();
 }
 async function refresh(){ [P,D,L]=await Promise.all([api("/api/progress"),api("/api/dashboard"),api("/api/my-learning")]);
@@ -115,7 +116,8 @@ function render(){
   const el=$('#app');
   if(SEARCH.trim().length>1){ el.innerHTML=viewSearch(SEARCH.trim()); bind(); return; }
   const R={dash:viewDash,catalog:viewCatalog,learning:viewLearning,drill:viewDrill,favorites:viewFavorites,
-           chief:viewChief,about:viewAbout,notifs:viewNotifs,admin:viewAdmin,billing:viewBilling};
+           chief:viewChief,about:viewAbout,notifs:viewNotifs,admin:viewAdmin,billing:viewBilling,
+           region:viewRegion};
   if(v.name==='direction') el.innerHTML=viewDirection(v.dir);
   else if(v.name==='course') el.innerHTML=viewCourse(v.course);
   else if(v.name==='lesson') el.innerHTML=viewLesson(v.lesson);
@@ -606,6 +608,53 @@ function showEmp(id){
   document.getElementById('emp-detail').scrollIntoView({behavior:'smooth'});
 }
 
+/* ===== сводка управления здравоохранения по области ===== */
+function viewRegion(){
+  return `<div class="hd"><div class="grow"><div class="eyebrow">Управление здравоохранения</div>
+      <h2 style="margin-top:6px">Обучение по области</h2>
+      <p class="lead">Свод по всем организациям области: кто обучает персонал, где обучение стоит и по каким курсам провал общий, а не случайный. Персональные данные сотрудников остаются в клинике — управлению видны организации, не фамилии.</p>
+    </div><button class="btn sm" id="btn-region-csv">Выгрузить CSV</button></div>
+    <div id="region-body"><p class="note">Загружаю…</p></div>`;
+}
+async function loadRegion(){
+  const el=$('#region-body'); if(!el) return;
+  let r; try{ r=await api('/api/region/dashboard'); }catch(e){ el.innerHTML=`<p class="note">${esc(e.message)}</p>`; return; }
+  const t=r.totals;
+  el.innerHTML=`
+    <div class="grid-2">
+      <div class="stat"><div class="v">${t.pct}%</div><div class="l">Обязательное обучение по области</div>
+        <div class="meter" style="margin-top:8px"><i style="width:${t.pct}%"></i></div></div>
+      <div class="stat"><div class="v">${t.orgs}</div><div class="l">Организаций в сводке</div></div>
+      <div class="stat"><div class="v">${t.employees}</div><div class="l">Сотрудников обучается</div></div>
+      <div class="stat"><div class="v" style="color:var(--${t.overdue?'crit':'ink'})">${t.overdue}</div><div class="l">Просроченных назначений</div></div>
+      <div class="stat"><div class="v">${t.not_started}</div><div class="l">Не приступали к обучению</div></div>
+      <div class="stat"><div class="v" style="color:var(--${t.avg_delta===null||t.avg_delta>=0?'good':'crit'})">${t.avg_delta===null?'—':(t.avg_delta>=0?'+':'')+t.avg_delta}</div>
+        <div class="l">Средний прирост после корректировки, п.п.</div></div>
+    </div>
+    ${r.by_course.length?`<div class="panel panel-pad"><div class="eyebrow">Курсы с наибольшим отставанием по области</div>
+      <p class="note" style="margin-top:6px">Низкий процент сразу во многих организациях — признак системного пробела: тема либо трудная, либо норма изменилась.</p>
+      <div class="tblwrap" style="margin-top:12px"><table>
+        <thead><tr><th>Курс</th><th>Назначено</th><th>Пройдено</th><th>Процент</th></tr></thead>
+        <tbody>${r.by_course.slice(0,8).map(c=>`<tr><td>${esc(c.title)}</td>
+          <td class="num">${c.assigned}</td><td class="num">${c.completed}</td>
+          <td class="num"><span class="chip ${c.pct>=80?'done':(c.pct>=50?'open':'crit')}">${c.pct}%</span></td></tr>`).join('')}</tbody></table></div></div>`:''}
+    <div class="tblwrap" style="margin-top:18px"><table>
+      <thead><tr><th>Организация</th><th>Сотрудников</th><th>Не начали</th><th>Прогресс</th>
+        <th>Просрочено</th><th>Прирост</th><th>Серт.</th><th>Подписка</th></tr></thead>
+      <tbody>${r.organizations.map(o=>`<tr>
+        <td><b>${esc(o.name)}</b>${o.bin?`<div class="note">БИН ${esc(o.bin)}</div>`:''}</td>
+        <td class="num">${o.employees}</td>
+        <td class="num">${o.not_started||'—'}</td>
+        <td class="num">${o.completed} / ${o.mandatory} <span class="note">(${o.pct}%)</span></td>
+        <td class="num">${o.overdue?`<span class="chip crit">${o.overdue}</span>`:'—'}</td>
+        <td class="num">${o.avg_delta===null?'—':`<span class="delta ${o.avg_delta>=0?'up':'down'}">${o.avg_delta>=0?'+':''}${o.avg_delta}</span>`}</td>
+        <td class="num">${o.certificates}</td>
+        <td class="note">${esc(o.subscription)}${o.sub_active?'':' · <span class="chip crit">не активна</span>'}</td></tr>`).join('')}
+      </tbody></table></div>
+    ${r.organizations.length?'':'<p class="note" style="margin-top:14px">К области пока не привязана ни одна организация.</p>'}`;
+  const csv=$('#btn-region-csv'); if(csv) csv.onclick=()=>location.href='/api/region/report.csv';
+}
+
 /* ===== подписка (разделы 10 и 11 ТЗ) ===== */
 function viewBilling(){
   return `<div class="hd"><div class="grow"><div class="eyebrow">Подписка и тарифы</div>
@@ -768,6 +817,7 @@ function bind(){
   const ra=$('#btn-readall');
   if(ra) ra.onclick=async()=>{ await api('/api/notifications/read',{}); await refresh(); render(); };
   if(VIEW.name==='chief') loadChief();
+  if(VIEW.name==='region') loadRegion();
   if(VIEW.name==='billing') loadBilling();
   if(VIEW.name==='admin') loadAdmin();
 }
