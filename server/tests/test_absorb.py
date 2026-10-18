@@ -35,7 +35,7 @@ def test_absorb_moves_lessons_and_archives(seeded):
     assert st["K03.1"] == "планируется" and st["c-osms-right"] == "опубликован"
     ms = {x["code"]: x["status"] for x in db.q("SELECT code,status FROM modules")}
     assert ms["K02.1.1"] == ms["K02.3.1"] == "опубликован" and ms["K02.1.3"] == "планируется"
-    assert db.q("SELECT module_code FROM lessons WHERE code='V2'", one=True)["module_code"] == "K02.3.1"
+    assert db.q("SELECT module_code FROM lessons WHERE code='V2'", one=True)["module_code"] == "K02.3.3"
 
 def test_absorb_keeps_history_and_merges_assignments(seeded):
     db, u = seeded

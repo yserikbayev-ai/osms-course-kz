@@ -9,7 +9,7 @@ OLD_DIRECTIONS = {"attach": "d01", "district": "d01", "vaccine": "d02", "checkup
 # поглощение направления 2: старый курс -> новый; урок -> (курс, модуль-тема по листу «Темы (189)»)
 OLD_TO_NEW = {"c-chk-base": "K02.1", "c-chk-screen": "K02.1", "c-disp-base": "K02.2", "c-vax-base": "K02.3"}
 LESSON_HOME = {"P1": ("K02.1", "K02.1.1"), "P2": ("K02.1", "K02.1.2"), "D1": ("K02.2", "K02.2.1"),
-               "V1": ("K02.3", "K02.3.1"), "V2": ("K02.3", "K02.3.1")}
+               "V1": ("K02.3", "K02.3.1"), "V2": ("K02.3", "K02.3.3")}
 KIND_RANK = {"mandatory": 0, "periodic": 1, "recommended": 2, "optional": 3}   # меньше = жёстче
 
 def load_structure(path):
