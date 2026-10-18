@@ -1,0 +1,254 @@
+{
+  "lesson": "L1.1",
+  "voice": {
+    "card": [
+      "plain"
+    ],
+    "opener": "Право на медицинскую помощь в системе ОСМС. Приказ Министра здравоохранения Республики Казахстан от 29 декабря 2020 года.",
+    "openerCut": "ОСМС.",
+    "summary": "Шесть пунктов приказа. Проверьте себя: десять вопросов.",
+    "speed": 1.15
+  },
+  "scenes": [
+    {
+      "header": "Право на медицинскую помощь",
+      "peak": true,
+      "items": [
+        {
+          "id": "not",
+          "text": "не гражданство и не прикрепление",
+          "style": "text",
+          "slot": "above",
+          "at": "plain:гражданство",
+          "strike": "plain:факт"
+        },
+        {
+          "id": "fact",
+          "text": "факт уплаты",
+          "style": "hero",
+          "tone": "accent",
+          "slot": "center",
+          "at": "plain:факт"
+        },
+        {
+          "id": "free",
+          "text": "либо законное освобождение от уплаты",
+          "style": "label",
+          "slot": "below",
+          "at": "plain:освобождение",
+          "out": "plain:Прикреплённый"
+        },
+        {
+          "id": "gobmp",
+          "text": "только ГОБМП",
+          "style": "card",
+          "tone": "accent",
+          "slot": "below",
+          "at": "plain:только"
+        }
+      ]
+    },
+    {
+      "header": "До трёх месяцев",
+      "items": [
+        {
+          "id": "lost",
+          "text": "потерявший льготную категорию",
+          "style": "text",
+          "slot": "center",
+          "at": "plain:потерявший",
+          "moveTo": {
+            "at": "plain:трёх",
+            "slot": "above"
+          }
+        },
+        {
+          "id": "months",
+          "text": "3",
+          "style": "number",
+          "tone": "accent",
+          "slot": "center",
+          "at": "plain:трёх",
+          "unit": "месяцев остаётся застрахованным"
+        },
+        {
+          "id": "wait",
+          "text": "Не отказывайте сразу",
+          "style": "label",
+          "slot": "below",
+          "at": "plain:отказывайте",
+          "out": "plain:проверьте"
+        },
+        {
+          "id": "check",
+          "text": "сначала проверьте статус в системе",
+          "style": "label",
+          "tone": "accent",
+          "slot": "below",
+          "at": "plain:проверьте"
+        }
+      ]
+    },
+    {
+      "header": "Непрерывный ряд платежей",
+      "items": [
+        {
+          "id": "who",
+          "text": "Для самостоятельных плательщиков",
+          "style": "text",
+          "slot": "center",
+          "at": "plain:самостоятельных",
+          "moveTo": {
+            "at": "plain:12",
+            "slot": "above"
+          }
+        },
+        {
+          "id": "twelve",
+          "text": "12",
+          "style": "number",
+          "tone": "accent",
+          "slot": "center",
+          "at": "plain:12",
+          "unit": "месяцев"
+        },
+        {
+          "id": "gap",
+          "text": "Разрыв в платежах",
+          "style": "label",
+          "slot": "below",
+          "at": "plain:Разрыв",
+          "strike": "plain:статус",
+          "out": "plain:не"
+        },
+        {
+          "id": "fail",
+          "text": "статус потребителя не подтвердится",
+          "style": "label",
+          "tone": "accent",
+          "slot": "below",
+          "at": "plain:подтвердится"
+        }
+      ]
+    },
+    {
+      "header": "На время сбоя",
+      "items": [
+        {
+          "id": "sys",
+          "text": "система не отвечает",
+          "style": "text",
+          "slot": "center",
+          "at": "plain:система",
+          "moveTo": {
+            "at": "plain:основание",
+            "slot": "above"
+          }
+        },
+        {
+          "id": "no",
+          "text": "не основание отказать",
+          "style": "hero",
+          "tone": "accent",
+          "slot": "center",
+          "at": "plain:основание"
+        },
+        {
+          "id": "keep",
+          "text": "Право сохраняется",
+          "style": "label",
+          "slot": "below",
+          "at": "plain:сохраняется"
+        }
+      ]
+    },
+    {
+      "header": "Статус пациента в МИС",
+      "items": [
+        {
+          "id": "mis",
+          "text": "МИС",
+          "style": "card",
+          "slot": "center",
+          "at": "plain:МИС",
+          "moveTo": {
+            "at": "plain:ответ",
+            "slot": "above"
+          }
+        },
+        {
+          "id": "ans",
+          "text": "ответ ИС Фонда",
+          "style": "hero",
+          "tone": "accent",
+          "slot": "center",
+          "at": "plain:ответ"
+        },
+        {
+          "id": "gobmp",
+          "text": "ГОБМП",
+          "style": "card",
+          "slot": "belowLeft",
+          "at": "plain:ГОБМП"
+        },
+        {
+          "id": "osms",
+          "text": "ОСМС",
+          "style": "card",
+          "slot": "below",
+          "at": "plain:ОСМС"
+        },
+        {
+          "id": "paid",
+          "text": "платно",
+          "style": "card",
+          "slot": "belowRight",
+          "at": "plain:платно"
+        }
+      ]
+    },
+    {
+      "header": "Обновляются ежедневно",
+      "items": [
+        {
+          "id": "yday",
+          "text": "со вчера на сегодня",
+          "style": "text",
+          "slot": "center",
+          "at": "plain:вчера",
+          "moveTo": {
+            "at": "plain:Проверять",
+            "slot": "above"
+          }
+        },
+        {
+          "id": "date",
+          "text": "на дату обращения",
+          "style": "hero",
+          "tone": "accent",
+          "slot": "center",
+          "at": "plain:дату"
+        },
+        {
+          "id": "mem",
+          "text": "по памяти о прошлом визите",
+          "style": "label",
+          "slot": "below",
+          "at": "plain:памяти",
+          "strike": "plain:памяти+0.5"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "lines": [
+      "факт уплаты либо законное освобождение от уплаты",
+      "до трёх месяцев остаётся застрахованным",
+      "непрерывный ряд платежей за 12 месяцев",
+      "право сохраняется на время сбоя",
+      "статус в МИС — это ответ ИС Фонда",
+      "проверять на дату обращения"
+    ],
+    "cta": "Проверьте себя: 10 вопросов"
+  }
+}

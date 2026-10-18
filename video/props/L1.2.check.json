@@ -1,0 +1,197 @@
+{
+  "table": [
+    {
+      "where": "п. 5 заголовок",
+      "text": "Ключ идентификации",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 5 iin",
+      "text": "ИИН",
+      "field": "norm",
+      "how": "exact"
+    },
+    {
+      "where": "п. 5 org",
+      "text": "одной организации ПМСП",
+      "field": "norm",
+      "how": "exact"
+    },
+    {
+      "where": "п. 5 old",
+      "text": "старое",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 5 new",
+      "text": "новое",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 14 заголовок",
+      "text": "Открепление — автоматически",
+      "field": "norm",
+      "how": "shortened"
+    },
+    {
+      "where": "п. 14 spravka",
+      "text": "справку об откреплении",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 14 auto",
+      "text": "автоматически",
+      "field": "norm",
+      "how": "exact"
+    },
+    {
+      "where": "п. 9 заголовок",
+      "text": "До пяти лет включительно",
+      "field": "norm",
+      "how": "exact"
+    },
+    {
+      "where": "п. 9 nb",
+      "text": "Новорождённый",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 9 days",
+      "text": "3",
+      "field": "norm/plain (число)",
+      "how": "digit"
+    },
+    {
+      "where": "п. 9 days unit",
+      "text": "дней после выписки",
+      "field": "norm",
+      "how": "exact"
+    },
+    {
+      "where": "п. 9 resp",
+      "text": "отвечает организация ПМСП",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 12 заголовок",
+      "text": "Прикрепление беременных",
+      "field": "norm",
+      "how": "exact"
+    },
+    {
+      "where": "п. 12 fact",
+      "text": "фактическое проживание",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 12 prop",
+      "text": "прописка",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 12 reg",
+      "text": "не препятствие",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 13 заголовок",
+      "text": "Молчание пациента",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 13 choice",
+      "text": "свободного выбора организации ПМСП",
+      "field": "norm",
+      "how": "exact"
+    },
+    {
+      "where": "п. 13 keep",
+      "text": "сохранение прежнего прикрепления",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 13 same",
+      "text": "не меняется",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 18 заголовок",
+      "text": "Выбор специалиста",
+      "field": "norm",
+      "how": "exact"
+    },
+    {
+      "where": "п. 18 doc",
+      "text": "специалиста ПМСП",
+      "field": "norm",
+      "how": "exact"
+    },
+    {
+      "where": "п. 18 frame",
+      "text": "внутри своей организации",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 18 load",
+      "text": "с учётом нагрузки на участок",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 18 refuse",
+      "text": "отказ по переполненности участка правомерен",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "итог 1",
+      "text": "ИИН, организация только одна",
+      "field": "plain",
+      "how": "shortened"
+    },
+    {
+      "where": "итог 2",
+      "text": "открепление автоматически",
+      "field": "norm",
+      "how": "shortened"
+    },
+    {
+      "where": "итог 3",
+      "text": "не позднее 3-х дней после выписки",
+      "field": "norm",
+      "how": "exact"
+    },
+    {
+      "where": "итог 4",
+      "text": "по месту фактического проживания",
+      "field": "norm",
+      "how": "exact"
+    },
+    {
+      "where": "итог 5",
+      "text": "сохранение прежнего прикрепления",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "итог 6",
+      "text": "выбор специалиста в пределах организации ПМСП",
+      "field": "norm",
+      "how": "shortened"
+    }
+  ],
+  "errors": []
+}

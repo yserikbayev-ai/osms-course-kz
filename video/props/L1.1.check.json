@@ -1,0 +1,227 @@
+{
+  "table": [
+    {
+      "where": "п. 3 заголовок",
+      "text": "Право на медицинскую помощь",
+      "field": "norm",
+      "how": "exact"
+    },
+    {
+      "where": "п. 3 not",
+      "text": "не гражданство и не прикрепление",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 3 fact",
+      "text": "факт уплаты",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 3 free",
+      "text": "либо законное освобождение от уплаты",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 3 gobmp",
+      "text": "только ГОБМП",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 9 заголовок",
+      "text": "До трёх месяцев",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 9 lost",
+      "text": "потерявший льготную категорию",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 9 months",
+      "text": "3",
+      "field": "norm/plain (число)",
+      "how": "digit"
+    },
+    {
+      "where": "п. 9 months unit",
+      "text": "месяцев остаётся застрахованным",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 9 wait",
+      "text": "Не отказывайте сразу",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 9 check",
+      "text": "сначала проверьте статус в системе",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 10 заголовок",
+      "text": "Непрерывный ряд платежей",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 10 who",
+      "text": "Для самостоятельных плательщиков",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 10 twelve",
+      "text": "12",
+      "field": "norm/plain (число)",
+      "how": "digit"
+    },
+    {
+      "where": "п. 10 twelve unit",
+      "text": "месяцев",
+      "field": "norm",
+      "how": "exact"
+    },
+    {
+      "where": "п. 10 gap",
+      "text": "Разрыв в платежах",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 10 fail",
+      "text": "статус потребителя не подтвердится",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 13 заголовок",
+      "text": "На время сбоя",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 13 sys",
+      "text": "система не отвечает",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 13 no",
+      "text": "не основание отказать",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 13 keep",
+      "text": "Право сохраняется",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 14 заголовок",
+      "text": "Статус пациента в МИС",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 14 mis",
+      "text": "МИС",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 14 ans",
+      "text": "ответ ИС Фонда",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 14 gobmp",
+      "text": "ГОБМП",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 14 osms",
+      "text": "ОСМС",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 14 paid",
+      "text": "платно",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 6 заголовок",
+      "text": "Обновляются ежедневно",
+      "field": "norm",
+      "how": "exact"
+    },
+    {
+      "where": "п. 6 yday",
+      "text": "со вчера на сегодня",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 6 date",
+      "text": "на дату обращения",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "п. 6 mem",
+      "text": "по памяти о прошлом визите",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "итог 1",
+      "text": "факт уплаты либо законное освобождение от уплаты",
+      "field": "plain",
+      "how": "shortened"
+    },
+    {
+      "where": "итог 2",
+      "text": "до трёх месяцев остаётся застрахованным",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "итог 3",
+      "text": "непрерывный ряд платежей за 12 месяцев",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "итог 4",
+      "text": "право сохраняется на время сбоя",
+      "field": "plain",
+      "how": "exact"
+    },
+    {
+      "where": "итог 5",
+      "text": "статус в МИС — это ответ ИС Фонда",
+      "field": "plain",
+      "how": "shortened"
+    },
+    {
+      "where": "итог 6",
+      "text": "проверять на дату обращения",
+      "field": "plain",
+      "how": "shortened"
+    }
+  ],
+  "errors": []
+}

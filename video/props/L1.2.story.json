@@ -1,0 +1,225 @@
+{
+  "lesson": "L1.2",
+  "voice": {
+    "card": [
+      "plain"
+    ],
+    "opener": "Прикрепление к организации ПМСП. Приказ Министра здравоохранения Республики Казахстан от 13 ноября 2020 года.",
+    "openerCut": "ПМСП.",
+    "summary": "Шесть пунктов приказа. Проверьте себя: тринадцать вопросов."
+  },
+  "scenes": [
+    {
+      "header": "Ключ идентификации",
+      "peak": true,
+      "items": [
+        {
+          "id": "iin",
+          "text": "ИИН",
+          "style": "hero",
+          "tone": "accent",
+          "slot": "center",
+          "at": "plain:ИИН",
+          "moveTo": {
+            "at": "plain:организация",
+            "slot": "above"
+          }
+        },
+        {
+          "id": "org",
+          "text": "одной организации ПМСП",
+          "style": "card",
+          "slot": "center",
+          "at": "plain:организация",
+          "accentAt": "plain:одна"
+        },
+        {
+          "id": "old",
+          "text": "старое",
+          "style": "card",
+          "tone": "dim",
+          "slot": "belowLeft",
+          "at": "plain:Двойного",
+          "strike": "plain:снимает",
+          "out": "plain:старое+0.2"
+        },
+        {
+          "id": "new",
+          "text": "новое",
+          "style": "card",
+          "tone": "accent",
+          "slot": "belowRight",
+          "at": "plain:новое",
+          "moveTo": {
+            "at": "plain:старое+0.3",
+            "slot": "below"
+          }
+        }
+      ]
+    },
+    {
+      "header": "Открепление — автоматически",
+      "items": [
+        {
+          "id": "spravka",
+          "text": "справку об откреплении",
+          "style": "text",
+          "slot": "center",
+          "at": "plain:требовать",
+          "strike": "plain:снимает",
+          "moveTo": {
+            "at": "plain:сама",
+            "slot": "above"
+          }
+        },
+        {
+          "id": "auto",
+          "text": "автоматически",
+          "style": "hero",
+          "tone": "accent",
+          "slot": "center",
+          "at": "plain:сама"
+        }
+      ]
+    },
+    {
+      "header": "До пяти лет включительно",
+      "items": [
+        {
+          "id": "nb",
+          "text": "Новорождённый",
+          "style": "big",
+          "slot": "center",
+          "at": "plain:Новорождённый",
+          "moveTo": {
+            "at": "plain:трёх",
+            "slot": "above"
+          },
+          "out": "plain:отвечает"
+        },
+        {
+          "id": "days",
+          "text": "3",
+          "style": "number",
+          "tone": "accent",
+          "slot": "center",
+          "at": "plain:трёх",
+          "unit": "дней после выписки"
+        },
+        {
+          "id": "resp",
+          "text": "отвечает организация ПМСП",
+          "style": "label",
+          "slot": "above",
+          "at": "plain:отвечает"
+        }
+      ]
+    },
+    {
+      "header": "Прикрепление беременных",
+      "items": [
+        {
+          "id": "fact",
+          "text": "фактическое проживание",
+          "style": "hero",
+          "tone": "accent",
+          "slot": "center",
+          "at": "plain:фактическое"
+        },
+        {
+          "id": "prop",
+          "text": "прописка",
+          "style": "text",
+          "slot": "above",
+          "at": "plain:прописка",
+          "strike": "plain:прописка+0.45"
+        },
+        {
+          "id": "reg",
+          "text": "не препятствие",
+          "style": "label",
+          "slot": "below",
+          "at": "plain:препятствие"
+        }
+      ]
+    },
+    {
+      "header": "Молчание пациента",
+      "items": [
+        {
+          "id": "choice",
+          "text": "свободного выбора организации ПМСП",
+          "style": "text",
+          "slot": "center",
+          "at": "plain:Молчание",
+          "moveTo": {
+            "at": "plain:сохранение",
+            "slot": "above"
+          }
+        },
+        {
+          "id": "keep",
+          "text": "сохранение прежнего прикрепления",
+          "style": "card",
+          "tone": "accent",
+          "slot": "center",
+          "at": "plain:сохранение"
+        },
+        {
+          "id": "same",
+          "text": "не меняется",
+          "style": "label",
+          "slot": "below",
+          "at": "plain:меняется"
+        }
+      ]
+    },
+    {
+      "header": "Выбор специалиста",
+      "items": [
+        {
+          "id": "doc",
+          "text": "специалиста ПМСП",
+          "style": "card",
+          "slot": "center",
+          "at": "plain:врача",
+          "accentAt": "plain:внутри"
+        },
+        {
+          "id": "frame",
+          "text": "внутри своей организации",
+          "style": "frame",
+          "slot": "center",
+          "at": "plain:внутри"
+        },
+        {
+          "id": "load",
+          "text": "с учётом нагрузки на участок",
+          "style": "label",
+          "slot": "below",
+          "at": "plain:нагрузки",
+          "out": "plain:отказ"
+        },
+        {
+          "id": "refuse",
+          "text": "отказ по переполненности участка правомерен",
+          "style": "label",
+          "tone": "accent",
+          "slot": "below",
+          "at": "plain:отказ"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "lines": [
+      "ИИН, организация только одна",
+      "открепление автоматически",
+      "не позднее 3-х дней после выписки",
+      "по месту фактического проживания",
+      "сохранение прежнего прикрепления",
+      "выбор специалиста в пределах организации ПМСП"
+    ],
+    "cta": "Проверьте себя: 13 вопросов"
+  }
+}
