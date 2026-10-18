@@ -85,3 +85,20 @@ def test_real_startup_twice_keeps_old_courses_archived(api):
     st = {c["code"]: c["status"] for c in api.db.q("SELECT code,status FROM courses")}
     assert st["c-chk-base"] == "архив" and st["K02.1"] == "опубликован" and st["K09.1"] == "планируется"
     assert api.db.q("SELECT 1 FROM role_courses WHERE course_code='K05.1' LIMIT 1", one=True)
+
+def test_startup_loads_k02_content_idempotently(api):
+    import asyncio
+    from app import main
+    asyncio.run(main._startup())
+    def snap():
+        return (api.db.q("SELECT code,course_code,module_code FROM lessons WHERE course_code LIKE 'K02.%%' ORDER BY code"),
+                api.db.q("SELECT q.code,q.frozen FROM questions q JOIN lessons l ON l.code=q.lesson_code WHERE l.course_code LIKE 'K02.%%' ORDER BY q.code"))
+    les, qs = snap()
+    for c in ("K02.1", "K02.2", "K02.3"):
+        assert any(l["course_code"] == c for l in les), c
+        assert api.db.q("SELECT count(*) n FROM questions q JOIN lessons l ON l.code=q.lesson_code WHERE l.course_code=%s", (c,), one=True)["n"] > 0
+    assert {"V2": "K02.3.3"}["V2"] == next(l["module_code"] for l in les if l["code"] == "V2")
+    api.db.ex("UPDATE questions SET frozen=TRUE WHERE code=(SELECT min(code) FROM questions WHERE lesson_code='P1')")
+    before = snap()
+    asyncio.run(main._startup())
+    assert snap() == before

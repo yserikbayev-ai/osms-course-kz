@@ -142,3 +142,10 @@ def load_content(path):
             _exam_settings(cur, course, refresh=True)
     return {"acts": len(d.get("acts", {})), "lessons": len(d.get("lessons", [])),
             "cards": n_cards, "questions": len(d.get("questions", []))}
+
+if __name__ == "__main__":   # python -m app.structure load-content <файл...>
+    import sys
+    if len(sys.argv) < 3 or sys.argv[1] != "load-content":
+        sys.exit("использование: python -m app.structure load-content <файл...>")
+    for f in sys.argv[2:]:
+        print(f, load_content(f))

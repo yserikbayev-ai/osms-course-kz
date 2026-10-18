@@ -85,6 +85,9 @@ export LMS_DB_DSN=postgresql://lms:...@127.0.0.1:5433/lms
 ./venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8011
 ```
 
+При старте порядок такой: `load_structure` → `absorb_direction2` → `load_content` для каждого `content/content-k02*.json` (по алфавиту; ошибка файла логируется, старт идёт дальше; всё идемпотентно, V2 остаётся в K02.3.3).
+Вручную: `./venv/bin/python -m app.structure load-content content/content-k02*.json`.
+
 ## Что осталось за рамками
 
 Загрузка файлов и видео на сервер (сейчас материалы подключаются ссылкой),
