@@ -2,3 +2,7 @@
 source/index2.html
 source/lms.html
 source/test2.html
+.autopilot/serve.*
+__pycache__/
+.DS_Store
+.env
