@@ -12,8 +12,10 @@ BASE = {
     "questions": [
         {"id": f"q{g}", "g": g, "l": "L1", "a": "A1", "p": 1, "q": "Как часто?",
          "o": ["Раз в год", "Раз в месяц", "Раз в неделю", "Никогда"], "c": 0, "e": "Пункт 1."}
-        for g in (1, 2, 3)],
+        for g in (1, 2, 3, 1, 2, 3)],
 }
+for _i, _q in enumerate(BASE["questions"]):
+    _q["id"] = f"q{_i}"
 
 
 def run(tmp_path, mutate=None):
@@ -43,7 +45,9 @@ CASES = {
     "quote_missing": (lambda d: d["lessons"][0]["cards"][0].update(norm="Осмотры проводятся раз в пять лет."), "цитат"),
     "card_no_act": (lambda d: d["lessons"][0]["cards"][0].pop("a"), "карточк"),
     "card_no_point": (lambda d: d["lessons"][0]["cards"][0].pop("p"), "карточк"),
-    "level_missing": (lambda d: d["questions"].pop(2), "уровн"),
+    "level_missing": (lambda d: [d["questions"].pop(5), d["questions"].pop(2)], "уровн"),
+    "level_has_one": (lambda d: q(d, 5).update(g=2), "уровн"),
+    "lesson_under_six": (lambda d: [d["questions"].pop(5)], "6"),
 }
 
 
@@ -74,3 +78,18 @@ def test_cli_exit_code(tmp_path):
     assert r.returncode != 0 and "4 вариант" in r.stdout
     run(tmp_path)
     assert subprocess.run(args, capture_output=True, text=True).returncode == 0
+
+
+def test_npa_path_is_read_relative_to_npa_root(tmp_path):
+    (tmp_path / "documents").mkdir()
+    (tmp_path / "documents" / "a.md").write_text(TEXT, encoding="utf-8")
+    d = copy.deepcopy(BASE)
+    d["acts"]["A1"]["npa"] = "documents/a.md"
+    f = tmp_path / "c.json"
+    f.write_text(json.dumps(d, ensure_ascii=False), encoding="utf-8")
+    (tmp_path / "none.json").write_text("{}", encoding="utf-8")
+    assert check_content(str(f), acts_path=str(tmp_path / "none.json"), npa_root=str(tmp_path)) == []
+    d["lessons"][0]["cards"][0]["norm"] = "Осмотры проводятся раз в пять лет."
+    f.write_text(json.dumps(d, ensure_ascii=False), encoding="utf-8")
+    errs = check_content(str(f), acts_path=str(tmp_path / "none.json"), npa_root=str(tmp_path))
+    assert any("цитат" in e for e in errs), errs

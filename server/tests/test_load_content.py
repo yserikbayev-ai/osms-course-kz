@@ -48,3 +48,15 @@ def test_old_question_frozen_and_exam_settings_recalculated(db, tmp_path):
     assert s["q_count"] == min(20, old + 12) and s["time_min"] == 2 * s["q_count"]   # 12 новых живых + прежние P1/P2
     structure.load_content(write(tmp_path, d))           # повтор ничего не меняет
     assert {r["code"] for r in db.q("SELECT code FROM questions WHERE frozen")} == frozen
+
+def test_load_all_content_takes_every_course_file_and_survives_broken_one(db, tmp_path):
+    from app import main
+    structure.load_structure(PATH); structure.absorb_direction2()
+    (tmp_path / "content-k031.json").write_text("{не json", encoding="utf-8")
+    good = content(); good["lessons"][0]["id"] = "F2"
+    for q in good["questions"]:
+        q["l"] = "F2"; q["id"] = q["id"].replace("q90", "q95")
+    (tmp_path / "content-k059.json").write_text(json.dumps(good, ensure_ascii=False), encoding="utf-8")
+    (tmp_path / "other.json").write_text("{не json", encoding="utf-8")   # не по маске — не трогается
+    main._load_all_content(str(tmp_path))
+    assert db.q("SELECT count(*) n FROM lessons WHERE code='F2'", one=True)["n"] == 1

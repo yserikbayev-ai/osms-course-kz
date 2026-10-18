@@ -83,7 +83,9 @@ def test_real_startup_twice_keeps_old_courses_archived(api):
     for _ in range(2):
         asyncio.run(main._startup())
     st = {c["code"]: c["status"] for c in api.db.q("SELECT code,status FROM courses")}
-    assert st["c-chk-base"] == "архив" and st["K02.1"] == "опубликован" and st["K09.1"] == "планируется"
+    assert st["c-chk-base"] == "архив" and st["K02.1"] == "опубликован"
+    ms = {c["code"]: c["status"] for c in api.db.q("SELECT code,status FROM modules")}   # только то, что не наполнить: нет акта / нет норм
+    assert ms["K02.1.3"] == ms["K02.3.2"] == ms["K04.2.3"] == ms["K19.1.1"] == "планируется"
     assert api.db.q("SELECT 1 FROM role_courses WHERE course_code='K05.1' LIMIT 1", one=True)
 
 def test_startup_loads_k02_content_idempotently(api):

@@ -26,6 +26,13 @@ async def _deadline_loop():
             print("scan_deadlines:", e)
         await asyncio.sleep(3600)
 
+def _load_all_content(folder):
+    for cp in sorted(glob.glob(os.path.join(folder, "content-k*.json"))):
+        try:
+            structure.load_content(cp)
+        except Exception:   # битый файл не валит старт; остальные грузятся
+            logging.exception("load_content: не загружен %s", cp)
+
 @app.on_event("startup")
 async def _startup():
     _apply_schema("schema.sql")
@@ -37,11 +44,7 @@ async def _startup():
     if os.path.exists(sp) and db.q("SELECT 1 FROM courses LIMIT 1", one=True):
         structure.load_structure(sp)
         structure.absorb_direction2()
-        for cp in sorted(glob.glob(os.path.join(BASE, "content", "content-k02*.json"))):
-            try:
-                structure.load_content(cp)
-            except Exception:   # битый файл не валит старт; остальные грузятся
-                logging.exception("load_content: не загружен %s", cp)
+        _load_all_content(os.path.join(BASE, "content"))
         # матрица для планируемых курсов — один раз, чтобы правки руководителя не отменялись при рестарте
         if not db.q("""SELECT 1 FROM role_courses r JOIN courses c ON c.code=r.course_code
                        WHERE c.status='планируется' LIMIT 1""", one=True):
