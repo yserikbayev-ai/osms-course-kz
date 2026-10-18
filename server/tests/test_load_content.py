@@ -33,3 +33,18 @@ def test_load_content_refuses_link_module(db, tmp_path):
     with pytest.raises(ValueError, match="K14.2.2"):
         structure.load_content(write(tmp_path, content("K14.2.2")))
     assert db.q("SELECT count(*) n FROM lessons WHERE code='F1'", one=True)["n"] == 0
+
+def test_old_question_frozen_and_exam_settings_recalculated(db, tmp_path):
+    structure.load_structure(PATH); structure.absorb_direction2()
+    empty = db.q("SELECT q_count,time_min FROM exam_settings WHERE course_code='K02.1'", one=True)
+    structure.load_content(write(tmp_path, content()))
+    d = content(); d["questions"] = [{**content()["questions"][0], "id": f"q910{i}", "q": f"Новый {i}", "g": i % 3 + 1} for i in range(1, 13)]
+    structure.load_content(write(tmp_path, d))
+    frozen = {r["code"] for r in db.q("SELECT code FROM questions WHERE frozen")}
+    assert {"q9001", "q9002", "q9003"} <= frozen and "q9101" not in frozen
+    s = db.q("SELECT q_count,time_min FROM exam_settings WHERE course_code='K02.1'", one=True)
+    assert s["q_count"] > empty["q_count"] and s["time_min"] > empty["time_min"]
+    old = sum(q["l"] in ("P1", "P2") for q in json.load(open(pathlib.Path(PATH).parent / "content.json"))["questions"])
+    assert s["q_count"] == min(20, old + 12) and s["time_min"] == 2 * s["q_count"]   # 12 новых живых + прежние P1/P2
+    structure.load_content(write(tmp_path, d))           # повтор ничего не меняет
+    assert {r["code"] for r in db.q("SELECT code FROM questions WHERE frozen")} == frozen

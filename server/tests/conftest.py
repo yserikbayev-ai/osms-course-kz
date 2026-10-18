@@ -1,24 +1,26 @@
 import json, os, pathlib, psycopg, pytest
 
-import shutil, subprocess, tempfile
+import atexit, shutil, socket, subprocess, tempfile
 
 PGBIN = "/opt/homebrew/opt/postgresql@17/bin"
-PORT = 54399
-_tmp = None
+_tmp = _port = None
 
 def _start_cluster():
     """Временный кластер PostgreSQL (trust, порт 54399); гасится в pytest_unconfigure."""
-    global _tmp
+    global _tmp, _port
+    with socket.socket() as sk:   # свободный порт: параллельные прогоны не мешают друг другу
+        sk.bind(("localhost", 0)); _port = sk.getsockname()[1]
     _tmp = tempfile.mkdtemp(prefix="lms_pg_")
     subprocess.run([f"{PGBIN}/initdb", "-D", _tmp, "-A", "trust", "-U", "lms", "-E", "UTF8"],
                    check=True, capture_output=True)
-    subprocess.run([f"{PGBIN}/pg_ctl", "-D", _tmp, "-o", f"-p {PORT} -k {_tmp} -c listen_addresses=localhost",
+    subprocess.run([f"{PGBIN}/pg_ctl", "-D", _tmp, "-o", f"-p {_port} -k {_tmp} -c listen_addresses=localhost",
                     "-w", "-l", f"{_tmp}/log", "start"], check=True, capture_output=True)
-    subprocess.run([f"{PGBIN}/createdb", "-h", "localhost", "-p", str(PORT), "-U", "lms", "lms_test"],
+    subprocess.run([f"{PGBIN}/createdb", "-h", "localhost", "-p", str(_port), "-U", "lms", "lms_test"],
                    check=True, capture_output=True)
-    return f"postgresql://lms@localhost:{PORT}/lms_test"
+    atexit.register(_stop_cluster)   # и при падении до pytest_unconfigure
+    return f"postgresql://lms@localhost:{_port}/lms_test"
 
-def pytest_unconfigure(config):
+def _stop_cluster():
     try:
         from app import db as appdb
         appdb.pool.close()
@@ -27,6 +29,9 @@ def pytest_unconfigure(config):
     if _tmp:
         subprocess.run([f"{PGBIN}/pg_ctl", "-D", _tmp, "-m", "immediate", "stop"], capture_output=True)
         shutil.rmtree(_tmp, ignore_errors=True)
+
+def pytest_unconfigure(config):
+    _stop_cluster()
 
 DSN = os.environ.get("LMS_DB_DSN") or _start_cluster()
 if not DSN.rstrip("/").rsplit("/", 1)[-1].split("?")[0].endswith("_test"):

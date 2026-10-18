@@ -44,12 +44,15 @@ def _strict(rows, date_col):
     """Более жёсткий: тип обязательности строже, затем срок раньше (пустой срок — самый мягкий)."""
     return min(rows, key=lambda r: (KIND_RANK.get(r["kind"], 9), r[date_col] is None, r[date_col] or 0, r["id"]))
 
-def _exam_settings(cur, course):
+def _exam_settings(cur, course, refresh=False):
+    """Единая формула настроек экзамена: вопросов min(20, max(5, живых)), время 2 мин на вопрос (не меньше 10),
+    порог 80. refresh=True пересчитывает число вопросов и время (порог и попытки не трогает)."""
     cur.execute("""INSERT INTO exam_settings(course_code,q_count,time_min,pass_pct,max_attempts)
                    SELECT %s, LEAST(20,GREATEST(5,n)), GREATEST(10,2*LEAST(20,GREATEST(5,n))), 80, 3
                    FROM (SELECT count(*) n FROM questions q JOIN lessons l ON l.code=q.lesson_code
                          WHERE l.course_code=%s AND NOT q.frozen) t
-                   ON CONFLICT (course_code) DO NOTHING""", (course, course))
+                   ON CONFLICT (course_code) DO """ + ("UPDATE SET q_count=EXCLUDED.q_count, time_min=EXCLUDED.time_min"
+                   if refresh else "NOTHING"), (course, course))
 
 def absorb_direction2():
     """Старые курсы направления 2 -> K02.1-3. Все шаги в одной транзакции, повтор ничего не меняет."""
@@ -125,7 +128,8 @@ def load_content(path):
                 cur.execute("INSERT INTO cards(lesson_code,act_code,point,norm,plain,sort) VALUES(%s,%s,%s,%s,%s,%s)",
                             (l["id"], c.get("a"), c.get("p"), c["norm"], c.get("plain"), k * 10))
                 n_cards += 1
-            _exam_settings(cur, l["course"])
+            cur.execute("UPDATE questions SET frozen=TRUE WHERE lesson_code=%s AND NOT (code = ANY(%s))",
+                        (l["id"], [q["id"] for q in d.get("questions", []) if q["l"] == l["id"]]))
         for q in d.get("questions", []):
             cur.execute("""INSERT INTO questions(code,lesson_code,level,body,options,correct,explain,act_code,point)
                            VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)
@@ -134,5 +138,7 @@ def load_content(path):
                              explain=EXCLUDED.explain, act_code=EXCLUDED.act_code, point=EXCLUDED.point""",
                         (q["id"], q["l"], q.get("g", 1), q["q"], json.dumps(q["o"], ensure_ascii=False),
                          q["c"], q.get("e"), q.get("a"), q.get("p")))
+        for course in {l["course"] for l in d.get("lessons", [])}:
+            _exam_settings(cur, course, refresh=True)
     return {"acts": len(d.get("acts", {})), "lessons": len(d.get("lessons", [])),
             "cards": n_cards, "questions": len(d.get("questions", []))}
