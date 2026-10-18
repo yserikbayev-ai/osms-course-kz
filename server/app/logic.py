@@ -7,6 +7,14 @@ KIND_TITLE = {"mandatory":"Обязательный","recommended":"Рекоме
 STATUS_TITLE = {"not_started":"Не начат","in_progress":"В процессе","completed":"Завершён",
                 "failed":"Не пройден","overdue":"Просрочен","repeat_required":"Требует повторного прохождения"}
 
+def unavailable_reason(course):
+    """None, если курс опубликован; иначе текст отказа для экзамена, тренировки и ручного назначения."""
+    if course["status"] == "опубликован":
+        return None
+    if course["status"] == "архив":
+        return f"Курс «{course['title']}» в архиве: пройдите актуальный курс направления"
+    return f"Курс «{course['title']}» скоро появится: обучение по нему пока недоступно"
+
 def notify(user_id, kind, title, body=None, ref=None):
     dup = db.q("""SELECT 1 FROM notifications WHERE user_id=%s AND kind=%s AND ref IS NOT DISTINCT FROM %s
                   AND created_at > now() - interval '20 hours'""", (user_id, kind, ref), one=True)
@@ -20,7 +28,7 @@ def apply_role_assignments(user_id, role_code, notify_user=True):
     if not role_code:
         return 0
     rows = db.q("""SELECT rc.*, c.title FROM role_courses rc JOIN courses c ON c.code=rc.course_code
-                   WHERE rc.role_code=%s""", (role_code,))
+                   WHERE rc.role_code=%s AND c.status='опубликован'""", (role_code,))
     n = 0
     for r in rows:
         exists = db.q("SELECT 1 FROM assignments WHERE user_id=%s AND course_code=%s",
@@ -65,7 +73,10 @@ def user_courses(user_id):
                db.q("SELECT * FROM assignments WHERE user_id=%s", (user_id,))}
     courses = db.q("""SELECT c.code,c.title,c.intro,c.step,c.direction_code,d.title AS dir_title
                       FROM courses c JOIN directions d ON d.code=c.direction_code
-                      ORDER BY d.sort, c.step""")
+                      WHERE c.status='опубликован'
+                         OR (c.status='архив' AND (EXISTS (SELECT 1 FROM attempts a WHERE a.course_code=c.code AND a.user_id=%s)
+                              OR EXISTS (SELECT 1 FROM certificates t WHERE t.course_code=c.code AND t.user_id=%s)))
+                      ORDER BY d.sort, c.step""", (user_id, user_id))
     atts = db.q("""SELECT course_code,pct,passed,finished_at FROM attempts
                    WHERE user_id=%s AND finished_at IS NOT NULL ORDER BY finished_at""", (user_id,))
     by_course = {}
@@ -133,7 +144,7 @@ def scan_deadlines():
     soon = today + dt.timedelta(days=7)
     rows = db.q("""SELECT a.user_id, a.course_code, a.due_date, c.title
                    FROM assignments a JOIN courses c ON c.code=a.course_code
-                   WHERE a.due_date IS NOT NULL AND a.due_date <= %s""", (soon,))
+                   WHERE a.due_date IS NOT NULL AND a.due_date <= %s AND c.status='опубликован'""", (soon,))
     made = 0
     for r in rows:
         st = course_status(r["user_id"], r["course_code"], {"due_date": r["due_date"]})
@@ -148,7 +159,7 @@ def scan_deadlines():
         made += 1
     certs = db.q("""SELECT ct.user_id, ct.course_code, ct.valid_until, c.title
                     FROM certificates ct JOIN courses c ON c.code=ct.course_code
-                    WHERE NOT ct.revoked AND ct.valid_until <= %s""", (today + dt.timedelta(days=30),))
+                    WHERE NOT ct.revoked AND ct.valid_until <= %s AND c.status='опубликован'""", (today + dt.timedelta(days=30),))
     for c in certs:
         if c["valid_until"] < today:
             notify(c["user_id"], "repeat", f"Сертификат истёк: {c['title']}",

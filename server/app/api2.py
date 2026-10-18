@@ -179,9 +179,12 @@ def org_assign(request: Request, data: dict = Body(...)):
     target = db.q("SELECT id FROM users WHERE id=%s AND org_id=%s", (data.get("user_id"), u["org_id"]), one=True)
     if not target:
         raise HTTPException(404, "Сотрудник не найден в вашей организации")
-    course = db.q("SELECT title FROM courses WHERE code=%s", (data.get("course"),), one=True)
+    course = db.q("SELECT title, status FROM courses WHERE code=%s", (data.get("course"),), one=True)
     if not course:
         raise HTTPException(404, "Курс не найден")
+    why = logic.unavailable_reason(course)
+    if why:
+        raise HTTPException(409, why)
     days = int(data.get("due_days") or 30)
     due = dt.date.today() + dt.timedelta(days=days)
     db.ex("""INSERT INTO assignments(user_id,course_code,kind,due_date,assigned_by,source)

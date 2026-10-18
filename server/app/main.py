@@ -2,7 +2,7 @@ import os, json, random, asyncio, datetime as dt
 from fastapi import FastAPI, Request, HTTPException, Body
 from fastapi.responses import FileResponse, JSONResponse, HTMLResponse, Response
 from fastapi.staticfiles import StaticFiles
-from . import db, auth, logic, api2
+from . import db, auth, logic, api2, video, structure, seed2
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC = os.path.join(BASE, "static")
@@ -31,6 +31,16 @@ async def _startup():
     _apply_schema("schema.sql")
     _apply_schema("schema2.sql")
     _apply_schema("schema3.sql")
+    _apply_schema("schema4.sql")
+    # порядок: сид прежних курсов (в проде уже есть), структура, поглощение; всё идемпотентно
+    sp = os.path.join(BASE, "structure.json")
+    if os.path.exists(sp) and db.q("SELECT 1 FROM courses LIMIT 1", one=True):
+        structure.load_structure(sp)
+        structure.absorb_direction2()
+        # матрица для планируемых курсов — один раз, чтобы правки руководителя не отменялись при рестарте
+        if not db.q("""SELECT 1 FROM role_courses r JOIN courses c ON c.code=r.course_code
+                       WHERE c.status='планируется' LIMIT 1""", one=True):
+            seed2.seed_structure_matrix()
     asyncio.create_task(_deadline_loop())
 
 def me(request, required=True):
@@ -145,10 +155,19 @@ def api_roles():
 def content(request: Request):
     me(request)
     acts = {a["code"]: a for a in db.q("SELECT * FROM acts")}
+    courses = db.q("SELECT * FROM courses WHERE status<>'архив' ORDER BY direction_code,step")
+    shown = [c["code"] for c in courses]
+    modules = db.q("SELECT * FROM modules WHERE course_code = ANY(%s) ORDER BY course_code,sort", (shown,))
+    lessons = db.q("SELECT * FROM lessons WHERE course_code = ANY(%s) ORDER BY course_code,sort", (shown,))
     dirs = db.q("SELECT * FROM directions ORDER BY sort,title")
-    courses = db.q("SELECT * FROM courses ORDER BY direction_code,step")
-    modules = db.q("SELECT * FROM modules ORDER BY course_code,sort")
-    lessons = db.q("SELECT * FROM lessons ORDER BY course_code,sort")
+    cdir = {c["code"]: c["direction_code"] for c in courses}
+    for d in dirs:
+        ms = [m for m in modules if cdir.get(m["course_code"]) == d["code"]]
+        d["total_modules"] = len(ms)
+        d["published_count"] = sum(m["status"] == "опубликован" for m in ms)
+    for m in modules:
+        m["link"] = m["link_module"]
+    vids = {r["lesson_code"]: r["url"] for r in db.q("SELECT lesson_code,url FROM video_slots")}
     cards = db.q("SELECT * FROM cards ORDER BY lesson_code,sort")
     mats = db.q("SELECT id,lesson_code,kind,title,url,required,sort FROM materials ORDER BY lesson_code,sort")
     by_lesson, m_by_lesson = {}, {}
@@ -162,10 +181,12 @@ def content(request: Request):
         l["cards"] = by_lesson.get(l["code"], [])
         l["materials"] = m_by_lesson.get(l["code"], [])
         l["questions"] = qcount.get(l["code"], 0)
+        l["video"] = video.embed_url(vids[l["code"]]) if vids.get(l["code"]) else None
     exam = {e["course_code"]: e for e in db.q("SELECT * FROM exam_settings")}
     for c in courses:
         c["exam"] = exam.get(c["code"], {"q_count": 20, "time_min": 30, "pass_pct": 80, "max_attempts": 3})
     return {"acts": acts, "directions": dirs, "courses": courses, "modules": modules, "lessons": lessons,
+            "video_placeholder": "/static/video-placeholder.svg",
             "scale": db.q("SELECT min_pct,title,passed FROM grading_scale ORDER BY min_pct DESC")}
 
 @app.post("/api/lesson/{code}/read")
@@ -201,9 +222,12 @@ def progress(request: Request):
 def exam_start(request: Request, data: dict = Body(...)):
     u = me(request)
     course = data.get("course")
-    row = db.q("SELECT title FROM courses WHERE code=%s", (course,), one=True)
+    row = db.q("SELECT title, status FROM courses WHERE code=%s", (course,), one=True)
     if not row:
         raise HTTPException(404, "Курс не найден")
+    why = logic.unavailable_reason(row)
+    if why:
+        raise HTTPException(409, why)
     cfg = logic.exam_cfg(course)
     pending = db.q("""SELECT count(*) AS n FROM corrective_actions
                       WHERE user_id=%s AND course_code=%s AND done=FALSE""", (u["id"], course), one=True)
@@ -322,10 +346,16 @@ def exam_finish(request: Request, data: dict = Body(...)):
 @app.post("/api/drill/start")
 def drill_start(request: Request, data: dict = Body(...)):
     me(request)
-    where, params = ["NOT q.frozen"], []
+    where, params = ["NOT q.frozen", "c.status='опубликован'"], []
     if data.get("direction"):
         where.append("c.direction_code=%s"); params.append(data["direction"])
     if data.get("course"):
+        row = db.q("SELECT title, status FROM courses WHERE code=%s", (data["course"],), one=True)
+        if not row:
+            raise HTTPException(404, "Курс не найден")
+        why = logic.unavailable_reason(row)
+        if why:
+            raise HTTPException(409, why)
         where.append("l.course_code=%s"); params.append(data["course"])
     if data.get("level"):
         where.append("q.level=%s"); params.append(int(data["level"]))
