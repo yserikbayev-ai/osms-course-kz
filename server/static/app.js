@@ -24,7 +24,16 @@ const ST_CHIP={completed:'done',in_progress:'open',not_started:'locked',failed:'
 const courseById=id=>C.courses.find(c=>c.code===id);
 const lessonById=id=>C.lessons.find(l=>l.code===id);
 const dirById=id=>C.directions.find(d=>d.code===id);
+const isPub=x=>x.status==='опубликован';
 const dirCourses=d=>C.courses.filter(c=>c.direction_code===d).sort((a,b)=>a.step-b.step);
+const pubCourses=d=>dirCourses(d).filter(isPub);
+const soonChip='<span class="chip locked">Скоро</span>';
+const modOf=code=>C.modules.find(m=>m.code===code);
+/* строка модуля в составе курса: ссылка ведёт на оригинал, планируемый серый */
+const modRow=m=>{ const o=m.link?modOf(m.link):null;
+  return `<li class="modrow${isPub(m)?'':' soon'}"><span>${esc(m.title)}</span>${
+    m.status==='ссылка'?(o?`<button class="linkbtn" data-course="${o.course_code}">→ оригинал: ${esc(o.title)}</button>`:'<span class="note">ссылка на оригинал</span>')
+    :isPub(m)?'':soonChip}</li>`; };
 const courseLessons=c=>C.lessons.filter(l=>l.course_code===c.code);
 const courseModules=c=>C.modules.filter(m=>m.course_code===c.code);
 const courseQ=c=>courseLessons(c).reduce((s,l)=>s+(l.questions||0),0);
@@ -39,7 +48,7 @@ const levelChip=n=>`<span class="chip lvl${n}">${LEVELS[n]}</span>`;
 const favBtn=(kind,ref)=>`<button class="favbtn${isFav(kind,ref)?' on':''}" data-fav="${kind}:${ref}"
   title="${isFav(kind,ref)?'Убрать из избранного':'В избранное'}" aria-label="Избранное">★</button>`;
 
-function dirProgress(d){ const cl=dirCourses(d), done=cl.filter(c=>passedC(c.code)).length;
+function dirProgress(d){ const cl=pubCourses(d), done=cl.filter(c=>passedC(c.code)).length;
   return {done,total:cl.length,pct:cl.length?Math.round(done/cl.length*100):0}; }
 function courseState(c){
   if(passedC(c.code)) return 'completed';
@@ -206,7 +215,7 @@ function viewLearning(){
 
 /* ===== избранное (раздел 4 ТЗ) ===== */
 function viewFavorites(){
-  const cs=P.favorites.filter(f=>f.kind==='course').map(f=>courseById(f.ref)).filter(Boolean);
+  const cs=P.favorites.filter(f=>f.kind==='course').map(f=>courseById(f.ref)).filter(c=>c&&isPub(c));
   const ls=P.favorites.filter(f=>f.kind==='lesson').map(f=>lessonById(f.ref)).filter(Boolean);
   return `<div class="hd"><div class="grow">
       <div class="eyebrow">Избранное</div><h2 style="margin-top:6px">Сохранённые материалы</h2>
@@ -227,28 +236,34 @@ function viewFavorites(){
 function viewCatalog(){
   return `<div class="hd"><div class="grow">
       <div class="eyebrow">Каталог обучения</div><h2 style="margin-top:6px">Направления деятельности</h2>
-      <p class="lead">Все курсы открыты: порядок прохождения выбираете вы. Отметка «рекомендуем начать» показывает логичный маршрут, а обязательность и срок задаются вашей должностью.</p>
+      <p class="lead">Серые направления и курсы с отметкой «Скоро» ещё готовятся: состав видно, обучение пока недоступно. В опубликованных курсах порядок прохождения выбираете вы. Отметка «рекомендуем начать» показывает логичный маршрут, а обязательность и срок задаются вашей должностью.</p>
     </div></div>
     <div class="dirgrid">${C.directions.map(d=>{
       const p=dirProgress(d.code), cl=dirCourses(d.code);
       const mand=cl.filter(c=>{const a=assignOf(c.code);return a&&(a.kind==='mandatory'||a.kind==='periodic');}).length;
-      return `<button class="dircard" data-dir="${d.code}">
+      const soon=!d.published_count;
+      return `<button class="dircard${soon?' soon':''}" data-dir="${d.code}">
         <div class="dirmark">${esc(d.icon||'')}</div>
         <div class="dirbody"><h3>${esc(d.title)}</h3>
           <p class="note">${esc(d.descr||'')}</p>
           <div class="row" style="gap:8px;margin-top:10px">
-            <span class="chip ${p.pct===100?'done':'open'}">${p.done} из ${p.total} курсов</span>
+            ${soon?soonChip:`<span class="chip ${p.pct===100?'done':'open'}">${p.done} из ${p.total} курсов</span>`}
+            <span class="chip locked">опубликовано ${d.published_count} из ${d.total_modules} тем</span>
             ${mand?`<span class="chip crit">${mand} обязательных</span>`:''}
           </div>
           <div class="meter" style="margin-top:9px"><i style="width:${p.pct}%"></i></div>
         </div></button>`;}).join('')}</div>`;
 }
 function viewDirection(dcode){
-  const d=dirById(dcode), cl=dirCourses(dcode), next=cl.find(c=>!passedC(c.code));
+  const d=dirById(dcode), cl=dirCourses(dcode), next=cl.find(c=>isPub(c)&&!passedC(c.code));
   return `<div class="crumb"><button class="linkbtn" data-go="catalog">Каталог</button> → ${esc(d.title)}</div>
     <div class="hd"><div class="grow"><div class="eyebrow">Направление</div>
       <h2 style="margin-top:6px">${esc(d.title)}</h2><p class="lead">${esc(d.descr||'')}</p></div></div>
     <div class="stack">${cl.map(c=>{
+      if(!isPub(c)) return `<details class="panel course soon"><summary class="panel-pad row" style="gap:10px">
+          <span class="stepn">${c.step}</span><h3 style="font-size:16.5px;flex:1">${esc(c.title)}</h3>${soonChip}
+          <span class="note">${courseModules(c).length} тем · показать состав</span></summary>
+        <ul class="modlist">${courseModules(c).map(modRow).join('')}</ul></details>`;
       const st=courseState(c), a=assignOf(c.code), rec=!!next&&next.code===c.code&&st!=='completed';
       const lv=[...new Set(courseLessons(c).map(l=>l.level))].sort();
       return `<div class="panel course${rec?' rec':''}"><div class="panel-pad">
@@ -272,18 +287,25 @@ function viewCourse(ccode){
   const c=courseById(ccode), d=dirById(c.direction_code), a=assignOf(ccode);
   const att=attemptsOf(ccode), last=att[att.length-1], ca=caOf(ccode), cert=certOf(ccode);
   const mods=courseModules(c), ls=courseLessons(c), blocked=ca.length>0;
+  if(!isPub(c)) return `<div class="crumb"><button class="linkbtn" data-go="catalog">Каталог</button> →
+      <button class="linkbtn" data-dir="${d.code}">${esc(d.title)}</button> → ${esc(c.title)}</div>
+    <div class="hd"><div class="grow"><div class="row" style="gap:8px"><div class="eyebrow">Курс · шаг ${c.step}</div>${soonChip}</div>
+      <h2 style="margin-top:6px">${esc(c.title)}</h2><p class="lead">Курс ещё готовится: показан состав, обучение и экзамен пока недоступны.</p></div></div>
+    <div class="panel course soon"><ul class="modlist">${mods.map(modRow).join('')}</ul></div>`;
   const cfg=c.exam||{q_count:20,time_min:30,pass_pct:80,max_attempts:3};
   const lessonRow=l=>`<div class="panel"><div class="panel-pad" style="display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap">
       <div style="flex:1;min-width:220px">
         <div class="row" style="gap:8px"><h3 style="font-size:16px">${esc(l.title)}</h3>${levelChip(l.level)}
           ${readL(l.code)?'<span class="chip done">Изучена</span>':''}
-          ${(l.materials||[]).some(m=>m.kind==='video')?'<span class="chip vid">Видео</span>':''}</div>
+          ${l.video?'<span class="chip vid">Видео</span>':''}</div>
         <p class="note" style="margin-top:6px">${esc(l.intro||'')}</p>
         <p class="note" style="margin-top:5px;color:var(--ink-3)">${(l.cards||[]).length} норм · ${l.questions||0} вопросов · ~${l.duration_min||15} мин</p>
       </div>${favBtn('lesson',l.code)}
       <button class="btn sm" data-lesson="${l.code}">${readL(l.code)?'Повторить':'Изучить'}</button></div></div>`;
   const body = mods.length
-    ? mods.map((m,i)=>`<div class="block"><h3 class="bh">${esc(m.title)}</h3>
+    ? mods.map((m,i)=>!isPub(m)||!ls.some(l=>l.module_code===m.code)
+        ? `<ul class="modlist">${modRow(m)}</ul>`
+        : `<div class="block"><h3 class="bh">${esc(m.title)}</h3>
         <div class="stack">${ls.filter(l=>l.module_code===m.code).map(lessonRow).join('')}</div></div>`).join('')
       + (ls.some(l=>!l.module_code)?`<div class="block"><h3 class="bh">Дополнительные темы</h3>
         <div class="stack">${ls.filter(l=>!l.module_code).map(lessonRow).join('')}</div></div>`:'')
@@ -329,14 +351,14 @@ function renderCA(c,ca,last){
 function viewLesson(code){
   const l=lessonById(code), c=courseById(l.course_code), d=dirById(c.direction_code);
   const mats=l.materials||[];
-  const video=mats.filter(m=>m.kind==='video');
   const files=mats.filter(m=>['file','link','audio'].includes(m.kind));
-  const vhtml=video.map(v=>v.url
-    ? `<div class="panel videoblock"><div class="ratio"><iframe src="${esc(v.url)}" title="${esc(v.title)}" allowfullscreen loading="lazy"></iframe></div>
-       <div class="panel-pad row" style="justify-content:space-between"><b>${esc(v.title)}</b>
-       ${v.required?'<span class="chip crit">Обязателен к просмотру</span>':''}</div></div>`
-    : `<div class="panel videostub"><div class="vicon">▶</div><div><b>${esc(v.title)}</b>
-       <p class="note" style="margin-top:3px">Запись готовится. Место под неё зарезервировано: как только видео появится, оно встанет сюда без изменения курса.</p></div></div>`).join('');
+  const vhtml=(l.video||'').startsWith('https://www.youtube-nocookie.com/embed/')
+    ? `<div class="panel videoblock"><div class="ratio"><iframe src="${esc(l.video)}" title="${esc(l.title)}" allowfullscreen loading="lazy"
+         referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+       <div class="panel-pad row" style="justify-content:space-between"><b>${esc(l.title)}</b>
+       <a href="${esc(l.video.replace('youtube-nocookie.com/embed/','youtube.com/watch?v='))}" target="_blank" rel="noopener">Открыть на YouTube</a></div></div>`
+    : `<div class="panel videoblock"><img src="${esc(C.video_placeholder)}" alt="Видео готовится" style="display:block;width:100%;max-width:480px;margin:0 auto">
+       <div class="panel-pad"><b>Видео готовится</b><p class="note" style="margin-top:3px">Тема: ${esc(l.title)}</p></div></div>`;
   return `<div class="crumb"><button class="linkbtn" data-go="catalog">Каталог</button> →
       <button class="linkbtn" data-dir="${d.code}">${esc(d.title)}</button> →
       <button class="linkbtn" data-course="${c.code}">${esc(c.title)}</button> → ${esc(l.title)}</div>
@@ -516,7 +538,7 @@ function finishDrill(){
 /* ===== поиск ===== */
 function viewSearch(term){
   const t=term.toLowerCase(), hits=[];
-  C.courses.forEach(c=>{ if(c.title.toLowerCase().includes(t)||(c.intro||'').toLowerCase().includes(t))
+  C.courses.filter(isPub).forEach(c=>{ if(c.title.toLowerCase().includes(t)||(c.intro||'').toLowerCase().includes(t))
     hits.push({type:'Курс',title:c.title,sub:dirById(c.direction_code).title,act:`data-course="${c.code}"`});});
   C.lessons.forEach(l=>{ if(l.title.toLowerCase().includes(t)||(l.intro||'').toLowerCase().includes(t))
     hits.push({type:'Тема',title:l.title,sub:courseById(l.course_code).title,act:`data-lesson="${l.code}"`});});
@@ -592,7 +614,7 @@ function showEmp(id){
     <div class="row" style="justify-content:space-between"><div><div class="eyebrow">Отчёт по сотруднику</div>
       <h3 style="margin-top:6px;font-size:17px">${esc(p.name)}</h3>
       <p class="note">${esc(p.role||'—')}${p.department?` · ${esc(p.department)}`:''}</p></div>
-      <div class="row"><select id="asg-course" class="mini">${C.courses.map(c=>`<option value="${c.code}">${esc(c.title)}</option>`).join('')}</select>
+      <div class="row"><select id="asg-course" class="mini">${C.courses.filter(isPub).map(c=>`<option value="${c.code}">${esc(c.title)}</option>`).join('')}</select>
       <button class="btn sm primary" id="btn-assign" data-user="${p.id}">Назначить курс</button></div></div>
     <div class="tblwrap" style="margin-top:14px"><table>
       <thead><tr><th>Курс</th><th>Тип</th><th>Статус</th><th>Срок</th><th>Результат</th><th>Прирост</th><th>Сертификат</th></tr></thead>
@@ -811,7 +833,7 @@ function bind(){
     await refresh(); render();});
   const bd=$('#btn-drill'); if(bd) bd.onclick=startDrill;
   const dd=$('#d-dir');
-  if(dd) dd.onchange=()=>{ const cs=dd.value?dirCourses(dd.value):[];
+  if(dd) dd.onchange=()=>{ const cs=dd.value?pubCourses(dd.value):[];
     $('#d-course').innerHTML='<option value="">Все курсы направления</option>'+
       cs.map(c=>`<option value="${c.code}">${esc(c.title)}</option>`).join('');};
   const ra=$('#btn-readall');
