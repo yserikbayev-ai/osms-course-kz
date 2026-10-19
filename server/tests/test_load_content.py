@@ -65,9 +65,7 @@ def test_every_real_content_file_loads(db):
     from app import main
     structure.load_structure(PATH); structure.absorb_direction2()
     failed = main._load_all_content(str(pathlib.Path(PATH).parent / "content"))
-    # 4 файла кладут уроки в модули-«ссылки» (structure.json) — отдельный открытый вопрос контента, не point
-    link_modules = {"content-k032.json", "content-k053.json", "content-k091.json", "content-k142.json"}
-    assert {pathlib.Path(f).name for f in failed} == link_modules
+    assert failed == []
 
 def test_point_migration_converts_existing_integer_columns(db):
     import psycopg
