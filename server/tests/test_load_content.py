@@ -60,3 +60,20 @@ def test_load_all_content_takes_every_course_file_and_survives_broken_one(db, tm
     (tmp_path / "other.json").write_text("{не json", encoding="utf-8")   # не по маске — не трогается
     main._load_all_content(str(tmp_path))
     assert db.q("SELECT count(*) n FROM lessons WHERE code='F2'", one=True)["n"] == 1
+
+def test_every_real_content_file_loads(db):
+    from app import main
+    structure.load_structure(PATH); structure.absorb_direction2()
+    failed = main._load_all_content(str(pathlib.Path(PATH).parent / "content"))
+    # 4 файла кладут уроки в модули-«ссылки» (structure.json) — отдельный открытый вопрос контента, не point
+    link_modules = {"content-k032.json", "content-k053.json", "content-k091.json", "content-k142.json"}
+    assert {pathlib.Path(f).name for f in failed} == link_modules
+
+def test_point_migration_converts_existing_integer_columns(db):
+    import psycopg
+    from conftest import DSN, apply_schema4
+    with psycopg.connect(DSN, autocommit=True) as c:
+        c.execute("UPDATE cards SET point=NULL; ALTER TABLE cards ALTER COLUMN point TYPE INT USING NULL")
+        c.execute("INSERT INTO cards(lesson_code,norm,point) SELECT code,'н',7 FROM lessons LIMIT 1")
+    apply_schema4()
+    assert db.q("SELECT point FROM cards WHERE norm='н'", one=True)["point"] == "7"

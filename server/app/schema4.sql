@@ -17,3 +17,13 @@ CREATE TABLE IF NOT EXISTS video_slots (
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 INSERT INTO video_slots(lesson_code) SELECT code FROM lessons ON CONFLICT DO NOTHING;
+
+-- point бывает «47-1», «11 (часть первая)»: на уже существующей БД приводим INT к TEXT
+DO $$ BEGIN
+  IF (SELECT data_type FROM information_schema.columns WHERE table_name='cards' AND column_name='point') = 'integer' THEN
+    ALTER TABLE cards ALTER COLUMN point TYPE TEXT USING point::text;
+  END IF;
+  IF (SELECT data_type FROM information_schema.columns WHERE table_name='questions' AND column_name='point') = 'integer' THEN
+    ALTER TABLE questions ALTER COLUMN point TYPE TEXT USING point::text;
+  END IF;
+END $$;

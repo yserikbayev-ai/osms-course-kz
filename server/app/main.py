@@ -27,11 +27,14 @@ async def _deadline_loop():
         await asyncio.sleep(3600)
 
 def _load_all_content(folder):
+    failed = []
     for cp in sorted(glob.glob(os.path.join(folder, "content-k*.json"))):
         try:
             structure.load_content(cp)
         except Exception:   # битый файл не валит старт; остальные грузятся
             logging.exception("load_content: не загружен %s", cp)
+            failed.append(cp)
+    return failed
 
 @app.on_event("startup")
 async def _startup():

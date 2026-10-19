@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS lessons (
 CREATE TABLE IF NOT EXISTS cards (
   id BIGSERIAL PRIMARY KEY,
   lesson_code TEXT NOT NULL REFERENCES lessons(code) ON DELETE CASCADE,
-  act_code TEXT REFERENCES acts(code), point INT,
+  act_code TEXT REFERENCES acts(code), point TEXT,
   norm TEXT NOT NULL, plain TEXT, sort INT DEFAULT 100
 );
 
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS questions (
   options JSONB NOT NULL,
   correct INT NOT NULL,
   explain TEXT,
-  act_code TEXT REFERENCES acts(code), point INT,
+  act_code TEXT REFERENCES acts(code), point TEXT,
   frozen BOOLEAN NOT NULL DEFAULT FALSE
 );
 CREATE INDEX IF NOT EXISTS idx_q_lesson ON questions(lesson_code);
