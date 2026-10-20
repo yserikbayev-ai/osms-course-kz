@@ -61,11 +61,13 @@ function setTab(name){
 }
 function render(){
   const v = VIEW;
-  setTab(v.name === 'course' || v.name === 'lesson' || v.name === 'direction' || v.name === 'exam' || v.name === 'result' ? 'catalog' : v.name);
+  document.body.classList.toggle('printing-course', v.name === 'course-print');
+  setTab(v.name === 'course' || v.name === 'course-print' || v.name === 'lesson' || v.name === 'direction' || v.name === 'exam' || v.name === 'result' ? 'catalog' : v.name);
   const el = $('#app');
   if (v.name === 'catalog')   el.innerHTML = viewCatalog();
   else if (v.name === 'direction') el.innerHTML = viewDirection(v.dir);
   else if (v.name === 'course')    el.innerHTML = viewCourse(v.course);
+  else if (v.name === 'course-print') el.innerHTML = viewCoursePrint(v.course);
   else if (v.name === 'lesson')    el.innerHTML = viewLesson(v.lesson);
   else if (v.name === 'drill')     el.innerHTML = viewDrillSetup();
   else if (v.name === 'chief')     el.innerHTML = viewChief();
