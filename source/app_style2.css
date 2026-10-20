@@ -51,3 +51,30 @@
   .brand span{display:none}
   .tab{padding:6px 9px;font-size:12.5px}
 }
+
+/* Документ остаётся читаемым и в тёмной теме. */
+.print-controls{display:grid;gap:12px}
+.course-document{background:#fff;color:#000;padding:24px;overflow-wrap:anywhere;line-height:1.5}
+.course-document h1{font-size:24px;margin:12px 0}
+.course-document h2{font-size:20px;margin:24px 0 12px}
+.course-document h3{font-size:15px;margin:0 0 10px}
+.course-document p{margin:10px 0}
+.course-document a{color:#000}
+.print-norm{margin:18px 0;padding-top:12px;border-top:1px solid #aaa}
+.print-source{font-size:12px}
+@media print{
+  @page{size:A4;margin:16mm}
+  body.printing-course{background:#fff;color:#000;color-scheme:light}
+  body.printing-course > header,body.printing-course > footer,
+  body.printing-course .print-controls{display:none!important}
+  body.printing-course main,body.printing-course .wrap{padding:0;max-width:none}
+  body.printing-course #app{display:block}
+  .course-document{padding:0;font-size:11pt}
+  .course-document h1{font-size:20pt}
+  .course-document h2{font-size:16pt}
+  .course-document h3{font-size:12pt}
+  .course-document h1,.course-document h2,.course-document h3{break-after:avoid}
+  .course-document p{orphans:3;widows:3}
+  .print-lesson + .print-lesson{break-before:page}
+  .print-norm{break-inside:avoid}
+}

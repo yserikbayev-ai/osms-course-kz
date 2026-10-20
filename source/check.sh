@@ -15,6 +15,7 @@ done
 
 # варианты ответа не должны выдавать правильный длиной или повтором
 node source/check_options.cjs || exit 1
+node source/check_print.cjs || exit 1
 
 bash source/build.sh >/dev/null || { echo "СБОРКА: build.sh упал"; exit 1; }
 
