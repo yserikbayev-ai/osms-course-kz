@@ -6,3 +6,5 @@ source/test2.html
 __pycache__/
 .DS_Store
 .env
+server/venv/
+.pytest_cache/

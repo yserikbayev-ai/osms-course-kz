@@ -77,3 +77,20 @@ source/*.js  →  source/build.sh  →  index.html (корень) = то, что
 Если работа продолжается — скажи «продолжи автопилот»: состояние поднимется
 из `.autopilot/state.js`, переспрашивать ничего не нужно.
 <!-- autopilot:end -->
+
+## Сервер (Medical LMS, прод https://lms.refactor.kz)
+
+Кроме статической страницы в репозитории есть `server/` — FastAPI + PostgreSQL,
+боевая многопользовательская LMS. Прод живёт на kz-server в `/opt/lms`
+(`lms.service`, uvicorn на :8011), код туда приезжает из `main` синхронизацией
+`server/` → `/opt/lms` (venv, pgdata и `.env` не трогаются), схема применяется
+самим приложением при старте (`_apply_schema`).
+
+- Зависимости: `server/requirements.txt`; окружение для проверки — `server/venv`.
+- Быстрая проверка без базы: `server/venv/bin/python3 -m py_compile server/app/*.py`
+  и `server/venv/bin/python3 -m pytest -q server/tools`.
+- Полные тесты (`server/tests`) поднимают временный PostgreSQL (`conftest.py`, бинарники
+  Homebrew) — гоняются на Маке владельца, в копии бота PostgreSQL нет.
+- Содержание курсов сервера — `server/content/content-k*.json` и `server/structure.json`,
+  проверки — `server/tools/check_content.py`, `check_scenarios.py`.
+- Push/fetch, выкат и рестарт сервиса делает бот, агенту их выполнять не нужно.
