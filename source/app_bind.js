@@ -71,6 +71,9 @@ function viewAbout(){
 
 /* ================= Обработчики ================= */
 function bind(){
+  $$('[data-course-print]').forEach(b => b.addEventListener('click', () => go({ name:'course-print', course:b.dataset.coursePrint })));
+  const print = $('#btn-print-course');
+  if (print) print.addEventListener('click', () => window.print());
   $$('[data-dir]').forEach(b => b.addEventListener('click', e => { e.preventDefault(); go({ name:'direction', dir:b.dataset.dir }); }));
   $$('[data-course]').forEach(b => b.addEventListener('click', e => { e.preventDefault(); go({ name:'course', course:b.dataset.course }); }));
   $$('[data-lesson]').forEach(b => b.addEventListener('click', e => { e.preventDefault(); go({ name:'lesson', lesson:b.dataset.lesson }); }));

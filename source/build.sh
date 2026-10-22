@@ -7,7 +7,7 @@ style = style.replace('</style>', open('app_style2.css', encoding='utf-8').read(
 body = open('app_body2.html', encoding='utf-8').read()
 js_files = ['content_acts.js','content_g1.js','content_g2.js','content_g3.js',
             'content_vax.js','content_checkup.js','taxonomy.js',
-            'app_core.js','app_views.js','app_search.js','app_exam.js','app_bind.js']
+            'app_core.js','app_views.js','app_print.js','app_search.js','app_exam.js','app_bind.js']
 js = "\n".join(open(f, encoding='utf-8').read() for f in js_files)
 html = style + "\n" + body + "\n<script>\n" + js + "\n</" + "script>\n"
 open('lms.html','w',encoding='utf-8').write(html)

@@ -107,6 +107,7 @@ function viewCourse(courseId){
         <p class="lead">${esc(c.intro)}</p>
       </div>
       <button class="btn" data-dir="${d.id}">← К направлению</button></div>
+    <div><button class="btn" data-course-print="${c.id}">Материалы курса в PDF</button></div>
     ${status}
     <div class="stack">${lessons}</div>
     <div class="panel panel-pad" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
@@ -148,6 +149,7 @@ function viewLesson(lessonId){
         <div class="row" style="gap:6px;margin-top:8px">${levelChip(l.level)}</div>
       </div>
       <button class="btn" data-course="${c.id}">← К курсу</button></div>
+    <div><button class="btn" data-course-print="${c.id}">Материалы всего курса в PDF</button></div>
     ${video}${cards}
     <div class="panel panel-pad row" style="justify-content:space-between">
       <span class="note">Отметьте урок изученным, когда разберётесь с нормами</span>
